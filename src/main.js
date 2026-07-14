@@ -16,7 +16,7 @@ const defaultState = {
     location: "Online worldwide",
     availability: "Weekdays and weekend batches",
     cta: "Book a trial lesson",
-    heroImage: "/assets/tutor-lms-hero.png"
+    heroImage: "/assets/tutor-lms-hero.jpg"
   },
   subjects: [
     {
