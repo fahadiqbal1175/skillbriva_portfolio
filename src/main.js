@@ -33,12 +33,12 @@ const ADMIN_FORM_IDS = new Set([
 const defaultState = {
   settings: {
     name: "Hafiz Fahad Iqbal",
-    role: "Online Quran and Academic Tutor",
+    role: "Multi-Subject Online Tutor",
     headline: "Personalized teaching with a full learning dashboard",
     intro:
-      "A clean portfolio and LMS for one-to-one tutoring, structured courses, assignments, quizzes, lesson resources, and student progress.",
+      "A clean portfolio and LMS for one-to-one tutoring, structured courses, assignments, quizzes, lesson resources, and student progress across multiple subjects.",
     about:
-      "Hafiz Fahad Iqbal supports learners with calm, structured lessons in Quran recitation, Hifz, Tajweed, Islamic studies, and school subjects. Every course is organized into modules with clear outcomes, practice tasks, feedback, and measurable progress.",
+      "Hafiz Fahad Iqbal supports learners with calm, structured lessons in English, Mathematics, Science, computer skills, exam preparation, and study planning. Every course is organized into modules with clear outcomes, practice tasks, feedback, and measurable progress.",
     email: "hafiz.fahad@example.com",
     phone: "+92 300 0000000",
     location: "Online worldwide",
@@ -48,34 +48,34 @@ const defaultState = {
   },
   subjects: [
     {
-      name: "Quran Recitation",
-      code: "QR",
-      description: "Fluency, makharij, rhythm, confidence, and guided correction."
-    },
-    {
-      name: "Hifz and Revision",
-      code: "HF",
-      description: "Memorization plans, daily review cycles, and retention checks."
-    },
-    {
-      name: "Tajweed",
-      code: "TJ",
-      description: "Rules-based practice with examples, drills, and recitation review."
-    },
-    {
-      name: "Islamic Studies",
-      code: "IS",
-      description: "Foundational learning for young students and adult beginners."
-    },
-    {
-      name: "English",
+      name: "English Language",
       code: "EN",
-      description: "Reading, grammar, speaking practice, writing, and vocabulary."
+      description: "Reading, grammar, vocabulary, writing, speaking practice, and confidence."
     },
     {
-      name: "Math and Science",
-      code: "MS",
-      description: "Homework support, concept clarity, tests, and study planning."
+      name: "Mathematics",
+      code: "MT",
+      description: "Number fluency, problem solving, algebra basics, geometry, and exam practice."
+    },
+    {
+      name: "Science",
+      code: "SC",
+      description: "Concept clarity, experiments, diagrams, reasoning, and test preparation."
+    },
+    {
+      name: "Computer Skills",
+      code: "CS",
+      description: "Digital literacy, productivity tools, typing, coding logic, and projects."
+    },
+    {
+      name: "Exam Preparation",
+      code: "EX",
+      description: "Syllabus planning, timed practice, revision systems, and performance feedback."
+    },
+    {
+      name: "Study Skills",
+      code: "SS",
+      description: "Homework routines, note-taking, goal setting, progress tracking, and reflection."
     }
   ],
   stats: [
@@ -88,82 +88,82 @@ const defaultState = {
     {
       name: "Parent of Grade 6 Student",
       quote:
-        "The lessons are organized and gentle. My child knows what to revise and how progress is measured each week."
+        "The lessons are organized and practical. My child understands weekly targets, revision work, and progress clearly."
     },
     {
-      name: "Adult Tajweed Learner",
+      name: "English Speaking Student",
       quote:
-        "Clear correction, patient practice, and useful resources after every lesson made a real difference."
+        "The speaking practice, vocabulary support, and writing feedback helped me become more confident in class."
     },
     {
-      name: "Academic Support Student",
+      name: "Math Support Student",
       quote:
-        "The dashboard helped me keep track of assignments, quiz results, and the next lesson without confusion."
+        "The dashboard helped me track assignments, quiz results, weak topics, and the next lesson without confusion."
     }
   ],
   courses: [
     {
-      id: "tajweed-foundations",
-      title: "Tajweed Foundations",
-      subject: "Tajweed",
-      level: "Beginner",
+      id: "english-communication-writing",
+      title: "English Communication & Writing",
+      subject: "English Language",
+      level: "Beginner to Intermediate",
       duration: "8 weeks",
       description:
-        "Build correct pronunciation, core rules, and confident recitation habits through guided practice.",
+        "Build stronger reading, grammar, vocabulary, speaking confidence, and paragraph writing skills.",
       outcomes: [
-        "Identify common pronunciation errors",
-        "Apply core Tajweed rules during recitation",
-        "Complete weekly recitation reviews"
+        "Read short passages with better comprehension",
+        "Write clear paragraphs with correct structure",
+        "Speak with improved vocabulary and confidence"
       ],
-      tags: ["Live lessons", "Practice drills", "Feedback"],
+      tags: ["Reading", "Writing", "Speaking"],
       modules: [
         {
-          title: "Sound and Articulation",
+          title: "Reading and Vocabulary",
           lessons: [
             {
-              title: "Makharij Overview",
+              title: "Main Idea and Supporting Details",
               type: "Video",
-              minutes: 18,
+              minutes: 20,
               videoUrl: "",
               content:
-                "This lesson introduces articulation points and the listening habits needed for accurate correction.\n\nStudents practice short recitation samples and compare sound placement.",
+                "Students learn how to identify the main idea, supporting details, and unfamiliar vocabulary in short reading passages.\n\nThe lesson includes a guided passage, vocabulary notes, and a quick comprehension check.",
               resources: [
                 {
-                  label: "Makharij practice sheet",
-                  url: "/resources/makharij-practice.txt"
+                  label: "Reading comprehension checklist",
+                  url: "/resources/reading-comprehension-checklist.txt"
                 }
               ]
             },
             {
-              title: "Heavy and Light Letters",
+              title: "Vocabulary Builder",
               type: "Lesson",
-              minutes: 22,
+              minutes: 18,
               videoUrl: "",
               content:
-                "Students learn the difference between heavy and light pronunciation and complete a guided repetition drill.",
+                "Students practice useful academic vocabulary, synonyms, sentence examples, and word-family patterns.",
               resources: [
                 {
-                  label: "Letter grouping chart",
-                  url: "/resources/letter-grouping-chart.txt"
+                  label: "Vocabulary practice sheet",
+                  url: "/resources/vocabulary-practice-sheet.txt"
                 }
               ]
             }
           ]
         },
         {
-          title: "Rules in Practice",
+          title: "Writing and Speaking",
           lessons: [
             {
-              title: "Noon Sakinah and Tanween",
+              title: "Paragraph Structure",
               type: "Video",
-              minutes: 26,
+              minutes: 24,
               videoUrl: "",
               content:
-                "A practical lesson for recognition, rule selection, and short verse application.",
+                "Students learn topic sentences, supporting details, transitions, and a short conclusion for clear paragraph writing.",
               resources: [
                 {
-                  label: "Rule summary",
-                  url: "/resources/noon-sakinah-summary.txt"
+                  label: "Paragraph writing template",
+                  url: "/resources/paragraph-writing-template.txt"
                 }
               ]
             }
@@ -172,29 +172,29 @@ const defaultState = {
       ],
       assignments: [
         {
-          id: "tajweed-recording-1",
-          title: "Recitation recording",
+          id: "english-paragraph-speaking-task",
+          title: "Paragraph and speaking reflection",
           due: "Every Friday",
           prompt:
-            "Submit a two-minute recitation recording using the current week's correction focus.",
+            "Write one paragraph on the assigned topic and submit a short speaking reflection explaining your main idea.",
           maxPoints: 20
         }
       ],
       quiz: {
-        title: "Tajweed Foundations Quiz",
+        title: "English Communication Quiz",
         questions: [
           {
-            question: "Which term refers to articulation points?",
-            options: ["Makharij", "Madd", "Idgham", "Qalqalah"],
+            question: "What is the purpose of a topic sentence?",
+            options: ["To introduce the main idea", "To list random words", "To end the paragraph", "To avoid details"],
             answer: 0
           },
           {
-            question: "A practical Tajweed lesson should include:",
+            question: "A strong reading routine should include:",
             options: [
-              "Only theory notes",
-              "Rule recognition and recitation practice",
-              "Silent reading only",
-              "Skipping feedback"
+              "Skipping difficult words",
+              "Finding main ideas and key details",
+              "Reading without checking meaning",
+              "Only memorizing answers"
             ],
             answer: 1
           }
@@ -202,53 +202,53 @@ const defaultState = {
       }
     },
     {
-      id: "hifz-revision-system",
-      title: "Hifz Revision System",
-      subject: "Hifz and Revision",
-      level: "Intermediate",
-      duration: "12 weeks",
+      id: "mathematics-problem-solving",
+      title: "Mathematics Problem Solving",
+      subject: "Mathematics",
+      level: "Grade 5-8",
+      duration: "10 weeks",
       description:
-        "A memorization and review framework for stronger retention, weekly targets, and recitation accountability.",
+        "Strengthen number sense, word-problem strategy, algebra basics, and step-by-step exam solutions.",
       outcomes: [
-        "Create a weekly memorization plan",
-        "Track old and new lesson revision",
-        "Reduce repeated recitation mistakes"
+        "Solve multi-step word problems with a clear method",
+        "Improve accuracy in fractions, decimals, and percentages",
+        "Show complete working for quiz and exam questions"
       ],
-      tags: ["Memorization", "Revision plan", "Progress checks"],
+      tags: ["Problem solving", "Practice sets", "Exam skills"],
       modules: [
         {
-          title: "Planning the Week",
+          title: "Foundation Fluency",
           lessons: [
             {
-              title: "New Lesson, Recent Review, Old Review",
+              title: "Fractions, Decimals, and Percentages",
               type: "Lesson",
-              minutes: 20,
+              minutes: 25,
               videoUrl: "",
               content:
-                "Students divide the week into new memorization, recent revision, and older review for long-term retention.",
+                "Students connect fractions, decimals, and percentages through examples, visual models, and short practice problems.",
               resources: [
                 {
-                  label: "Weekly Hifz tracker",
-                  url: "/resources/weekly-hifz-tracker.txt"
+                  label: "Math practice planner",
+                  url: "/resources/math-practice-planner.txt"
                 }
               ]
             }
           ]
         },
         {
-          title: "Correction and Retention",
+          title: "Word Problems and Algebra",
           lessons: [
             {
-              title: "Mistake Log Method",
+              title: "Setting Up a Word Problem",
               type: "Worksheet",
-              minutes: 16,
+              minutes: 22,
               videoUrl: "",
               content:
-                "A focused system for recording repeated mistakes, correcting them, and testing again later.",
+                "Students learn how to underline important information, choose the operation, write an equation, and check the answer.",
               resources: [
                 {
-                  label: "Mistake log template",
-                  url: "/resources/mistake-log-template.txt"
+                  label: "Word problem strategy sheet",
+                  url: "/resources/word-problem-strategy-sheet.txt"
                 }
               ]
             }
@@ -257,78 +257,78 @@ const defaultState = {
       ],
       assignments: [
         {
-          id: "hifz-weekly-log",
-          title: "Weekly memorization log",
-          due: "Sunday",
+          id: "math-practice-set",
+          title: "Weekly math practice set",
+          due: "Wednesday",
           prompt:
-            "Enter completed new lesson, recent review, old review, and repeated mistakes for the week.",
-          maxPoints: 30
+            "Submit completed practice questions and mark any problems that need review in the next session.",
+          maxPoints: 25
         }
       ],
       quiz: {
-        title: "Revision Planning Quiz",
+        title: "Math Problem Solving Quiz",
         questions: [
           {
-            question: "A strong Hifz plan usually includes:",
+            question: "What is the first step in solving a word problem?",
             options: [
-              "Only new memorization",
-              "Only old revision",
-              "New lesson, recent review, and old review",
-              "No tracking"
+              "Guess the answer",
+              "Identify important information",
+              "Skip the question",
+              "Copy the final answer"
             ],
-            answer: 2
+            answer: 1
           }
         ]
       }
     },
     {
-      id: "school-support-essentials",
-      title: "School Support Essentials",
-      subject: "Math and Science",
-      level: "Grade 5-8",
+      id: "science-computer-skills",
+      title: "Science & Computer Skills",
+      subject: "Science and Technology",
+      level: "Grade 6-10",
       duration: "10 weeks",
       description:
-        "Academic tutoring for concept clarity, homework support, short assessments, and study routines.",
+        "Learn scientific thinking, diagrams, basic research skills, digital tools, and introductory coding logic.",
       outcomes: [
-        "Improve concept understanding",
-        "Complete weekly practice tasks",
-        "Prepare for quizzes and exams"
+        "Explain science concepts using evidence and examples",
+        "Create simple digital study materials",
+        "Understand basic coding logic and problem decomposition"
       ],
-      tags: ["Homework", "Assessments", "Study skills"],
+      tags: ["Science", "Digital skills", "Projects"],
       modules: [
         {
-          title: "Study Foundation",
+          title: "Science Thinking",
           lessons: [
             {
-              title: "Turning Homework into Practice",
+              title: "Experiments and Evidence",
               type: "Lesson",
               minutes: 24,
               videoUrl: "",
               content:
-                "Students learn how to identify weak concepts from homework and turn them into repeatable practice.",
+                "Students learn how to ask a scientific question, form a hypothesis, observe results, and explain evidence.",
               resources: [
                 {
-                  label: "Study routine planner",
-                  url: "/resources/study-routine-planner.txt"
+                  label: "Science observation template",
+                  url: "/resources/science-observation-template.txt"
                 }
               ]
             }
           ]
         },
         {
-          title: "Assessment Skills",
+          title: "Digital Skills",
           lessons: [
             {
-              title: "Short Quiz Strategy",
+              title: "Intro to Coding Logic",
               type: "Video",
-              minutes: 19,
+              minutes: 21,
               videoUrl: "",
               content:
-                "A practical approach to reading questions, showing work, checking answers, and improving scores.",
+                "Students practice breaking a task into small steps, using conditions, and writing simple algorithm-style instructions.",
               resources: [
                 {
-                  label: "Quiz checklist",
-                  url: "/resources/quiz-checklist.txt"
+                  label: "Coding logic worksheet",
+                  url: "/resources/coding-logic-worksheet.txt"
                 }
               ]
             }
@@ -337,24 +337,24 @@ const defaultState = {
       ],
       assignments: [
         {
-          id: "school-practice-set",
-          title: "Practice set submission",
-          due: "Wednesday",
+          id: "science-digital-project",
+          title: "Mini research or digital project",
+          due: "Friday",
           prompt:
-            "Submit completed practice questions and mark any items that need review.",
-          maxPoints: 25
+            "Create a short explanation, diagram, or digital slide about the assigned science or technology topic.",
+          maxPoints: 30
         }
       ],
       quiz: {
-        title: "Study Skills Quiz",
+        title: "Science and Technology Quiz",
         questions: [
           {
-            question: "What should a student do after finding a weak concept?",
+            question: "What should a good science explanation include?",
             options: [
-              "Ignore it",
-              "Create focused practice",
-              "Skip the chapter",
-              "Wait for the exam"
+              "Only a final answer",
+              "Evidence and clear reasoning",
+              "No examples",
+              "Unrelated details"
             ],
             answer: 1
           }
@@ -365,34 +365,34 @@ const defaultState = {
   students: [
     {
       id: "student-a",
-      name: "Ayesha Khan",
-      email: "ayesha@example.com",
+      name: "Maya Roberts",
+      email: "maya@example.com",
       status: "Active",
-      notes: "Tajweed Foundations, Saturday batch",
-      enrolledCourseIds: ["tajweed-foundations", "hifz-revision-system"]
+      notes: "English and Math support, weekend batch",
+      enrolledCourseIds: ["english-communication-writing", "mathematics-problem-solving"]
     },
     {
       id: "student-b",
-      name: "Hamza Ali",
-      email: "hamza@example.com",
+      name: "Omar Shah",
+      email: "omar@example.com",
       status: "Active",
-      notes: "School Support Essentials",
-      enrolledCourseIds: ["school-support-essentials"]
+      notes: "Science and computer skills project track",
+      enrolledCourseIds: ["science-computer-skills"]
     }
   ],
   currentStudentId: "student-a",
   progress: {
     "student-a": {
-      "tajweed-foundations": ["0-0"],
-      "hifz-revision-system": []
+      "english-communication-writing": ["0-0"],
+      "mathematics-problem-solving": []
     },
     "student-b": {
-      "school-support-essentials": ["0-0"]
+      "science-computer-skills": ["0-0"]
     }
   },
   quizResults: {
     "student-a": {
-      "tajweed-foundations": { score: 50, total: 100 }
+      "english-communication-writing": { score: 50, total: 100 }
     }
   },
   submissions: {
@@ -594,7 +594,7 @@ function renderHome() {
         <div class="section-head">
           <div>
             <span class="eyebrow">Courses</span>
-            <h2>Featured LMS tracks</h2>
+            <h2>Featured learning tracks</h2>
           </div>
         </div>
         <div class="grid three">
@@ -1928,7 +1928,7 @@ function createCourse() {
   return {
     id,
     title: "New Course",
-    subject: "Quran Recitation",
+    subject: "English Language",
     level: "Beginner",
     duration: "4 weeks",
     description: "Add course description.",

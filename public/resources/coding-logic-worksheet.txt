@@ -1,0 +1,10 @@
+Coding Logic Worksheet
+
+Task:
+Inputs:
+Steps:
+Condition:
+Output:
+
+Practice:
+Write instructions for a simple real-life task, then improve the steps so they are clear and repeatable.
