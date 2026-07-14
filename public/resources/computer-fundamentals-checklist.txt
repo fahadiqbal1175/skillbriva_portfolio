@@ -1,0 +1,9 @@
+Computer Fundamentals Checklist
+
+Key terms:
+Hardware, software, input, output, storage, operating system, file, network.
+
+Practice:
+1. Give two examples of input devices.
+2. Give two examples of output devices.
+3. Explain why an operating system is needed.

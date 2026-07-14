@@ -1,6 +1,6 @@
 import "./styles.css";
 
-const STORAGE_KEY = "fahad-portfolio-lms-state-v2";
+const STORAGE_KEY = "fahad-portfolio-lms-state-v3";
 const ADMIN_SESSION_KEY = "fahad-portfolio-lms-admin-session-v1";
 const ADMIN_USERNAME = (import.meta.env.VITE_ADMIN_USERNAME || "fahad").trim();
 const ADMIN_PASSWORD_HASH =
@@ -38,7 +38,7 @@ const defaultState = {
     intro:
       "A clean portfolio and LMS for one-to-one tutoring, structured courses, assignments, quizzes, lesson resources, and student progress across multiple subjects.",
     about:
-      "Hafiz Fahad Iqbal supports learners with calm, structured lessons in English, Mathematics, Science, computer skills, exam preparation, and study planning. Every course is organized into modules with clear outcomes, practice tasks, feedback, and measurable progress.",
+      "Hafiz Fahad Iqbal supports learners with calm, structured lessons in Computer Science, English, Mathematics, Islamiat, Al-Quran, and Programming Skills. Every course is organized into modules with clear outcomes, practice tasks, feedback, and measurable progress.",
     email: "hafiz.fahad@example.com",
     phone: "+92 300 0000000",
     location: "Online worldwide",
@@ -48,7 +48,12 @@ const defaultState = {
   },
   subjects: [
     {
-      name: "English Language",
+      name: "Computer Science",
+      code: "CS",
+      description: "Computer basics, digital literacy, theory concepts, problem solving, and exam support."
+    },
+    {
+      name: "English",
       code: "EN",
       description: "Reading, grammar, vocabulary, writing, speaking practice, and confidence."
     },
@@ -58,28 +63,23 @@ const defaultState = {
       description: "Number fluency, problem solving, algebra basics, geometry, and exam practice."
     },
     {
-      name: "Science",
-      code: "SC",
-      description: "Concept clarity, experiments, diagrams, reasoning, and test preparation."
+      name: "Islamiat",
+      code: "IS",
+      description: "Islamic studies, beliefs, history, values, short questions, and exam preparation."
     },
     {
-      name: "Computer Skills",
-      code: "CS",
-      description: "Digital literacy, productivity tools, typing, coding logic, and projects."
+      name: "Al-Quran",
+      code: "AQ",
+      description: "Recitation, Tajweed foundations, understanding, memorization support, and revision."
     },
     {
-      name: "Exam Preparation",
-      code: "EX",
-      description: "Syllabus planning, timed practice, revision systems, and performance feedback."
-    },
-    {
-      name: "Study Skills",
-      code: "SS",
-      description: "Homework routines, note-taking, goal setting, progress tracking, and reflection."
+      name: "Programming Skills",
+      code: "PS",
+      description: "Practical coding logic, beginner projects, debugging, and structured programming habits."
     }
   ],
   stats: [
-    { value: "7+", label: "Teaching tracks" },
+    { value: "6", label: "Teaching tracks" },
     { value: "1:1", label: "Personal lessons" },
     { value: "24/7", label: "Resource access" },
     { value: "100%", label: "Editable content" }
@@ -105,7 +105,7 @@ const defaultState = {
     {
       id: "english-communication-writing",
       title: "English Communication & Writing",
-      subject: "English Language",
+      subject: "English",
       level: "Beginner to Intermediate",
       duration: "8 weeks",
       description:
@@ -282,49 +282,49 @@ const defaultState = {
       }
     },
     {
-      id: "science-computer-skills",
-      title: "Science & Computer Skills",
-      subject: "Science and Technology",
-      level: "Grade 6-10",
+      id: "new-course-1784032673870",
+      title: "Computer Science Tutoring",
+      subject: "Computer Science",
+      level: "Grade 6-12",
       duration: "10 weeks",
       description:
-        "Learn scientific thinking, diagrams, basic research skills, digital tools, and introductory coding logic.",
+        "Build confidence in computer science theory, digital systems, algorithms, problem solving, and school exam topics.",
       outcomes: [
-        "Explain science concepts using evidence and examples",
-        "Create simple digital study materials",
-        "Understand basic coding logic and problem decomposition"
+        "Understand core computer science terms and concepts",
+        "Explain hardware, software, networks, and data basics",
+        "Solve theory and logic questions with structured answers"
       ],
-      tags: ["Science", "Digital skills", "Projects"],
+      tags: ["Computer theory", "Digital literacy", "Exam support"],
       modules: [
         {
-          title: "Science Thinking",
+          title: "Computer Fundamentals",
           lessons: [
             {
-              title: "Experiments and Evidence",
+              title: "Hardware, Software, and Systems",
               type: "Lesson",
               minutes: 24,
               videoUrl: "",
               content:
-                "Students learn how to ask a scientific question, form a hypothesis, observe results, and explain evidence.",
+                "Students learn the difference between hardware, software, input, output, storage, and operating systems through simple examples.",
               resources: [
                 {
-                  label: "Science observation template",
-                  url: "/resources/science-observation-template.txt"
+                  label: "Computer fundamentals checklist",
+                  url: "/resources/computer-fundamentals-checklist.txt"
                 }
               ]
             }
           ]
         },
         {
-          title: "Digital Skills",
+          title: "Algorithms and Logic",
           lessons: [
             {
-              title: "Intro to Coding Logic",
+              title: "Flowcharts and Pseudocode",
               type: "Video",
               minutes: 21,
               videoUrl: "",
               content:
-                "Students practice breaking a task into small steps, using conditions, and writing simple algorithm-style instructions.",
+                "Students practice turning a problem into clear steps using sequence, selection, repetition, flowcharts, and pseudocode.",
               resources: [
                 {
                   label: "Coding logic worksheet",
@@ -337,26 +337,266 @@ const defaultState = {
       ],
       assignments: [
         {
-          id: "science-digital-project",
-          title: "Mini research or digital project",
+          id: "computer-science-theory-task",
+          title: "Computer science concept map",
           due: "Friday",
           prompt:
-            "Create a short explanation, diagram, or digital slide about the assigned science or technology topic.",
+            "Create a one-page concept map explaining the assigned computer science topic with definitions and examples.",
           maxPoints: 30
         }
       ],
       quiz: {
-        title: "Science and Technology Quiz",
+        title: "Computer Science Basics Quiz",
         questions: [
           {
-            question: "What should a good science explanation include?",
+            question: "Which item is an example of software?",
             options: [
-              "Only a final answer",
-              "Evidence and clear reasoning",
-              "No examples",
-              "Unrelated details"
+              "Keyboard",
+              "Operating system",
+              "Monitor",
+              "Mouse"
             ],
             answer: 1
+          }
+        ]
+      }
+    },
+    {
+      id: "new-course-1784033697476",
+      title: "Islamiat Tutoring - Islamic Studies for Students",
+      subject: "Islamiat",
+      level: "School Students",
+      duration: "8 weeks",
+      description:
+        "Support students with Islamic studies concepts, short answers, key terms, history, values, and exam preparation.",
+      outcomes: [
+        "Understand core Islamiat topics with clear explanations",
+        "Prepare concise short and long answers for exams",
+        "Connect Islamic values with daily life examples"
+      ],
+      tags: ["Islamic studies", "Exam prep", "Short answers"],
+      modules: [
+        {
+          title: "Core Concepts",
+          lessons: [
+            {
+              title: "Beliefs, Worship, and Values",
+              type: "Lesson",
+              minutes: 22,
+              videoUrl: "",
+              content:
+                "Students review important beliefs, acts of worship, values, and key terms using simple definitions and examples.",
+              resources: [
+                {
+                  label: "Islamiat revision guide",
+                  url: "/resources/islamiat-revision-guide.txt"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          title: "Exam Preparation",
+          lessons: [
+            {
+              title: "Writing Strong Islamiat Answers",
+              type: "Worksheet",
+              minutes: 20,
+              videoUrl: "",
+              content:
+                "Students practice organizing answers with definitions, examples, references, and clear concluding points.",
+              resources: [
+                {
+                  label: "Islamiat answer framework",
+                  url: "/resources/islamiat-answer-framework.txt"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      assignments: [
+        {
+          id: "islamiat-answer-practice",
+          title: "Islamiat answer practice",
+          due: "Thursday",
+          prompt:
+            "Write one short answer and one long answer for the assigned Islamiat topic using the lesson framework.",
+          maxPoints: 20
+        }
+      ],
+      quiz: {
+        title: "Islamiat Review Quiz",
+        questions: [
+          {
+            question: "A strong Islamiat exam answer should include:",
+            options: [
+              "Only one word",
+              "Clear explanation and relevant examples",
+              "Unrelated details",
+              "No structure"
+            ],
+            answer: 1
+          }
+        ]
+      }
+    },
+    {
+      id: "new-course-1784033877590",
+      title: "Al-Quran Tutoring - Recitation, Tajweed & Understanding",
+      subject: "Al-Quran",
+      level: "Beginner to Intermediate",
+      duration: "12 weeks",
+      description:
+        "Develop Quran recitation fluency, Tajweed foundations, understanding of selected passages, and consistent revision habits.",
+      outcomes: [
+        "Improve Quran recitation accuracy and fluency",
+        "Apply beginner Tajweed rules during guided practice",
+        "Build a steady revision routine with feedback"
+      ],
+      tags: ["Recitation", "Tajweed", "Revision"],
+      modules: [
+        {
+          title: "Recitation Foundations",
+          lessons: [
+            {
+              title: "Fluency and Pronunciation Practice",
+              type: "Video",
+              minutes: 24,
+              videoUrl: "",
+              content:
+                "Students practice careful listening, pronunciation correction, smooth recitation, and short guided repetition.",
+              resources: [
+                {
+                  label: "Recitation practice tracker",
+                  url: "/resources/quran-recitation-tracker.txt"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          title: "Tajweed and Understanding",
+          lessons: [
+            {
+              title: "Beginner Tajweed Rules",
+              type: "Lesson",
+              minutes: 26,
+              videoUrl: "",
+              content:
+                "Students learn beginner Tajweed rules through examples and apply them in short recitation practice.",
+              resources: [
+                {
+                  label: "Tajweed beginner checklist",
+                  url: "/resources/tajweed-beginner-checklist.txt"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      assignments: [
+        {
+          id: "quran-recitation-review",
+          title: "Weekly recitation review",
+          due: "Friday",
+          prompt:
+            "Submit a short recitation recording or written reflection covering the current correction focus.",
+          maxPoints: 25
+        }
+      ],
+      quiz: {
+        title: "Al-Quran Learning Quiz",
+        questions: [
+          {
+            question: "A good recitation practice routine should include:",
+            options: [
+              "Rushing without feedback",
+              "Listening, correction, repetition, and revision",
+              "Skipping difficult words",
+              "No tracking"
+            ],
+            answer: 1
+          }
+        ]
+      }
+    },
+    {
+      id: "new-course-1784033932295",
+      title: "Programming Skills - Practical Coding Tutoring",
+      subject: "Programming Skills",
+      level: "Beginner",
+      duration: "10 weeks",
+      description:
+        "Learn practical coding foundations through logic, syntax, debugging, and small beginner-friendly projects.",
+      outcomes: [
+        "Understand variables, conditions, loops, and functions",
+        "Write simple programs with clear logic",
+        "Debug errors and build confidence through mini projects"
+      ],
+      tags: ["Coding", "Projects", "Debugging"],
+      modules: [
+        {
+          title: "Coding Foundations",
+          lessons: [
+            {
+              title: "Variables, Inputs, and Output",
+              type: "Lesson",
+              minutes: 25,
+              videoUrl: "",
+              content:
+                "Students learn how programs store values, receive input, display output, and follow step-by-step instructions.",
+              resources: [
+                {
+                  label: "Programming basics worksheet",
+                  url: "/resources/programming-basics-worksheet.txt"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          title: "Control Flow and Projects",
+          lessons: [
+            {
+              title: "Conditions and Loops",
+              type: "Video",
+              minutes: 28,
+              videoUrl: "",
+              content:
+                "Students practice if-statements, loops, and basic debugging through small coding challenges.",
+              resources: [
+                {
+                  label: "Mini project planner",
+                  url: "/resources/mini-project-planner.txt"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      assignments: [
+        {
+          id: "programming-mini-project",
+          title: "Beginner coding mini project",
+          due: "Sunday",
+          prompt:
+            "Build a small program using variables, conditions, and clear comments, then explain how it works.",
+          maxPoints: 30
+        }
+      ],
+      quiz: {
+        title: "Programming Foundations Quiz",
+        questions: [
+          {
+            question: "What does a loop help a program do?",
+            options: [
+              "Repeat steps",
+              "Delete all code",
+              "Ignore input",
+              "Stop every program"
+            ],
+            answer: 0
           }
         ]
       }
@@ -368,26 +608,37 @@ const defaultState = {
       name: "Maya Roberts",
       email: "maya@example.com",
       status: "Active",
-      notes: "English and Math support, weekend batch",
-      enrolledCourseIds: ["english-communication-writing", "mathematics-problem-solving"]
+      notes: "English, Math, and Programming support, weekend batch",
+      enrolledCourseIds: [
+        "english-communication-writing",
+        "mathematics-problem-solving",
+        "new-course-1784033932295"
+      ]
     },
     {
       id: "student-b",
       name: "Omar Shah",
       email: "omar@example.com",
       status: "Active",
-      notes: "Science and computer skills project track",
-      enrolledCourseIds: ["science-computer-skills"]
+      notes: "Computer Science, Islamiat, and Al-Quran support",
+      enrolledCourseIds: [
+        "new-course-1784032673870",
+        "new-course-1784033697476",
+        "new-course-1784033877590"
+      ]
     }
   ],
   currentStudentId: "student-a",
   progress: {
     "student-a": {
       "english-communication-writing": ["0-0"],
-      "mathematics-problem-solving": []
+      "mathematics-problem-solving": [],
+      "new-course-1784033932295": []
     },
     "student-b": {
-      "science-computer-skills": ["0-0"]
+      "new-course-1784032673870": ["0-0"],
+      "new-course-1784033697476": [],
+      "new-course-1784033877590": []
     }
   },
   quizResults: {
@@ -520,7 +771,7 @@ function renderPage(parts) {
 }
 
 function renderHome() {
-  const featuredCourses = state.courses.slice(0, 3);
+  const featuredCourses = state.courses.slice(0, 6);
   return `
     <section class="hero">
       <div>
@@ -1928,7 +2179,7 @@ function createCourse() {
   return {
     id,
     title: "New Course",
-    subject: "English Language",
+    subject: "Computer Science",
     level: "Beginner",
     duration: "4 weeks",
     description: "Add course description.",

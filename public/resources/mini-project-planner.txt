@@ -1,0 +1,13 @@
+Mini Project Planner
+
+Project name:
+Purpose:
+Inputs:
+Steps:
+Conditions:
+Loop needed?
+Expected output:
+Testing notes:
+
+Goal:
+Build a small program, test it, fix errors, and explain how it works.

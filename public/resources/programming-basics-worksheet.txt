@@ -1,0 +1,11 @@
+Programming Basics Worksheet
+
+Concepts:
+Variable:
+Input:
+Output:
+Condition:
+Loop:
+
+Practice task:
+Write simple steps for a program that asks for a name and displays a greeting.
