@@ -1,0 +1,9 @@
+Mistake Log Template
+
+Date:
+Surah and ayah:
+Mistake type:
+Correction:
+Review date:
+
+Use this log for repeated mistakes and retest them after two days.
