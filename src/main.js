@@ -1,6 +1,34 @@
 import "./styles.css";
 
 const STORAGE_KEY = "fahad-portfolio-lms-state-v2";
+const ADMIN_SESSION_KEY = "fahad-portfolio-lms-admin-session-v1";
+const ADMIN_USERNAME = (import.meta.env.VITE_ADMIN_USERNAME || "fahad").trim();
+const ADMIN_PASSWORD_HASH =
+  import.meta.env.VITE_ADMIN_PASSWORD_HASH ||
+  "552fdb8a598848510944313724bf50ed8c61a63365b46129538b412a25c0be51";
+const ADMIN_ACTION_SELECTOR = [
+  "[data-add-course]",
+  "[data-delete-course]",
+  "[data-add-module]",
+  "[data-add-lesson]",
+  "[data-delete-lesson]",
+  "[data-add-question]",
+  "[data-delete-question]",
+  "[data-add-assignment]",
+  "[data-add-student]",
+  "[data-delete-student]",
+  "[data-set-current-student]",
+  "[data-reset-demo]",
+  "[data-download-state]"
+].join(",");
+const ADMIN_FORM_IDS = new Set([
+  "settingsForm",
+  "courseForm",
+  "lessonForm",
+  "quizAdminForm",
+  "assignmentAdminForm",
+  "studentForm"
+]);
 
 const defaultState = {
   settings: {
@@ -374,6 +402,7 @@ const defaultState = {
 
 let state = loadState();
 let toastTimer;
+let adminLoginError = "";
 
 const app = document.querySelector("#app");
 
@@ -445,10 +474,11 @@ function renderHeader(active) {
   const nav = [
     ["home", "Home"],
     ["courses", "Courses"],
-    ["dashboard", "Student"],
-    ["admin", "Admin"],
-    ["contact", "Contact"]
+    ["dashboard", "Student"]
   ];
+  if (isAdminAuthenticated()) nav.push(["admin", "Admin"]);
+  nav.push(["contact", "Contact"]);
+
   return `
     <header class="site-header">
       <div class="nav-wrap">
@@ -478,7 +508,11 @@ function renderPage(parts) {
   if (page === "course") return renderCourseDetail(a);
   if (page === "lesson") return renderLessonViewer(a, Number(b), Number(c));
   if (page === "dashboard") return renderDashboard();
-  if (page === "admin") return renderAdmin(a || "settings");
+  if (page === "admin-login") return renderAdminLogin("#admin/settings");
+  if (page === "admin") {
+    if (!isAdminAuthenticated()) return renderAdminLogin(`#${parts.join("/") || "admin/settings"}`);
+    return renderAdmin(a || "settings");
+  }
   if (page === "quiz") return renderQuiz(a);
   if (page === "assignment") return renderAssignment(a, b);
   if (page === "contact") return renderContactPage();
@@ -1024,6 +1058,33 @@ function renderAssignment(courseId, assignmentId) {
   `;
 }
 
+function renderAdminLogin(returnTo = "#admin/settings") {
+  const safeReturnTo = returnTo.startsWith("#admin") ? returnTo : "#admin/settings";
+  return `
+    <section class="auth-shell">
+      <form id="adminLoginForm" class="auth-card" data-return-to="${escapeAttr(safeReturnTo)}">
+        <div class="auth-lock" aria-hidden="true">FI</div>
+        <span class="eyebrow">Owner access</span>
+        <h1>Admin login</h1>
+        <p class="lead">This area is private for Hafiz Fahad Iqbal.</p>
+        ${adminLoginError ? `<p class="auth-error">${escapeHtml(adminLoginError)}</p>` : ""}
+        <label class="field">
+          <span>Username</span>
+          <input name="username" autocomplete="username" required />
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" autocomplete="current-password" required />
+        </label>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Sign in</button>
+          <a class="btn secondary" href="#home">Back to site</a>
+        </div>
+      </form>
+    </section>
+  `;
+}
+
 function renderAdmin(tab) {
   const tabs = [
     ["settings", "Settings"],
@@ -1034,10 +1095,13 @@ function renderAdmin(tab) {
   ];
   return `
     <section class="page-head">
-      <div class="container">
-        <span class="eyebrow">Admin dashboard</span>
-        <h1>Manage content</h1>
-        <p class="lead">Edit portfolio content, courses, lessons, quizzes, assignments, and students.</p>
+      <div class="container admin-titlebar">
+        <div>
+          <span class="eyebrow">Admin dashboard</span>
+          <h1>Manage content</h1>
+          <p class="lead">Edit portfolio content, courses, lessons, quizzes, assignments, and students.</p>
+        </div>
+        <button class="btn secondary" type="button" data-admin-logout>Sign out</button>
       </div>
     </section>
     <section class="container">
@@ -1351,7 +1415,7 @@ function renderFooter() {
         <div class="footer-links">
           <a href="#courses">Courses</a>
           <a href="#dashboard">Student dashboard</a>
-          <a href="#admin">Admin</a>
+          ${isAdminAuthenticated() ? `<a href="#admin">Admin</a>` : ""}
           <a href="#contact">Contact</a>
         </div>
       </div>
@@ -1374,7 +1438,7 @@ function renderNotFound(message, backHref) {
 function bindPage(parts) {
   const [page] = parts;
   if (page === "courses") bindCourseFilters();
-  if (page === "admin") bindAdminControls();
+  if (page === "admin" && isAdminAuthenticated()) bindAdminControls();
 }
 
 function bindCourseFilters() {
@@ -1417,6 +1481,22 @@ function bindAdminControls() {
 function handleGlobalClicks(event) {
   const target = event.target.closest("button, a");
   if (!target) return;
+
+  if (target.matches("[data-admin-logout]")) {
+    event.preventDefault();
+    setAdminSession(false);
+    adminLoginError = "";
+    showToast("Signed out");
+    window.location.hash = "#home";
+    render();
+    return;
+  }
+
+  if (target.matches(ADMIN_ACTION_SELECTOR) && !isAdminAuthenticated()) {
+    event.preventDefault();
+    blockAdminAccess();
+    return;
+  }
 
   if (target.matches("[data-enroll]")) {
     const courseId = target.dataset.enroll;
@@ -1560,8 +1640,33 @@ function handleGlobalClicks(event) {
   }
 }
 
-function handleGlobalSubmit(event) {
+async function handleGlobalSubmit(event) {
   const form = event.target;
+  if (form.id === "adminLoginForm") {
+    event.preventDefault();
+    const data = formData(form);
+    const isValid = await verifyAdminLogin(data.username, data.password);
+    if (!isValid) {
+      adminLoginError = "Incorrect username or password.";
+      render();
+      showToast("Incorrect admin login");
+      return;
+    }
+
+    adminLoginError = "";
+    setAdminSession(true);
+    const returnTo = form.dataset.returnTo || "#admin/settings";
+    window.location.hash = returnTo.startsWith("#admin") ? returnTo : "#admin/settings";
+    render();
+    return;
+  }
+
+  if (ADMIN_FORM_IDS.has(form.id) && !isAdminAuthenticated()) {
+    event.preventDefault();
+    blockAdminAccess();
+    return;
+  }
+
   if (form.id === "settingsForm") {
     event.preventDefault();
     const data = formData(form);
@@ -1705,6 +1810,48 @@ function handleGlobalSubmit(event) {
     form.reset();
     showToast("Message prepared");
   }
+}
+
+function isAdminAuthenticated() {
+  try {
+    return sessionStorage.getItem(ADMIN_SESSION_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function setAdminSession(isAuthenticated) {
+  try {
+    if (isAuthenticated) {
+      sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
+    } else {
+      sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    }
+  } catch {
+    // Session storage can be unavailable in strict browser privacy modes.
+  }
+}
+
+async function verifyAdminLogin(username = "", password = "") {
+  if (username.trim().toLowerCase() !== ADMIN_USERNAME.toLowerCase()) return false;
+  const hash = await sha256(password);
+  return hash === ADMIN_PASSWORD_HASH;
+}
+
+async function sha256(value) {
+  if (!globalThis.crypto?.subtle) return "";
+  const data = new TextEncoder().encode(String(value));
+  const digest = await globalThis.crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+function blockAdminAccess() {
+  adminLoginError = "Please sign in to continue.";
+  showToast("Admin login required");
+  window.location.hash = "#admin";
+  render();
 }
 
 function inputField(name, label, value, className = "", type = "text") {
