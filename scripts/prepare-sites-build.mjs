@@ -75,12 +75,26 @@ function contentType(pathname) {
 }
 
 function decodeBase64(base64) {
-  const binary = atob(base64);
-  const bytes = new Uint8Array(binary.length);
-  for (let index = 0; index < binary.length; index += 1) {
-    bytes[index] = binary.charCodeAt(index);
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  const clean = base64.replace(/=+$/, "");
+  const bytes = [];
+  let buffer = 0;
+  let bitCount = 0;
+
+  for (const character of clean) {
+    const number = alphabet.indexOf(character);
+    if (number < 0) {
+      continue;
+    }
+    buffer = (buffer << 6) | number;
+    bitCount += 6;
+    if (bitCount >= 8) {
+      bitCount -= 8;
+      bytes.push((buffer >> bitCount) & 255);
+    }
   }
-  return bytes;
+
+  return new Uint8Array(bytes);
 }
 
 function serveEmbedded(pathname) {
