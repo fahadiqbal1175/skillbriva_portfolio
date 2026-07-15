@@ -1,7 +1,10 @@
 import "./styles.css";
 
-const STORAGE_KEY = "fahad-portfolio-lms-state-v4";
+const STORAGE_KEY = "fahad-portfolio-lms-state-v5";
 const ADMIN_SESSION_KEY = "fahad-portfolio-lms-admin-session-v1";
+const STUDENT_SESSION_KEY = "fahad-portfolio-lms-student-session-v1";
+const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL || "").replace(/\/$/, "");
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
 const ADMIN_USERNAME = (import.meta.env.VITE_ADMIN_USERNAME || "fahad").trim();
 const ADMIN_PASSWORD_HASH =
   import.meta.env.VITE_ADMIN_PASSWORD_HASH ||
@@ -801,6 +804,8 @@ const defaultState = {
 let state = loadState();
 let toastTimer;
 let adminLoginError = "";
+let studentSession = loadStudentSession();
+let studentLoginError = "";
 
 const app = document.querySelector("#app");
 
@@ -918,7 +923,9 @@ function renderPage(parts) {
   if (page === "courses") return renderCoursesPage();
   if (page === "course") return renderCourseDetail(a);
   if (page === "lesson") return renderLessonViewer(a, Number(b), Number(c));
-  if (page === "dashboard") return renderDashboard();
+  if (page === "dashboard") return isStudentAuthenticated() ? renderDashboard() : renderStudentPortalLocked();
+  if (page === "student-login") return renderStudentLogin();
+  if (page === "student-register") return renderStudentRegister();
   if (page === "admin-login") return renderAdminLogin("#admin/settings");
   if (page === "admin") {
     if (!isAdminAuthenticated()) return renderAdminLogin(`#${parts.join("/") || "admin/settings"}`);
@@ -1207,7 +1214,8 @@ function renderLmsPage() {
         <p class="lead">Use the LMS to browse courses, open lessons, track student progress, submit assignments, take quizzes, and download lesson resources.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#courses">Open course catalog</a>
-          <a class="btn secondary" href="#dashboard">Student dashboard</a>
+          <a class="btn secondary" href="#dashboard">${isStudentAuthenticated() ? "Student dashboard" : "Locked dashboard preview"}</a>
+          ${isStudentAuthenticated() ? `<button class="btn ghost" type="button" data-student-logout>Student sign out</button>` : `<a class="btn ghost" href="#student-login">Student login</a>`}
         </div>
       </div>
     </section>
@@ -1365,8 +1373,8 @@ function renderCourseCard(course) {
 function renderCourseDetail(courseId) {
   const course = findCourse(courseId);
   if (!course) return renderNotFound("Course not found", "#courses");
-  const student = currentStudent();
-  const percent = progressPercent(student.id, course.id);
+  const student = isStudentAuthenticated() ? currentStudent() : null;
+  const percent = student ? progressPercent(student.id, course.id) : 0;
   return `
     <section class="page-head">
       <div class="container">
@@ -1385,25 +1393,45 @@ function renderCourseDetail(courseId) {
         ${course.modules.map((module, moduleIndex) => renderModule(course, module, moduleIndex)).join("")}
       </div>
       <aside class="side-panel">
-        <h3>Course progress</h3>
-        <p class="muted">${escapeHtml(student.name)}</p>
-        <div class="progress" aria-label="Progress ${percent}%"><span style="--value:${percent}%"></span></div>
-        <p class="copy">${percent}% complete</p>
-        <button class="btn primary" data-enroll="${course.id}">Enroll student</button>
-        <hr />
+        ${
+          student
+            ? `
+              <h3>Course progress</h3>
+              <p class="muted">${escapeHtml(student.name)}</p>
+              <div class="progress" aria-label="Progress ${percent}%"><span style="--value:${percent}%"></span></div>
+              <p class="copy">${percent}% complete</p>
+              <button class="btn primary" data-enroll="${course.id}">Enroll student</button>
+              <hr />
+            `
+            : `
+              <h3>Student access</h3>
+              <p class="copy">Lessons, progress, quizzes, and assignments open after student login.</p>
+              <div class="button-row">
+                <a class="btn primary small" href="#student-login">Student login</a>
+                <a class="btn secondary small" href="#student-register">Request access</a>
+              </div>
+              <hr />
+            `
+        }
         <h3>Outcomes</h3>
         <ul class="compact-list">
           ${(course.outcomes || []).map((outcome) => `<li class="compact-item">${escapeHtml(outcome)}</li>`).join("")}
         </ul>
-        <div class="button-row" style="margin-top: 1rem;">
-          <a class="btn secondary small" href="#quiz/${course.id}">Take quiz</a>
-          ${course.assignments
-            .map(
-              (assignment) =>
-                `<a class="btn ghost small" href="#assignment/${course.id}/${assignment.id}">${escapeHtml(assignment.title)}</a>`
-            )
-            .join("")}
-        </div>
+        ${
+          student
+            ? `
+              <div class="button-row" style="margin-top: 1rem;">
+                <a class="btn secondary small" href="#quiz/${course.id}">Take quiz</a>
+                ${course.assignments
+                  .map(
+                    (assignment) =>
+                      `<a class="btn ghost small" href="#assignment/${course.id}/${assignment.id}">${escapeHtml(assignment.title)}</a>`
+                  )
+                  .join("")}
+              </div>
+            `
+            : ""
+        }
       </aside>
     </section>
   `;
@@ -1436,6 +1464,7 @@ function renderModule(course, module, moduleIndex) {
 }
 
 function renderLessonViewer(courseId, moduleIndex = 0, lessonIndex = 0) {
+  if (!isStudentAuthenticated()) return renderStudentPortalLocked();
   const course = findCourse(courseId);
   const module = course?.modules?.[moduleIndex];
   const lesson = module?.lessons?.[lessonIndex];
@@ -1516,6 +1545,7 @@ function renderLessonViewer(courseId, moduleIndex = 0, lessonIndex = 0) {
 
 function renderDashboard() {
   const student = currentStudent();
+  if (!student) return renderStudentPortalLocked();
   const enrolled = state.courses.filter((course) => student.enrolledCourseIds.includes(course.id));
   const results = state.quizResults[student.id] || {};
   return `
@@ -1524,6 +1554,9 @@ function renderDashboard() {
         <span class="eyebrow">Student dashboard</span>
         <h1>${escapeHtml(student.name)}</h1>
         <p class="lead">My courses, lesson progress, grades, assignments, and submissions.</p>
+        <div class="hero-actions">
+          <button class="btn secondary" type="button" data-student-logout>Sign out</button>
+        </div>
       </div>
     </section>
     <section class="container dashboard-grid">
@@ -1604,6 +1637,7 @@ function renderDashboard() {
 }
 
 function renderQuiz(courseId) {
+  if (!isStudentAuthenticated()) return renderStudentPortalLocked();
   const course = findCourse(courseId) || state.courses[0];
   if (!course) return renderNotFound("Quiz not found", "#courses");
   const quiz = course.quiz || { title: "Quiz", questions: [] };
@@ -1653,7 +1687,116 @@ function renderQuizQuestion(question, index) {
   `;
 }
 
+function renderStudentPortalLocked() {
+  return `
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Student portal</span>
+        <h1>Student dashboard is locked</h1>
+        <p class="lead">The full dashboard is available only to students with credentials issued by Hafiz Fahad Iqbal.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#student-login">Student login</a>
+          <a class="btn secondary" href="#student-register">Request access</a>
+        </div>
+      </div>
+    </section>
+    <section class="container preview-layout">
+      <div class="dashboard-preview card" aria-label="Locked student dashboard preview">
+        <div class="preview-top">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="preview-hero">
+          <div>
+            <strong>My Learning Dashboard</strong>
+            <p>Courses, progress, grades, assignments</p>
+          </div>
+          <div class="lock-badge">Locked</div>
+        </div>
+        <div class="preview-grid">
+          <div class="preview-panel large"></div>
+          <div class="preview-panel"></div>
+          <div class="preview-panel"></div>
+        </div>
+      </div>
+      <aside class="side-panel">
+        <h3>How access works</h3>
+        <ul class="compact-list">
+          <li class="compact-item">Students request portal access first.</li>
+          <li class="compact-item">You create their Supabase credentials manually.</li>
+          <li class="compact-item">The student logs in with the email assigned in Admin.</li>
+          <li class="compact-item">Only that student's courses and dashboard are shown.</li>
+        </ul>
+      </aside>
+    </section>
+  `;
+}
+
+function renderStudentLogin() {
+  return `
+    <section class="auth-shell">
+      <form id="studentLoginForm" class="auth-card">
+        <div class="auth-lock" aria-hidden="true">ST</div>
+        <span class="eyebrow">Student portal</span>
+        <h1>Student login</h1>
+        <p class="lead">Use the email and password given by Hafiz Fahad Iqbal.</p>
+        ${studentLoginError ? `<p class="auth-error">${escapeHtml(studentLoginError)}</p>` : ""}
+        ${
+          isSupabaseConfigured()
+            ? ""
+            : `<p class="auth-error">Student authentication is not configured yet. Add Supabase URL and anon key in Render environment variables.</p>`
+        }
+        <label class="field">
+          <span>Email</span>
+          <input name="email" type="email" autocomplete="username" required />
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" autocomplete="current-password" required />
+        </label>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Sign in</button>
+          <a class="btn secondary" href="#student-register">Request credentials</a>
+        </div>
+      </form>
+    </section>
+  `;
+}
+
+function renderStudentRegister() {
+  return `
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Request access</span>
+        <h1>Request student portal credentials</h1>
+        <p class="lead">Send your details on WhatsApp. Hafiz Fahad will create your credentials manually and assign your courses from the Admin panel.</p>
+      </div>
+    </section>
+    <section class="container detail-layout">
+      <form id="studentAccessRequestForm" class="quiz-panel">
+        <div class="form-grid">
+          ${inputField("name", "Student name", "")}
+          ${inputField("email", "Student email", "", "", "email")}
+          ${inputField("subject", "Subject or class", "")}
+          ${inputField("phone", "WhatsApp number", "")}
+          ${textareaField("message", "Learning goals", "", "full")}
+        </div>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Request on WhatsApp</button>
+          <a class="btn secondary" href="#student-login">Already have credentials</a>
+        </div>
+      </form>
+      <aside class="side-panel">
+        <h3>Credential policy</h3>
+        <p class="copy">Students cannot unlock the portal automatically. Access is granted only after you create credentials for them.</p>
+      </aside>
+    </section>
+  `;
+}
+
 function renderAssignment(courseId, assignmentId) {
+  if (!isStudentAuthenticated()) return renderStudentPortalLocked();
   const course = findCourse(courseId);
   const assignment = course?.assignments?.find((item) => item.id === assignmentId);
   if (!course || !assignment) return renderNotFound("Assignment not found", "#dashboard");
@@ -2006,6 +2149,9 @@ function renderStudentAdmin() {
         </div>
       </aside>
       <form id="studentForm" class="tool-panel" data-student="${selected.id}">
+        <div class="notice" style="margin-bottom: 1rem;">
+          Student portal login uses Supabase Auth. The Email field below must match the email you create for this student in Supabase.
+        </div>
         <div class="form-grid">
           ${inputField("name", "Name", selected.name)}
           ${inputField("email", "Email", selected.email, "", "email")}
@@ -2166,6 +2312,16 @@ function handleGlobalClicks(event) {
     return;
   }
 
+  if (target.matches("[data-student-logout]")) {
+    event.preventDefault();
+    setStudentSession(null);
+    studentLoginError = "";
+    showToast("Student signed out");
+    window.location.hash = "#lms";
+    render();
+    return;
+  }
+
   if (target.matches(ADMIN_ACTION_SELECTOR) && !isAdminAuthenticated()) {
     event.preventDefault();
     blockAdminAccess();
@@ -2173,6 +2329,11 @@ function handleGlobalClicks(event) {
   }
 
   if (target.matches("[data-enroll]")) {
+    if (!isStudentAuthenticated()) {
+      showToast("Student login required");
+      window.location.hash = "#student-login";
+      return;
+    }
     const courseId = target.dataset.enroll;
     const student = currentStudent();
     if (!student.enrolledCourseIds.includes(courseId)) {
@@ -2185,6 +2346,11 @@ function handleGlobalClicks(event) {
   }
 
   if (target.matches("[data-complete-lesson]")) {
+    if (!isStudentAuthenticated()) {
+      showToast("Student login required");
+      window.location.hash = "#student-login";
+      return;
+    }
     const student = currentStudent();
     const key = `${target.dataset.module}-${target.dataset.lesson}`;
     const completed = getCompleted(student.id, target.dataset.completeLesson);
@@ -2316,6 +2482,52 @@ function handleGlobalClicks(event) {
 
 async function handleGlobalSubmit(event) {
   const form = event.target;
+  if (form.id === "studentLoginForm") {
+    event.preventDefault();
+    const data = formData(form);
+    const result = await signInStudent(data.email, data.password);
+    if (!result.ok) {
+      studentLoginError = result.message;
+      render();
+      showToast("Student login failed");
+      return;
+    }
+
+    const student = findStudentByEmail(result.session.user?.email || data.email);
+    if (!student) {
+      setStudentSession(null);
+      studentLoginError = "Login worked, but this email is not assigned to a student in Admin yet.";
+      render();
+      showToast("Student record not found");
+      return;
+    }
+
+    state.currentStudentId = student.id;
+    saveState("Student signed in");
+    studentLoginError = "";
+    window.location.hash = "#dashboard";
+    render();
+    return;
+  }
+
+  if (form.id === "studentAccessRequestForm") {
+    event.preventDefault();
+    const data = formData(form);
+    const message = [
+      "Hello Hafiz Fahad, I want to request student portal credentials.",
+      data.name ? `Student name: ${data.name}` : "",
+      data.email ? `Email: ${data.email}` : "",
+      data.subject ? `Subject: ${data.subject}` : "",
+      data.phone ? `WhatsApp: ${data.phone}` : "",
+      data.message ? `Goals: ${data.message}` : ""
+    ]
+      .filter(Boolean)
+      .join("\n");
+    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+    showToast("Credential request prepared");
+    return;
+  }
+
   if (form.id === "adminLoginForm") {
     event.preventDefault();
     const data = formData(form);
@@ -2461,6 +2673,11 @@ async function handleGlobalSubmit(event) {
 
   if (form.id === "quizForm") {
     event.preventDefault();
+    if (!isStudentAuthenticated()) {
+      showToast("Student login required");
+      window.location.hash = "#student-login";
+      return;
+    }
     const course = findCourse(form.dataset.course);
     const quiz = course.quiz;
     const data = new FormData(form);
@@ -2478,6 +2695,11 @@ async function handleGlobalSubmit(event) {
 
   if (form.id === "assignmentForm") {
     event.preventDefault();
+    if (!isStudentAuthenticated()) {
+      showToast("Student login required");
+      window.location.hash = "#student-login";
+      return;
+    }
     const data = formData(form);
     const student = currentStudent();
     state.submissions[student.id] ||= {};
@@ -2529,6 +2751,72 @@ function setAdminSession(isAuthenticated) {
     }
   } catch {
     // Session storage can be unavailable in strict browser privacy modes.
+  }
+}
+
+function loadStudentSession() {
+  try {
+    const saved = localStorage.getItem(STUDENT_SESSION_KEY);
+    return saved ? JSON.parse(saved) : null;
+  } catch {
+    return null;
+  }
+}
+
+function setStudentSession(session) {
+  studentSession = session;
+  try {
+    if (session) {
+      localStorage.setItem(STUDENT_SESSION_KEY, JSON.stringify(session));
+    } else {
+      localStorage.removeItem(STUDENT_SESSION_KEY);
+    }
+  } catch {
+    // Local storage can be unavailable in strict browser privacy modes.
+  }
+}
+
+function isSupabaseConfigured() {
+  return Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+}
+
+function isStudentAuthenticated() {
+  if (!studentSession?.access_token || !studentSession?.user?.email) return false;
+  return Boolean(findStudentByEmail(studentSession.user.email));
+}
+
+async function signInStudent(email = "", password = "") {
+  if (!isSupabaseConfigured()) {
+    return {
+      ok: false,
+      message: "Student authentication is not configured yet. Add Supabase URL and anon key in Render."
+    };
+  }
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      return { ok: false, message: data.error_description || data.msg || data.message || "Invalid student credentials." };
+    }
+
+    const session = {
+      access_token: data.access_token,
+      refresh_token: data.refresh_token,
+      expires_at: data.expires_at,
+      user: data.user
+    };
+    setStudentSession(session);
+    return { ok: true, session };
+  } catch {
+    return { ok: false, message: "Could not reach the student authentication service." };
   }
 }
 
@@ -2667,7 +2955,16 @@ function findCourse(id) {
 }
 
 function currentStudent() {
+  if (studentSession?.user?.email) {
+    const authStudent = findStudentByEmail(studentSession.user.email);
+    if (authStudent) return authStudent;
+  }
   return state.students.find((student) => student.id === state.currentStudentId) || state.students[0];
+}
+
+function findStudentByEmail(email = "") {
+  const normalized = String(email).trim().toLowerCase();
+  return state.students.find((student) => String(student.email).trim().toLowerCase() === normalized);
 }
 
 function getCompleted(studentId, courseId) {
