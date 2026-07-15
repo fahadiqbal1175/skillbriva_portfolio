@@ -1,6 +1,6 @@
 import "./styles.css";
 
-const STORAGE_KEY = "fahad-portfolio-lms-state-v3";
+const STORAGE_KEY = "fahad-portfolio-lms-state-v4";
 const ADMIN_SESSION_KEY = "fahad-portfolio-lms-admin-session-v1";
 const ADMIN_USERNAME = (import.meta.env.VITE_ADMIN_USERNAME || "fahad").trim();
 const ADMIN_PASSWORD_HASH =
@@ -27,23 +27,29 @@ const ADMIN_FORM_IDS = new Set([
   "lessonForm",
   "quizAdminForm",
   "assignmentAdminForm",
-  "studentForm"
+  "studentForm",
+  "portfolioForm"
 ]);
 
 const defaultState = {
   settings: {
     name: "Hafiz Fahad Iqbal",
-    role: "Multi-Subject Online Tutor",
-    headline: "Personalized teaching with a full learning dashboard",
+    role: "Multi-Subject Online Tutor | Quran, Computer Science & Cambridge Curriculum",
+    headline: "Structured online tutoring for confident academic progress",
     intro:
-      "A clean portfolio and LMS for one-to-one tutoring, structured courses, assignments, quizzes, lesson resources, and student progress across multiple subjects.",
+      "I help students build strong academic foundations across Computer Science, Mathematics, English, Islamiat, Programming, and Al-Quran through patient, step-by-step online lessons.",
     about:
-      "Hafiz Fahad Iqbal supports learners with calm, structured lessons in Computer Science, English, Mathematics, Islamiat, Al-Quran, and Programming Skills. Every course is organized into modules with clear outcomes, practice tasks, feedback, and measurable progress.",
-    email: "hafiz.fahad@example.com",
-    phone: "+92 300 0000000",
-    location: "Online worldwide",
+      "I combine subject expertise with a patient, structured teaching approach, breaking complex concepts into clear, manageable steps so every student can learn with confidence. Lessons are designed around concept clarity, practice, revision, and exam readiness.",
+    email: "Hafizfahad1175@gmail.com",
+    phone: "+92 324 6910724",
+    whatsapp: "+92 324 6910724",
+    location: "Sargodha, Pakistan (PKT, GMT+5)",
     availability: "Weekdays and weekend batches",
-    cta: "Book a trial lesson",
+    experience: "2+ years",
+    trialDuration: "30 minutes",
+    cta: "Book Free Demo",
+    demoMessage: "Hello Hafiz Fahad, I want to book a free 30-minute trial class.",
+    contactNote: "WhatsApp is the fastest way to book a trial class or discuss a learning plan.",
     heroImage: "/assets/tutor-lms-hero.jpg"
   },
   subjects: [
@@ -81,8 +87,8 @@ const defaultState = {
   stats: [
     { value: "6", label: "Teaching tracks" },
     { value: "1:1", label: "Personal lessons" },
-    { value: "24/7", label: "Resource access" },
-    { value: "100%", label: "Editable content" }
+    { value: "2+", label: "Years experience" },
+    { value: "30m", label: "Free trial class" }
   ],
   testimonials: [
     {
@@ -99,6 +105,147 @@ const defaultState = {
       name: "Math Support Student",
       quote:
         "The dashboard helped me track assignments, quiz results, weak topics, and the next lesson without confusion."
+    }
+  ],
+  teacherEdges: [
+    {
+      title: "Exam-Focused Preparation",
+      description: "Lessons connect concepts with Cambridge-style expectations, revision routines, and answer practice."
+    },
+    {
+      title: "One-to-One Attention",
+      description: "Every student gets patient guidance, targeted correction, and a pace that fits their level."
+    },
+    {
+      title: "Concept-Based Learning",
+      description: "Complex topics are broken into simple steps before students move into practice and assessment."
+    },
+    {
+      title: "Interactive Online Classes",
+      description: "Sessions use examples, questions, screen sharing, notes, and practice tasks to keep learning active."
+    },
+    {
+      title: "Personalized Study Plans",
+      description: "Each learner receives a clear path for lessons, homework, revision, and improvement goals."
+    },
+    {
+      title: "Progress Tracking",
+      description: "Assignments, quizzes, and lesson completion help students and parents see steady progress."
+    },
+    {
+      title: "Flexible Scheduling",
+      description: "Online classes are available for local and international students with practical timing options."
+    },
+    {
+      title: "Islamic & Academic Ethos",
+      description: "The teaching style is respectful, focused, disciplined, and supportive for both academic and Quran learning."
+    }
+  ],
+  skills: [
+    {
+      title: "Cambridge Curriculum Support",
+      description: "Computer Science, Islamiat, English, Mathematics, and exam-oriented practice."
+    },
+    {
+      title: "Programming Foundations",
+      description: "Variables, conditions, loops, functions, debugging, and beginner projects."
+    },
+    {
+      title: "Academic Writing & Communication",
+      description: "Grammar, comprehension, structured writing, and confident expression."
+    },
+    {
+      title: "Quran Recitation & Tajweed",
+      description: "Patient recitation correction, pronunciation practice, and consistent revision."
+    }
+  ],
+  certifications: [
+    {
+      title: "BSIT - Bachelor of Science in Information Technology",
+      issuer: "University of Sargodha, Department of Information Technology",
+      period: "2022-2026",
+      description: "Degree program focused on information technology, programming, systems, and applied computing."
+    },
+    {
+      title: "Microsoft Azure AI Fundamentals",
+      issuer: "Microsoft",
+      period: "Certificate",
+      description: "Foundation-level certification covering AI concepts and Microsoft Azure AI services."
+    },
+    {
+      title: "Virtual Quran Tutor",
+      issuer: "Teaching Experience",
+      period: "2+ years",
+      description: "Online Quran teaching experience with recitation, Tajweed, pronunciation, and steady revision support."
+    }
+  ],
+  pricing: [
+    {
+      name: "Basic",
+      price: "$29",
+      period: "/mo",
+      features: ["Weekly classes", "Notes & PDFs", "Homework support", "Email support"]
+    },
+    {
+      name: "Standard",
+      price: "$59",
+      period: "/mo",
+      features: ["Everything in Basic", "Weekly tests", "Recorded lectures", "Student progress reports", "Priority email support"]
+    },
+    {
+      name: "Premium",
+      price: "$99",
+      period: "/mo",
+      features: [
+        "Full LMS access",
+        "Personalized 1-on-1 mentoring",
+        "24/7 priority support",
+        "Advanced exam preparation",
+        "Complete exam guidance",
+        "Certification readiness"
+      ]
+    }
+  ],
+  faqs: [
+    {
+      question: "What subjects do you teach?",
+      answer:
+        "I teach Computer Science, English, Mathematics, Islamiat, Al-Quran, and general programming skills, with a focus on Cambridge curriculum standards."
+    },
+    {
+      question: "Do you offer a trial class?",
+      answer:
+        "Yes, I offer a free 30-minute trial class so we can assess the student's level and discuss learning goals before committing."
+    },
+    {
+      question: "What age groups do you teach?",
+      answer:
+        "I teach students across a range of ages and levels, from beginner to advanced, adapting my teaching style to each student's needs."
+    },
+    {
+      question: "How do I book a session?",
+      answer: "You can reach out via WhatsApp or email to schedule your free trial class and discuss a regular tutoring plan."
+    },
+    {
+      question: "What is your teaching approach?",
+      answer:
+        "I focus on building strong fundamentals first, then applying them through practice, revision, and real examples so students understand concepts, not just memorize them."
+    },
+    {
+      question: "Do you provide exam preparation support?",
+      answer: "Yes, complete exam-focused preparation, weekly practice, and personalized guidance are provided."
+    },
+    {
+      question: "Do you teach international students?",
+      answer: "Yes, online classes are available for students worldwide with flexible scheduling."
+    },
+    {
+      question: "What if I miss a class?",
+      answer: "Classes can be rescheduled with prior notice and based on available timings."
+    },
+    {
+      question: "Do you provide recorded lectures?",
+      answer: "Yes, recorded sessions are available for revision and practice purposes."
     }
   ],
   courses: [
@@ -681,6 +828,13 @@ function normalizeState(next) {
   merged.testimonials = Array.isArray(next.testimonials)
     ? next.testimonials
     : clone(defaultState.testimonials);
+  merged.teacherEdges = Array.isArray(next.teacherEdges) ? next.teacherEdges : clone(defaultState.teacherEdges);
+  merged.skills = Array.isArray(next.skills) ? next.skills : clone(defaultState.skills);
+  merged.certifications = Array.isArray(next.certifications)
+    ? next.certifications
+    : clone(defaultState.certifications);
+  merged.pricing = Array.isArray(next.pricing) ? next.pricing : clone(defaultState.pricing);
+  merged.faqs = Array.isArray(next.faqs) ? next.faqs : clone(defaultState.faqs);
   merged.courses = Array.isArray(next.courses) ? next.courses : clone(defaultState.courses);
   merged.students = Array.isArray(next.students) ? next.students : clone(defaultState.students);
   merged.progress = next.progress || clone(defaultState.progress);
@@ -724,8 +878,10 @@ function render() {
 function renderHeader(active) {
   const nav = [
     ["home", "Home"],
-    ["courses", "Courses"],
-    ["dashboard", "Student"]
+    ["classes", "Classes"],
+    ["lms", "LMS"],
+    ["pricing", "Pricing"],
+    ["book", "Book Demo"]
   ];
   if (isAdminAuthenticated()) nav.push(["admin", "Admin"]);
   nav.push(["contact", "Contact"]);
@@ -755,6 +911,10 @@ function renderHeader(active) {
 
 function renderPage(parts) {
   const [page, a, b, c] = parts;
+  if (page === "classes") return renderClassesPage();
+  if (page === "lms") return renderLmsPage();
+  if (page === "pricing") return renderPricingPage();
+  if (page === "book") return renderBookDemoPage();
   if (page === "courses") return renderCoursesPage();
   if (page === "course") return renderCourseDetail(a);
   if (page === "lesson") return renderLessonViewer(a, Number(b), Number(c));
@@ -775,12 +935,12 @@ function renderHome() {
   return `
     <section class="hero">
       <div>
-        <span class="eyebrow">${escapeHtml(state.settings.availability)}</span>
+        <span class="eyebrow">${escapeHtml(state.settings.experience)} teaching experience</span>
         <h1>${escapeHtml(state.settings.name)}</h1>
         <p class="lead">${escapeHtml(state.settings.headline)}. ${escapeHtml(state.settings.intro)}</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#courses">Explore courses</a>
-          <a class="btn secondary" href="#contact">${escapeHtml(state.settings.cta)}</a>
+          <a class="btn primary" href="${escapeAttr(whatsappUrl())}" target="_blank" rel="noreferrer">${escapeHtml(state.settings.cta)}</a>
+          <a class="btn secondary" href="${escapeAttr(mailtoUrl())}">Email me</a>
         </div>
       </div>
       <div class="hero-media" aria-label="Teaching workspace">
@@ -806,7 +966,7 @@ function renderHome() {
         <div class="section-head">
           <div>
             <span class="eyebrow">About</span>
-            <h2>Structured lessons, calm guidance, clear progress</h2>
+            <h2>Patient teaching with clear academic direction</h2>
           </div>
           <p>${escapeHtml(state.settings.about)}</p>
         </div>
@@ -829,13 +989,12 @@ function renderHome() {
       <div class="container">
         <div class="section-head">
           <div>
-            <span class="eyebrow">Subjects</span>
-            <h2>Teaching areas</h2>
+            <span class="eyebrow">Teacher's edge</span>
+            <h2>Everything students need to move forward</h2>
           </div>
-          <a class="btn ghost" href="#courses">View catalog</a>
         </div>
-        <div class="grid three">
-          ${state.subjects.map(renderSubjectCard).join("")}
+        <div class="grid four">
+          ${state.teacherEdges.map(renderFeatureCard).join("")}
         </div>
       </div>
     </section>
@@ -844,12 +1003,13 @@ function renderHome() {
       <div class="container">
         <div class="section-head">
           <div>
-            <span class="eyebrow">Courses</span>
-            <h2>Featured learning tracks</h2>
+            <span class="eyebrow">Subjects</span>
+            <h2>Teaching areas</h2>
           </div>
+          <a class="btn ghost" href="#classes">View classes</a>
         </div>
         <div class="grid three">
-          ${featuredCourses.map(renderCourseCard).join("")}
+          ${state.subjects.map(renderSubjectCard).join("")}
         </div>
       </div>
     </section>
@@ -858,21 +1018,70 @@ function renderHome() {
       <div class="container">
         <div class="section-head">
           <div>
-            <span class="eyebrow">Testimonials</span>
-            <h2>Student and parent feedback</h2>
+            <span class="eyebrow">Popular classes</span>
+            <h2>Focused tracks for school, Quran, and coding</h2>
+          </div>
+          <a class="btn ghost" href="#lms">Open LMS</a>
+        </div>
+        <div class="grid three">
+          ${featuredCourses.map(renderPublicClassCard).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Skills</span>
+            <h2>Skills built through guided practice</h2>
+          </div>
+        </div>
+        <div class="grid four">
+          ${state.skills.map(renderFeatureCard).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Achievements</span>
+            <h2>Degrees, certifications, and teaching background</h2>
           </div>
         </div>
         <div class="grid three">
-          ${state.testimonials
-            .map(
-              (item) => `
-                <article class="card testimonial-card">
-                  <p class="copy">"${escapeHtml(item.quote)}"</p>
-                  <strong>${escapeHtml(item.name)}</strong>
-                </article>
-              `
-            )
-            .join("")}
+          ${state.certifications.map(renderCertificationCard).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Pricing</span>
+            <h2>Invest in steady progress</h2>
+          </div>
+          <a class="btn ghost" href="#pricing">View packages</a>
+        </div>
+        <div class="grid three">
+          ${state.pricing.map(renderPricingCard).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">FAQ</span>
+            <h2>Questions, answered</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          ${state.faqs.slice(0, 6).map(renderFaqItem).join("")}
         </div>
       </div>
     </section>
@@ -881,13 +1090,58 @@ function renderHome() {
       <div class="container">
         <div class="cta-band">
           <div>
-            <h2>Ready for a focused learning plan?</h2>
-            <p>${escapeHtml(state.settings.location)}. ${escapeHtml(state.settings.availability)}.</p>
+            <h2>Book a free ${escapeHtml(state.settings.trialDuration)} trial class</h2>
+            <p>${escapeHtml(state.settings.contactNote)} ${escapeHtml(state.settings.location)}.</p>
           </div>
-          <a class="btn" href="#contact">${escapeHtml(state.settings.cta)}</a>
+          <a class="btn" href="${escapeAttr(whatsappUrl())}" target="_blank" rel="noreferrer">${escapeHtml(state.settings.cta)}</a>
         </div>
       </div>
     </section>
+  `;
+}
+
+function renderFeatureCard(item) {
+  return `
+    <article class="card feature-card">
+      <h3>${escapeHtml(item.title)}</h3>
+      <p class="copy">${escapeHtml(item.description)}</p>
+    </article>
+  `;
+}
+
+function renderCertificationCard(item) {
+  return `
+    <article class="card feature-card">
+      <span class="badge">${escapeHtml(item.period)}</span>
+      <h3>${escapeHtml(item.title)}</h3>
+      <p class="muted">${escapeHtml(item.issuer)}</p>
+      <p class="copy">${escapeHtml(item.description)}</p>
+    </article>
+  `;
+}
+
+function renderPricingCard(plan) {
+  return `
+    <article class="card pricing-card">
+      <h3>${escapeHtml(plan.name)}</h3>
+      <div class="price-line">
+        <strong>${escapeHtml(plan.price)}</strong>
+        <span>${escapeHtml(plan.period)}</span>
+      </div>
+      <ul class="compact-list">
+        ${(plan.features || []).map((feature) => `<li class="compact-item">${escapeHtml(feature)}</li>`).join("")}
+      </ul>
+      <a class="btn primary" href="${escapeAttr(whatsappUrl(`Hello Hafiz Fahad, I want to ask about the ${plan.name} tutoring plan.`))}" target="_blank" rel="noreferrer">Choose ${escapeHtml(plan.name)}</a>
+    </article>
+  `;
+}
+
+function renderFaqItem(item) {
+  return `
+    <details class="faq-item">
+      <summary>${escapeHtml(item.question)}</summary>
+      <p class="copy">${escapeHtml(item.answer)}</p>
+    </details>
   `;
 }
 
@@ -902,6 +1156,137 @@ function renderSubjectCard(subject) {
         <span class="subject-icon">${escapeHtml(subject.code)}</span>
       </div>
     </article>
+  `;
+}
+
+function renderPublicClassCard(course) {
+  return `
+    <article class="card course-card">
+      <div class="badge-row">
+        <span class="badge">${escapeHtml(course.subject)}</span>
+        <span class="badge blue">${escapeHtml(course.level)}</span>
+      </div>
+      <h3>${escapeHtml(course.title)}</h3>
+      <p class="copy">${escapeHtml(course.description)}</p>
+      <div class="course-meta">
+        <span>${escapeHtml(course.duration)}</span>
+        <span>${course.modules.length} modules</span>
+      </div>
+      <div class="course-actions">
+        <a class="btn primary small" href="${escapeAttr(whatsappUrl(`Hello Hafiz Fahad, I want to ask about ${course.title}.`))}" target="_blank" rel="noreferrer">Book demo</a>
+        <a class="btn secondary small" href="#lms">View LMS</a>
+      </div>
+    </article>
+  `;
+}
+
+function renderClassesPage() {
+  return `
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Classes</span>
+        <h1>Popular classes for academic and Quran learning</h1>
+        <p class="lead">Choose a focused subject track, book a free trial, or open the LMS area to preview modules, lessons, quizzes, and assignments.</p>
+      </div>
+    </section>
+    <section class="container">
+      <div class="grid three">
+        ${state.courses.map(renderPublicClassCard).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderLmsPage() {
+  const totalLessonsCount = state.courses.reduce((sum, course) => sum + totalLessons(course), 0);
+  return `
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Learning platform</span>
+        <h1>A separate LMS area for structured learning</h1>
+        <p class="lead">Use the LMS to browse courses, open lessons, track student progress, submit assignments, take quizzes, and download lesson resources.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#courses">Open course catalog</a>
+          <a class="btn secondary" href="#dashboard">Student dashboard</a>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="stats-band">
+        <div class="stat-tile"><strong>${state.courses.length}</strong><span>Courses</span></div>
+        <div class="stat-tile"><strong>${totalLessonsCount}</strong><span>Lessons</span></div>
+        <div class="stat-tile"><strong>${state.students.length}</strong><span>Demo students</span></div>
+        <div class="stat-tile"><strong>100%</strong><span>Admin editable</span></div>
+      </div>
+      <div class="grid three lms-actions">
+        <article class="card feature-card">
+          <h3>Courses and modules</h3>
+          <p class="copy">Open each learning path with modules, lessons, outcomes, resources, assignments, and quizzes.</p>
+          <a class="btn secondary small" href="#courses">Browse catalog</a>
+        </article>
+        <article class="card feature-card">
+          <h3>Lesson viewer</h3>
+          <p class="copy">Use lesson pages with video support, written content, downloadable resources, and completion tracking.</p>
+          <a class="btn secondary small" href="#lesson/${state.courses[0]?.id || ""}/0/0">Open sample lesson</a>
+        </article>
+        <article class="card feature-card">
+          <h3>Student dashboard</h3>
+          <p class="copy">Track enrolled courses, progress, grades, assignments, and submissions from a separate dashboard.</p>
+          <a class="btn secondary small" href="#dashboard">Open dashboard</a>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function renderPricingPage() {
+  return `
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Pricing</span>
+        <h1>Simple tutoring packages</h1>
+        <p class="lead">Choose the level of support that fits the student. Each plan can be discussed during the free trial class.</p>
+      </div>
+    </section>
+    <section class="container">
+      <div class="grid three">
+        ${state.pricing.map(renderPricingCard).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderBookDemoPage() {
+  return `
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Book demo</span>
+        <h1>Book a free ${escapeHtml(state.settings.trialDuration)} trial class</h1>
+        <p class="lead">${escapeHtml(state.settings.contactNote)}</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="${escapeAttr(whatsappUrl())}" target="_blank" rel="noreferrer">Book on WhatsApp</a>
+          <a class="btn secondary" href="${escapeAttr(mailtoUrl())}">Email me</a>
+        </div>
+      </div>
+    </section>
+    <section class="container detail-layout">
+      <article class="quiz-panel">
+        <h2>What happens in the trial?</h2>
+        <ul class="compact-list">
+          <li class="compact-item">Student level and goals are discussed.</li>
+          <li class="compact-item">A suitable subject plan is recommended.</li>
+          <li class="compact-item">You can ask about schedule, pricing, LMS access, and exam preparation.</li>
+        </ul>
+      </article>
+      <aside class="side-panel">
+        <h3>Contact details</h3>
+        <ul class="compact-list">
+          <li class="compact-item"><span>WhatsApp</span><a href="${escapeAttr(whatsappUrl())}" target="_blank" rel="noreferrer">${escapeHtml(state.settings.whatsapp || state.settings.phone)}</a></li>
+          <li class="compact-item"><span>Email</span><a href="${escapeAttr(mailtoUrl())}">${escapeHtml(state.settings.email)}</a></li>
+          <li class="compact-item"><span>Time zone</span><span>${escapeHtml(state.settings.location)}</span></li>
+        </ul>
+      </aside>
+    </section>
   `;
 }
 
@@ -1339,6 +1724,7 @@ function renderAdminLogin(returnTo = "#admin/settings") {
 function renderAdmin(tab) {
   const tabs = [
     ["settings", "Settings"],
+    ["portfolio", "Portfolio"],
     ["courses", "Courses"],
     ["lessons", "Lessons"],
     ["assessments", "Assessments"],
@@ -1367,6 +1753,7 @@ function renderAdmin(tab) {
 }
 
 function renderAdminTab(tab) {
+  if (tab === "portfolio") return renderPortfolioAdmin();
   if (tab === "courses") return renderCourseAdmin();
   if (tab === "lessons") return renderLessonAdmin();
   if (tab === "assessments") return renderAssessmentAdmin();
@@ -1386,13 +1773,40 @@ function renderSettingsAdmin() {
         ${textareaField("about", "About", s.about, "full")}
         ${inputField("email", "Email", s.email, "", "email")}
         ${inputField("phone", "Phone", s.phone)}
+        ${inputField("whatsapp", "WhatsApp", s.whatsapp || s.phone)}
         ${inputField("location", "Location", s.location)}
         ${inputField("availability", "Availability", s.availability)}
+        ${inputField("experience", "Experience", s.experience)}
+        ${inputField("trialDuration", "Trial duration", s.trialDuration)}
         ${inputField("cta", "CTA label", s.cta)}
+        ${textareaField("demoMessage", "WhatsApp demo message", s.demoMessage, "full")}
+        ${textareaField("contactNote", "Contact note", s.contactNote, "full")}
         ${inputField("heroImage", "Hero image path", s.heroImage, "full")}
       </div>
       <div class="form-actions">
         <button class="btn primary" type="submit">Save settings</button>
+        <button class="btn secondary" type="button" data-download-state>Download backup</button>
+        <button class="btn danger" type="button" data-reset-demo>Reset demo data</button>
+      </div>
+    </form>
+  `;
+}
+
+function renderPortfolioAdmin() {
+  return `
+    <form id="portfolioForm" class="tool-panel">
+      <div class="form-grid">
+        ${textareaField("subjects", "Teaching areas: name | code | description", formatSubjects(state.subjects), "full")}
+        ${textareaField("stats", "Stats: value | label", formatStats(state.stats), "full")}
+        ${textareaField("teacherEdges", "Teacher edge: title | description", formatTitleDescription(state.teacherEdges), "full")}
+        ${textareaField("skills", "Skills: title | description", formatTitleDescription(state.skills), "full")}
+        ${textareaField("certifications", "Certifications: title | issuer | period | description", formatCertifications(state.certifications), "full")}
+        ${textareaField("pricing", "Pricing: name | price | period | feature 1; feature 2; feature 3", formatPricing(state.pricing), "full")}
+        ${textareaField("faqs", "FAQ: question | answer", formatFaqs(state.faqs), "full")}
+        ${textareaField("testimonials", "Testimonials: name | quote", formatTestimonials(state.testimonials), "full")}
+      </div>
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Save portfolio content</button>
         <button class="btn secondary" type="button" data-download-state>Download backup</button>
         <button class="btn danger" type="button" data-reset-demo>Reset demo data</button>
       </div>
@@ -1626,29 +2040,36 @@ function renderContactPage() {
     <section class="page-head">
       <div class="container">
         <span class="eyebrow">Contact</span>
-        <h1>${escapeHtml(state.settings.cta)}</h1>
-        <p class="lead">${escapeHtml(state.settings.location)} - ${escapeHtml(state.settings.availability)}</p>
+        <h1>Get in touch with ${escapeHtml(state.settings.name)}</h1>
+        <p class="lead">${escapeHtml(state.settings.contactNote)} ${escapeHtml(state.settings.availability)}.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="${escapeAttr(whatsappUrl())}" target="_blank" rel="noreferrer">Message on WhatsApp</a>
+          <a class="btn secondary" href="${escapeAttr(mailtoUrl())}">Email me</a>
+        </div>
       </div>
     </section>
     <section class="container detail-layout">
       <form id="contactForm" class="quiz-panel">
+        <h2>Student inquiry</h2>
         <div class="form-grid">
           ${inputField("name", "Your name", "")}
           ${inputField("email", "Email", "", "", "email")}
-          ${inputField("subject", "Subject", "")}
+          ${inputField("subject", "Subject or class", "")}
           ${inputField("phone", "Phone", "")}
-          ${textareaField("message", "Message", "", "full")}
+          ${textareaField("message", "Learning goals", "", "full")}
         </div>
         <div class="form-actions">
-          <button class="btn primary" type="submit">Send message</button>
+          <button class="btn primary" type="submit">Prepare WhatsApp message</button>
+          <a class="btn secondary" href="${escapeAttr(mailtoUrl())}">Email instead</a>
         </div>
       </form>
       <aside class="side-panel">
         <h3>Contact details</h3>
         <ul class="compact-list">
-          <li class="compact-item"><span>Email</span><a href="mailto:${escapeAttr(state.settings.email)}">${escapeHtml(state.settings.email)}</a></li>
-          <li class="compact-item"><span>Phone</span><a href="tel:${escapeAttr(state.settings.phone)}">${escapeHtml(state.settings.phone)}</a></li>
+          <li class="compact-item"><span>WhatsApp</span><a href="${escapeAttr(whatsappUrl())}" target="_blank" rel="noreferrer">${escapeHtml(state.settings.whatsapp || state.settings.phone)}</a></li>
+          <li class="compact-item"><span>Email</span><a href="${escapeAttr(mailtoUrl())}">${escapeHtml(state.settings.email)}</a></li>
           <li class="compact-item"><span>Location</span><span>${escapeHtml(state.settings.location)}</span></li>
+          <li class="compact-item"><span>Trial</span><span>${escapeHtml(state.settings.trialDuration)}</span></li>
         </ul>
       </aside>
     </section>
@@ -1664,8 +2085,10 @@ function renderFooter() {
           <p class="muted">${escapeHtml(state.settings.role)}</p>
         </div>
         <div class="footer-links">
-          <a href="#courses">Courses</a>
-          <a href="#dashboard">Student dashboard</a>
+          <a href="#classes">Classes</a>
+          <a href="#lms">LMS</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#book">Book demo</a>
           ${isAdminAuthenticated() ? `<a href="#admin">Admin</a>` : ""}
           <a href="#contact">Contact</a>
         </div>
@@ -1926,6 +2349,21 @@ async function handleGlobalSubmit(event) {
     render();
   }
 
+  if (form.id === "portfolioForm") {
+    event.preventDefault();
+    const data = formData(form);
+    state.subjects = parseSubjects(data.subjects);
+    state.stats = parseStats(data.stats);
+    state.teacherEdges = parseTitleDescription(data.teacherEdges);
+    state.skills = parseTitleDescription(data.skills);
+    state.certifications = parseCertifications(data.certifications);
+    state.pricing = parsePricing(data.pricing);
+    state.faqs = parseFaqs(data.faqs);
+    state.testimonials = parseTestimonials(data.testimonials);
+    saveState("Portfolio content saved");
+    render();
+  }
+
   if (form.id === "courseForm") {
     event.preventDefault();
     const course = findCourse(form.dataset.course);
@@ -2058,8 +2496,19 @@ async function handleGlobalSubmit(event) {
 
   if (form.id === "contactForm") {
     event.preventDefault();
-    form.reset();
-    showToast("Message prepared");
+    const data = formData(form);
+    const message = [
+      `Hello Hafiz Fahad, I want to book a ${state.settings.trialDuration} trial class.`,
+      data.name ? `Name: ${data.name}` : "",
+      data.subject ? `Subject: ${data.subject}` : "",
+      data.phone ? `Phone: ${data.phone}` : "",
+      data.email ? `Email: ${data.email}` : "",
+      data.message ? `Goals: ${data.message}` : ""
+    ]
+      .filter(Boolean)
+      .join("\n");
+    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+    showToast("WhatsApp message prepared");
   }
 }
 
@@ -2127,6 +2576,92 @@ function formData(form) {
   return Object.fromEntries(new FormData(form).entries());
 }
 
+function splitColumns(line) {
+  return line.split("|").map((part) => part.trim());
+}
+
+function formatSubjects(items = []) {
+  return items.map((item) => `${item.name} | ${item.code} | ${item.description}`).join("\n");
+}
+
+function parseSubjects(text = "") {
+  return lines(text).map((line) => {
+    const [name = "Subject", code = "", description = ""] = splitColumns(line);
+    return { name, code, description };
+  });
+}
+
+function formatStats(items = []) {
+  return items.map((item) => `${item.value} | ${item.label}`).join("\n");
+}
+
+function parseStats(text = "") {
+  return lines(text).map((line) => {
+    const [value = "", label = ""] = splitColumns(line);
+    return { value, label };
+  });
+}
+
+function formatTitleDescription(items = []) {
+  return items.map((item) => `${item.title} | ${item.description}`).join("\n");
+}
+
+function parseTitleDescription(text = "") {
+  return lines(text).map((line) => {
+    const [title = "", description = ""] = splitColumns(line);
+    return { title, description };
+  });
+}
+
+function formatCertifications(items = []) {
+  return items.map((item) => `${item.title} | ${item.issuer} | ${item.period} | ${item.description}`).join("\n");
+}
+
+function parseCertifications(text = "") {
+  return lines(text).map((line) => {
+    const [title = "", issuer = "", period = "", description = ""] = splitColumns(line);
+    return { title, issuer, period, description };
+  });
+}
+
+function formatPricing(items = []) {
+  return items.map((item) => `${item.name} | ${item.price} | ${item.period} | ${(item.features || []).join("; ")}`).join("\n");
+}
+
+function parsePricing(text = "") {
+  return lines(text).map((line) => {
+    const [name = "", price = "", period = "", featureText = ""] = splitColumns(line);
+    return {
+      name,
+      price,
+      period,
+      features: featureText.split(";").map((feature) => feature.trim()).filter(Boolean)
+    };
+  });
+}
+
+function formatFaqs(items = []) {
+  return items.map((item) => `${item.question} | ${item.answer}`).join("\n");
+}
+
+function parseFaqs(text = "") {
+  return lines(text).map((line) => {
+    const [question = "", answer = ""] = splitColumns(line);
+    return { question, answer };
+  });
+}
+
+function formatTestimonials(items = []) {
+  return items.map((item) => `${item.name} | ${item.quote}`).join("\n");
+}
+
+function parseTestimonials(text = "") {
+  return lines(text).map((line) => {
+    const [name = "", quote = ""] = splitColumns(line);
+    return { name, quote };
+  });
+}
+
 function findCourse(id) {
   return state.courses.find((course) => course.id === id);
 }
@@ -2172,6 +2707,19 @@ function videoEmbedUrl(url = "") {
   const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
   if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
   return url;
+}
+
+function whatsappUrl(message = state.settings.demoMessage) {
+  const number = String(state.settings.whatsapp || state.settings.phone || "")
+    .replace(/\D/g, "")
+    .replace(/^0+/, "");
+  return `https://wa.me/${number}?text=${encodeURIComponent(message || state.settings.demoMessage || "")}`;
+}
+
+function mailtoUrl() {
+  const subject = encodeURIComponent(`Tutoring inquiry for ${state.settings.name}`);
+  const body = encodeURIComponent(state.settings.demoMessage || "");
+  return `mailto:${state.settings.email}?subject=${subject}&body=${body}`;
 }
 
 function createCourse() {
