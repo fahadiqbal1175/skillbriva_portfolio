@@ -888,7 +888,6 @@ function renderHeader(active) {
     ["pricing", "Pricing"],
     ["book", "Book Demo"]
   ];
-  if (isAdminAuthenticated()) nav.push(["admin", "Admin"]);
   nav.push(["contact", "Contact"]);
 
   return `
@@ -2235,7 +2234,6 @@ function renderFooter() {
           <a href="#lms">LMS</a>
           <a href="#pricing">Pricing</a>
           <a href="#book">Book demo</a>
-          ${isAdminAuthenticated() ? `<a href="#admin">Admin</a>` : ""}
           <a href="#contact">Contact</a>
         </div>
       </div>
