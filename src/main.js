@@ -2791,16 +2791,28 @@ async function signInStudent(email = "", password = "") {
     };
   }
 
+  let authEndpoint;
   try {
-    const response = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+    authEndpoint = new URL("/auth/v1/token", SUPABASE_URL);
+    authEndpoint.searchParams.set("grant_type", "password");
+  } catch {
+    return {
+      ok: false,
+      message: "Supabase URL is invalid. Use the Project URL from Supabase, for example https://project-id.supabase.co."
+    };
+  }
+
+  try {
+    const response = await fetch(authEndpoint.toString(), {
       method: "POST",
       headers: {
         apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ email, password })
     });
-    const data = await response.json();
+    const data = await response.json().catch(() => ({}));
     if (!response.ok) {
       return { ok: false, message: data.error_description || data.msg || data.message || "Invalid student credentials." };
     }
@@ -2813,8 +2825,11 @@ async function signInStudent(email = "", password = "") {
     };
     setStudentSession(session);
     return { ok: true, session };
-  } catch {
-    return { ok: false, message: "Could not reach the student authentication service." };
+  } catch (error) {
+    return {
+      ok: false,
+      message: `Could not reach Supabase. Check Render environment variables, redeploy, and confirm the Project URL/anon key. ${error?.message || ""}`.trim()
+    };
   }
 }
 
