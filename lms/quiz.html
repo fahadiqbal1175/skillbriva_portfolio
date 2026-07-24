@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Engine - Skillbriva LMS</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="lms-common.css">
+    <style>
+        .lms-quiz-screen { display: none; }
+        .lms-quiz-screen.active { display: block; }
+        
+        .lms-quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .lms-quiz-timer {
+            font-size: 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .lms-quiz-timer.warning { color: var(--warning-color); }
+        .lms-quiz-timer.danger { color: var(--danger-color); animation: pulse 1s infinite; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .lms-quiz-body {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .lms-quiz-body { grid-template-columns: 1fr; }
+            .lms-quiz-header { padding: 1rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+
+        .lms-quiz-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lms-quiz-nav-btn {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lms-quiz-nav-btn:hover { background: var(--bg-hover); }
+        .lms-quiz-nav-btn.answered { background: var(--primary-color); color: white; border-color: var(--primary-color); }
+        .lms-quiz-nav-btn.current { border: 2px solid var(--primary-color); font-weight: 700; color: var(--text-primary); }
+
+        .lms-quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: var(--bg-card);
+        }
+        .lms-quiz-option:hover { border-color: var(--primary-color); background: var(--bg-hover); }
+        .lms-quiz-option.selected { border-color: var(--primary-color); background: rgba(var(--primary-color-rgb), 0.1); }
+        
+        .lms-quiz-option input[type="radio"] { margin-right: 1rem; cursor: pointer; }
+
+        .lms-quiz-result-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .lms-quiz-score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+            border: 8px solid var(--border-color);
+        }
+        .lms-quiz-score-circle.pass { border-color: var(--success-color); color: var(--success-color); }
+        .lms-quiz-score-circle.fail { border-color: var(--danger-color); color: var(--danger-color); }
+
+        .lms-review-item {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-card);
+        }
+        .lms-review-item.correct { border-left: 4px solid var(--success-color); }
+        .lms-review-item.incorrect { border-left: 4px solid var(--danger-color); }
+
+        .lms-quiz-info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body class="lms-page">
+
+    <!-- Screen 1: Quiz Info -->
+    <div id="screen-info" class="lms-quiz-screen active">
+        <div class="lms-content" style="max-width: 800px; margin: 4rem auto;">
+            <div class="lms-card">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <span id="info-subject-badge" class="lms-badge" style="margin-bottom: 1rem;">Subject</span>
+                    <h1 id="info-quiz-title" style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 0.5rem;">Quiz Title</h1>
+                    <p id="info-course-name" style="color: var(--text-secondary); font-size: 1.1rem;">Course Name</p>
+                </div>
+
+                <div class="lms-quiz-info-cards">
+                    <div class="lms-stat-card">
+                        <div class="lms-stat-card__icon" style="color: var(--primary-color)"><i class="fas fa-clock"></i></div>
+                        <div class="lms-stat-card__value" id="info-duration">--</div>
+                        <div class="lms-stat-card__label">Duration (Minutes)</div>
+                    </div>
+                    <div class="lms-stat-card">
+                        <div class="lms-stat-card__icon" style="color: var(--info-color)"><i class="fas fa-list-ol"></i></div>
+                        <div class="lms-stat-card__value" id="info-total-qs">--</div>
+                        <div class="lms-stat-card__label">Total Questions</div>
+                    </div>
+                    <div class="lms-stat-card">
+                        <div class="lms-stat-card__icon" style="color: var(--warning-color)"><i class="fas fa-bullseye"></i></div>
+                        <div class="lms-stat-card__value" id="info-passing">--</div>
+                        <div class="lms-stat-card__label">Passing Score</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Instructions:</h3>
+                    <ul style="color: var(--text-secondary); line-height: 1.6; padding-left: 1.5rem;">
+                        <li>Ensure you have a stable internet connection.</li>
+                        <li>Do not refresh the page or navigate away during the quiz.</li>
+                        <li>Switching tabs may be recorded as suspicious activity.</li>
+                        <li>The quiz will automatically submit when the timer reaches zero.</li>
+                    </ul>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="dashboard.html" class="lms-btn lms-btn--outline">Back to Dashboard</a>
+                    <button id="btn-start-quiz" class="lms-btn lms-btn--primary lms-btn--lg">Start Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Quiz Taking -->
+    <div id="screen-taking" class="lms-quiz-screen">
+        <div class="lms-quiz-header">
+            <div id="taking-quiz-title" style="font-weight: 600; font-size: 1.2rem;">Quiz Title</div>
+            <div class="lms-quiz-timer" id="taking-timer">00:00</div>
+            <div style="color: var(--text-secondary); font-weight: 500;">Question <span id="taking-current-q">1</span> of <span id="taking-total-q">--</span></div>
+        </div>
+
+        <div class="lms-quiz-body">
+            <div class="lms-quiz-main lms-card">
+                <div style="margin-bottom: 1.5rem;">
+                    <span class="lms-badge lms-badge--primary" style="margin-bottom: 1rem;">Question <span id="q-number">1</span></span>
+                    <h2 id="q-text" style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; line-height: 1.4;">Question text goes here?</h2>
+                </div>
+
+                <div id="q-options" style="margin-bottom: 2rem;">
+                    <!-- Options injected here -->
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+                    <button id="btn-prev" class="lms-btn lms-btn--outline"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button id="btn-next" class="lms-btn lms-btn--primary">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <div class="lms-quiz-nav lms-card">
+                <h3 style="margin-bottom: 1rem;">Navigation</h3>
+                
+                <div class="lms-quiz-nav-grid" id="nav-grid">
+                    <!-- Nav buttons injected here -->
+                </div>
+
+                <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="display: inline-block; width: 12px; height: 12px; background: var(--primary-color); border-radius: 2px;"></span> Answered
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="display: inline-block; width: 12px; height: 12px; border: 2px solid var(--primary-color); border-radius: 2px;"></span> Current
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="display: inline-block; width: 12px; height: 12px; border: 1px solid var(--border-color); border-radius: 2px;"></span> Unanswered
+                    </div>
+                </div>
+
+                <button id="btn-submit-nav" class="lms-btn lms-btn--success lms-btn--block">Submit Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Results -->
+    <div id="screen-results" class="lms-quiz-screen">
+        <div class="lms-content" style="max-width: 900px; margin: 4rem auto;">
+            <div class="lms-card">
+                <div class="lms-quiz-result-header">
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 1.5rem;">Quiz Results</h2>
+                    
+                    <div id="result-score-circle" class="lms-quiz-score-circle">
+                        <span id="result-percentage">0</span>%
+                    </div>
+                    
+                    <h3 id="result-status" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Passed!</h3>
+                    <p id="result-badge-container" style="margin-bottom: 2rem;"></p>
+                </div>
+
+                <div class="lms-quiz-info-cards" style="margin-bottom: 2rem;">
+                    <div class="lms-stat-card">
+                        <div class="lms-stat-card__icon" style="color: var(--success-color)"><i class="fas fa-check-circle"></i></div>
+                        <div class="lms-stat-card__value" id="res-correct">0</div>
+                        <div class="lms-stat-card__label">Correct</div>
+                    </div>
+                    <div class="lms-stat-card">
+                        <div class="lms-stat-card__icon" style="color: var(--danger-color)"><i class="fas fa-times-circle"></i></div>
+                        <div class="lms-stat-card__value" id="res-incorrect">0</div>
+                        <div class="lms-stat-card__label">Incorrect</div>
+                    </div>
+                    <div class="lms-stat-card">
+                        <div class="lms-stat-card__icon" style="color: var(--warning-color)"><i class="fas fa-minus-circle"></i></div>
+                        <div class="lms-stat-card__value" id="res-unanswered">0</div>
+                        <div class="lms-stat-card__label">Unanswered</div>
+                    </div>
+                    <div class="lms-stat-card">
+                        <div class="lms-stat-card__icon" style="color: var(--info-color)"><i class="fas fa-stopwatch"></i></div>
+                        <div class="lms-stat-card__value" id="res-time">00:00</div>
+                        <div class="lms-stat-card__label">Time Taken</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
+                    <a href="dashboard.html" class="lms-btn lms-btn--outline">Back to Dashboard</a>
+                    <button id="btn-review" class="lms-btn lms-btn--primary">Review Answers</button>
+                </div>
+
+                <div id="review-section" style="display: none; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">Answer Review</h3>
+                    <div id="review-container">
+                        <!-- Review items injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="quiz.js"></script>
+</body>
+</html>

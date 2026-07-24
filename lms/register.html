@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — Fahad Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="lms-common.css">
+</head>
+<body class="lms-page">
+    <div class="lms-auth">
+        <div class="lms-auth-card" style="max-width:500px;">
+            <div class="lms-auth-card__logo">
+                <div class="lms-auth-card__logo-icon"><i class="fa-solid fa-user-plus"></i></div>
+                <h1>Create Account</h1>
+                <p>Join the learning community</p>
+            </div>
+
+            <div id="errorMsg" class="lms-auth-card__error">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <span id="errorText"></span>
+            </div>
+            <div id="successMsg" class="lms-auth-card__success">
+                <i class="fa-solid fa-circle-check"></i>
+                <span id="successText"></span>
+            </div>
+
+            <form id="registerForm">
+                <div class="lms-form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="lms-input" placeholder="Your full name" required>
+                </div>
+                <div class="lms-form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="lms-input" placeholder="your@email.com" required>
+                </div>
+                <div class="lms-form-row">
+                    <div class="lms-form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="lms-input" placeholder="Min 6 characters" required minlength="6">
+                    </div>
+                    <div class="lms-form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="lms-input" placeholder="Repeat password" required>
+                    </div>
+                </div>
+
+                <div class="lms-form-group">
+                    <label style="margin-bottom:0.75rem;display:block;">Subjects You're Interested In</label>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+                        <label class="lms-checkbox-group"><input type="checkbox" name="subjects" value="Quran with Tajweed"> Quran with Tajweed</label>
+                        <label class="lms-checkbox-group"><input type="checkbox" name="subjects" value="Basic Islamic Studies"> Islamic Studies</label>
+                        <label class="lms-checkbox-group"><input type="checkbox" name="subjects" value="Computer Science"> Computer Science</label>
+                        <label class="lms-checkbox-group"><input type="checkbox" name="subjects" value="Mathematics"> Mathematics</label>
+                        <label class="lms-checkbox-group"><input type="checkbox" name="subjects" value="English"> English</label>
+                        <label class="lms-checkbox-group"><input type="checkbox" name="subjects" value="Programming"> Programming</label>
+                        <label class="lms-checkbox-group"><input type="checkbox" name="subjects" value="Science"> Science</label>
+                        <label class="lms-checkbox-group"><input type="checkbox" name="subjects" value="AI & Machine Learning"> AI & ML</label>
+                    </div>
+                </div>
+
+                <div class="lms-form-group">
+                    <label class="lms-checkbox-group">
+                        <input type="checkbox" id="termsAccept" required>
+                        I agree to the terms and conditions
+                    </label>
+                </div>
+
+                <button type="submit" id="submitBtn" class="lms-btn lms-btn--primary lms-btn--block lms-btn--lg">
+                    <i class="fa-solid fa-user-plus"></i> Create Account
+                </button>
+            </form>
+
+            <div class="lms-auth-card__footer">
+                <p>Already have an account? <a href="login.html">Sign In</a></p>
+                <a href="../index.html" style="display:inline-block;margin-top:0.75rem;color:var(--lms-text-muted);font-size:0.82rem;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Website
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import {
+            auth, db, createUserWithEmailAndPassword, updateProfile,
+            ref, set
+        } from './firebase-config.js';
+
+        const form = document.getElementById('registerForm');
+        const errorMsg = document.getElementById('errorMsg');
+        const errorText = document.getElementById('errorText');
+        const successMsg = document.getElementById('successMsg');
+        const successText = document.getElementById('successText');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function showError(msg) {
+            successMsg.classList.remove('visible');
+            errorText.textContent = msg;
+            errorMsg.classList.add('visible');
+        }
+
+        function showSuccess(msg) {
+            errorMsg.classList.remove('visible');
+            successText.textContent = msg;
+            successMsg.classList.add('visible');
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorMsg.classList.remove('visible');
+            successMsg.classList.remove('visible');
+
+            const name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsAccepted = document.getElementById('termsAccept').checked;
+
+            // Get selected subjects
+            const subjectCheckboxes = document.querySelectorAll('input[name="subjects"]:checked');
+            const selectedSubjects = Array.from(subjectCheckboxes).map(cb => cb.value);
+
+            // Validation
+            if (!name) { showError('Please enter your full name.'); return; }
+            if (password.length < 6) { showError('Password must be at least 6 characters.'); return; }
+            if (password !== confirmPassword) { showError('Passwords do not match.'); return; }
+            if (!termsAccepted) { showError('Please accept the terms and conditions.'); return; }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating Account...';
+
+            try {
+                // Create Firebase Auth account
+                const cred = await createUserWithEmailAndPassword(auth, email, password);
+                const uid = cred.user.uid;
+
+                // Update display name
+                await updateProfile(cred.user, { displayName: name });
+
+                // Create user record in RTDB
+                await set(ref(db, `users/${uid}`), {
+                    name: name,
+                    email: email,
+                    role: 'student',
+                    status: 'pending',
+                    enrolledCourses: [],
+                    selectedSubjects: selectedSubjects,
+                    createdAt: Date.now()
+                });
+
+                // Sign out (they need approval first)
+                await auth.signOut();
+
+                // Show success
+                form.style.display = 'none';
+                showSuccess('Account created successfully! Your account is pending approval from the teacher. You will be able to access courses once approved.');
+
+                // Add login link
+                const loginLink = document.createElement('a');
+                loginLink.href = 'login.html';
+                loginLink.className = 'lms-btn lms-btn--primary lms-btn--block';
+                loginLink.style.marginTop = '1rem';
+                loginLink.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Go to Login';
+                successMsg.parentElement.appendChild(loginLink);
+
+            } catch (error) {
+                const msg = error.code === 'auth/email-already-in-use' ? 'An account with this email already exists.' :
+                            error.code === 'auth/weak-password' ? 'Password is too weak. Use at least 6 characters.' :
+                            error.code === 'auth/invalid-email' ? 'Please enter a valid email address.' :
+                            error.message;
+                showError(msg);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Create Account';
+            }
+        });
+    </script>
+</body>
+</html>

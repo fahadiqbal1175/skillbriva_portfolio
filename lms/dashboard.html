@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Fahad Academy</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="lms-common.css">
+    <style>
+        .lms-course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .recent-activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .recent-activity-item:last-child {
+            border-bottom: none;
+        }
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--primary-rgb), 0.1);
+            color: var(--primary);
+        }
+        .activity-content h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 0.95rem;
+        }
+        .activity-content p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .lecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .lecture-card {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+        .lecture-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        .lecture-thumbnail {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #1f2937;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+        .lecture-thumbnail:hover .play-btn {
+            transform: scale(1.1);
+        }
+        .play-btn {
+            transition: all 0.2s ease;
+        }
+        .lecture-info {
+            padding: 1rem;
+        }
+        .lecture-title {
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+        .lecture-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 992px) {
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .live-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .live-card-icon {
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .live-card-details {
+            flex: 1;
+        }
+        .live-card-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .live-card-time {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .lms-progress-wrap {
+            margin-bottom: 1rem;
+        }
+        .lms-progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="lms-page">
+    <div class="lms-layout">
+        <!-- Sidebar -->
+        <aside class="lms-sidebar" id="sidebar">
+            <div class="lms-sidebar__brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Fahad Academy</span>
+                <button class="lms-sidebar__close d-md-none" id="closeSidebarBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="lms-sidebar__user" id="sidebarUser">
+                <div class="lms-sidebar__avatar" id="sidebarAvatar"></div>
+                <div class="lms-sidebar__user-info">
+                    <h4 id="sidebarName">Loading...</h4>
+                    <span id="sidebarRole">Student</span>
+                </div>
+            </div>
+
+            <nav class="lms-sidebar__nav lms-tabs">
+                <a href="#" class="lms-sidebar__link lms-tab active" data-tab="overview">
+                    <i class="fas fa-home"></i> Overview
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="courses">
+                    <i class="fas fa-book-open"></i> My Courses
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="assignments">
+                    <i class="fas fa-file-alt"></i> Assignments
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="quizzes">
+                    <i class="fas fa-question-circle"></i> Quizzes
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="lectures">
+                    <i class="fas fa-play-circle"></i> Recorded Lectures
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="progress">
+                    <i class="fas fa-chart-line"></i> Progress
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="live">
+                    <i class="fas fa-video"></i> Live Classes
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="profile">
+                    <i class="fas fa-user-circle"></i> Profile
+                </a>
+            </nav>
+
+            <div class="lms-sidebar__footer">
+                <a href="../index.html" class="lms-sidebar__link">
+                    <i class="fas fa-globe"></i> Back to Website
+                </a>
+                <a href="#" class="lms-sidebar__link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="lms-main">
+            <!-- Top Bar -->
+            <header class="lms-topbar">
+                <div class="lms-topbar__left">
+                    <button class="lms-topbar__toggle" id="toggleSidebarBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2 class="lms-topbar__title" id="pageTitle">Overview</h2>
+                </div>
+                <div class="lms-topbar__right">
+                    <button class="lms-topbar__icon-btn" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="lms-badge lms-badge--danger notification-dot"></span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="lms-content">
+                <!-- Overview Tab -->
+                <div class="lms-tab-pane active" data-tab-pane="overview">
+                    <div class="lms-card mb-4">
+                        <h2 id="welcomeMessage">Welcome back!</h2>
+                        <p class="text-light">Here's an overview of your learning progress today.</p>
+                    </div>
+
+                    <div class="stat-cards">
+                        <div class="lms-stat-card">
+                            <div class="lms-stat-card__icon bg-primary-light text-primary">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="lms-stat-card__info">
+                                <h3>Enrolled Courses</h3>
+                                <div class="lms-stat-card__value" id="statCourses">0</div>
+                            </div>
+                        </div>
+                        <div class="lms-stat-card">
+                            <div class="lms-stat-card__icon bg-warning-light text-warning">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="lms-stat-card__info">
+                                <h3>Pending Assignments</h3>
+                                <div class="lms-stat-card__value" id="statAssignments">0</div>
+                            </div>
+                        </div>
+                        <div class="lms-stat-card">
+                            <div class="lms-stat-card__icon bg-success-light text-success">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="lms-stat-card__info">
+                                <h3>Avg Quiz Score</h3>
+                                <div class="lms-stat-card__value" id="statQuizScore">0%</div>
+                            </div>
+                        </div>
+                        <div class="lms-stat-card">
+                            <div class="lms-stat-card__icon bg-info-light text-info">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="lms-stat-card__info">
+                                <h3>Upcoming Classes</h3>
+                                <div class="lms-stat-card__value" id="statClasses">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overview-grid">
+                        <div class="lms-card">
+                            <h3 class="mb-3">Recent Activity</h3>
+                            <div id="recentActivityList">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                        <div class="lms-card">
+                            <h3 class="mb-3">Upcoming</h3>
+                            <div id="upcomingList">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Courses Tab -->
+                <div class="lms-tab-pane" data-tab-pane="courses">
+                    <div class="lms-course-grid" id="coursesGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Assignments Tab -->
+                <div class="lms-tab-pane" data-tab-pane="assignments">
+                    <div class="lms-card mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="m-0">My Assignments</h3>
+                            <select class="lms-select w-auto" id="assignmentFilter">
+                                <option value="all">All Assignments</option>
+                                <option value="pending">Pending</option>
+                                <option value="submitted">Submitted</option>
+                                <option value="graded">Graded</option>
+                            </select>
+                        </div>
+                        <div class="lms-table-wrapper">
+                            <table class="lms-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Course</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>Score</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="assignmentsTableBody">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quizzes Tab -->
+                <div class="lms-tab-pane" data-tab-pane="quizzes">
+                    <div class="lms-card">
+                        <h3 class="mb-3">My Quizzes</h3>
+                        <div class="lms-table-wrapper">
+                            <table class="lms-table">
+                                <thead>
+                                    <tr>
+                                        <th>Quiz Title</th>
+                                        <th>Course</th>
+                                        <th>Duration</th>
+                                        <th>Questions</th>
+                                        <th>Status</th>
+                                        <th>Score</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="quizzesTableBody">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lectures Tab -->
+                <div class="lms-tab-pane" data-tab-pane="lectures">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>Recorded Lectures</h3>
+                        <select class="lms-select w-auto" id="lectureCourseFilter">
+                            <option value="all">All Courses</option>
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="lecture-grid" id="lecturesGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Progress Tab -->
+                <div class="lms-tab-pane" data-tab-pane="progress">
+                    <div class="overview-grid">
+                        <div class="lms-card">
+                            <h3 class="mb-4">Quiz Score History</h3>
+                            <div class="chart-container">
+                                <canvas id="quizChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="lms-card">
+                            <h3 class="mb-4">Course Progress</h3>
+                            <div id="courseProgressContainer">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Classes Tab -->
+                <div class="lms-tab-pane" data-tab-pane="live">
+                    <div class="lms-card mb-4">
+                        <h3 class="mb-3">Today's Classes</h3>
+                        <div id="liveTodayList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <div class="lms-card">
+                        <h3 class="mb-3">Upcoming Classes</h3>
+                        <div id="liveUpcomingList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Tab -->
+                <div class="lms-tab-pane" data-tab-pane="profile">
+                    <div class="overview-grid">
+                        <div class="lms-card">
+                            <h3 class="mb-4">Profile Settings</h3>
+                            <form id="profileForm">
+                                <div class="lms-form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="profileName" class="lms-input" required>
+                                </div>
+                                <div class="lms-form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" id="profileEmail" class="lms-input" readonly disabled>
+                                </div>
+                                <hr class="my-4" style="border-color: var(--border);">
+                                <h4 class="mb-3">Change Password</h4>
+                                <div class="lms-form-group">
+                                    <label>New Password (leave blank to keep current)</label>
+                                    <input type="password" id="profilePassword" class="lms-input">
+                                </div>
+                                <button type="submit" class="lms-btn lms-btn--primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                            </form>
+                        </div>
+                        <div class="lms-card">
+                            <div class="text-center mb-4">
+                                <div id="profileAvatarBig" style="width: 100px; height: 100px; margin: 0 auto 1rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; background: var(--primary); color: white;"></div>
+                                <h3 id="profileNameDisplay">Loading...</h3>
+                                <p class="text-light" id="profileJoinDate">Joined: ...</p>
+                            </div>
+                            <hr style="border-color: var(--border); margin: 1rem 0;">
+                            <h4>Enrolled Subjects</h4>
+                            <ul id="profileSubjectsList" style="list-style: none; padding: 0; margin-top: 1rem;">
+                                <!-- Populated by JS -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Assignment Submit Modal -->
+    <div id="submitModal" class="lms-modal">
+        <div class="lms-modal__content" style="max-width: 500px;">
+            <div class="lms-modal__header">
+                <h3>Submit Assignment</h3>
+                <button class="lms-modal__close" onclick="closeSubmitModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="lms-modal__body">
+                <form id="submitAssignmentForm">
+                    <input type="hidden" id="submitAssignmentId">
+                    <div class="lms-form-group">
+                        <label>Submission Text / Link</label>
+                        <textarea id="submitText" class="lms-textarea" rows="4" placeholder="Enter your answer or paste a link to your work..."></textarea>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Upload File (Optional)</label>
+                        <input type="file" id="submitFile" class="lms-input">
+                    </div>
+                    <div class="lms-form-group mt-4">
+                        <button type="submit" class="lms-btn lms-btn--primary lms-btn--block">
+                            Submit Assignment
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="lms-modal">
+        <div class="lms-modal__content" style="max-width: 800px; width: 90%;">
+            <div class="lms-modal__header">
+                <h3 id="videoModalTitle">Lecture</h3>
+                <button class="lms-modal__close" onclick="closeVideoModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="lms-modal__body" style="padding: 0;">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <iframe id="videoIframe" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Logic -->
+    <script type="module" src="dashboard.js"></script>
+    <script>
+        function closeSubmitModal() {
+            document.getElementById('submitModal').classList.remove('active');
+        }
+        function closeVideoModal() {
+            document.getElementById('videoModal').classList.remove('active');
+            document.getElementById('videoIframe').src = '';
+        }
+    </script>
+</body>
+</html>

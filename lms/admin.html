@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Fahad Academy</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="lms-common.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .admin-modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); display: none;
+            justify-content: center; align-items: center; z-index: 1000;
+        }
+        .admin-modal-overlay.active { display: flex; }
+        .admin-modal {
+            background: var(--bg-card, #fff); padding: 2rem; border-radius: 8px;
+            width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto;
+        }
+        .admin-modal--large { max-width: 800px; }
+        .admin-modal-header { display: flex; justify-content: space-between; margin-bottom: 1rem; align-items: center; }
+        .admin-modal-title { font-size: 1.25rem; font-weight: 600; margin: 0; }
+        .admin-modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted, #666); }
+        .admin-modal-body { margin-bottom: 1.5rem; }
+        .admin-modal-footer { display: flex; justify-content: flex-end; gap: 1rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .chart-container { background: var(--bg-card, #fff); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .quiz-question-card { background: var(--bg-body, #f8f9fa); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color, #eee); }
+        .quiz-question-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .quiz-option-row { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; }
+        .table-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
+        .table-toolbar .search-box { display: flex; align-items: center; background: var(--bg-card, #fff); border: 1px solid var(--border-color, #eee); border-radius: 4px; padding: 0.25rem 0.5rem; }
+        .table-toolbar .search-box input { border: none; outline: none; padding: 0.25rem; background: transparent; color: var(--text-main); }
+    </style>
+</head>
+<body class="lms-page">
+    <div class="lms-layout">
+        <!-- Sidebar -->
+        <div class="lms-sidebar">
+            <div class="lms-sidebar__brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span style="margin-left: 5px;">Fahad Academy</span>
+                <span class="lms-badge lms-badge--primary" style="margin-left: 5px; font-size: 0.6rem;">Admin</span>
+            </div>
+            <div class="lms-sidebar__user">
+                <div id="admin-avatar-container"></div>
+                <div class="lms-sidebar__user-info">
+                    <div class="lms-sidebar__user-name" id="admin-name">Loading...</div>
+                    <div class="lms-sidebar__user-role">Administrator</div>
+                </div>
+            </div>
+            <nav class="lms-sidebar__nav lms-tabs">
+                <a href="#" class="lms-sidebar__link lms-tab active" data-tab="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="students">
+                    <i class="fas fa-users"></i> Students
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="courses">
+                    <i class="fas fa-book-open"></i> Courses
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="assignments">
+                    <i class="fas fa-file-alt"></i> Assignments
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="quizzes">
+                    <i class="fas fa-question-circle"></i> Quizzes
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="lectures">
+                    <i class="fas fa-play-circle"></i> Lectures
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="materials">
+                    <i class="fas fa-folder-open"></i> Materials
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="live">
+                    <i class="fas fa-video"></i> Live Classes
+                </a>
+                <a href="#" class="lms-sidebar__link lms-tab" data-tab="analytics">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+            </nav>
+            <div class="lms-sidebar__footer">
+                <a href="dashboard.html" class="lms-btn lms-btn--ghost lms-btn--block" style="margin-bottom: 10px;">
+                    <i class="fas fa-eye"></i> View as Student
+                </a>
+                <button id="btn-logout" class="lms-btn lms-btn--danger lms-btn--block">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lms-main">
+            <!-- Topbar -->
+            <div class="lms-topbar">
+                <div class="lms-topbar__left">
+                    <button class="lms-btn lms-btn--ghost" id="mobile-toggle"><i class="fas fa-bars"></i></button>
+                    <h2 style="margin: 0;">Admin Panel</h2>
+                </div>
+                <div class="lms-topbar__right">
+                    <div id="topbar-avatar-container"></div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="lms-content">
+                
+                <!-- DASHBOARD TAB -->
+                <div class="lms-tab-pane active" data-tab-pane="dashboard">
+                    <div class="stats-grid">
+                        <div class="lms-stat-card">
+                            <div class="lms-stat-card__icon"><i class="fas fa-users"></i></div>
+                            <div class="lms-stat-card__info">
+                                <h3>Total Students</h3>
+                                <p id="stat-students">0</p>
+                            </div>
+                        </div>
+                        <div class="lms-stat-card">
+                            <div class="lms-stat-card__icon"><i class="fas fa-book-open"></i></div>
+                            <div class="lms-stat-card__info">
+                                <h3>Active Courses</h3>
+                                <p id="stat-courses">0</p>
+                            </div>
+                        </div>
+                        <div class="lms-stat-card">
+                            <div class="lms-stat-card__icon"><i class="fas fa-user-clock"></i></div>
+                            <div class="lms-stat-card__info">
+                                <h3>Pending Approvals</h3>
+                                <p id="stat-pending">0</p>
+                            </div>
+                        </div>
+                        <div class="lms-stat-card">
+                            <div class="lms-stat-card__icon"><i class="fas fa-question-circle"></i></div>
+                            <div class="lms-stat-card__info">
+                                <h3>Quizzes Created</h3>
+                                <p id="stat-quizzes">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3>Quick Actions</h3>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <button class="lms-btn lms-btn--primary" onclick="document.querySelector('[data-tab=\'courses\']').click(); setTimeout(()=>document.getElementById('btn-add-course').click(), 100);"><i class="fas fa-plus"></i> Add Course</button>
+                            <button class="lms-btn lms-btn--accent" onclick="document.querySelector('[data-tab=\'quizzes\']').click(); setTimeout(()=>document.getElementById('btn-add-quiz').click(), 100);"><i class="fas fa-plus"></i> Create Quiz</button>
+                            <button class="lms-btn lms-btn--success" onclick="document.querySelector('[data-tab=\'assignments\']').click(); setTimeout(()=>document.getElementById('btn-add-assignment').click(), 100);"><i class="fas fa-plus"></i> Add Assignment</button>
+                            <button class="lms-btn lms-btn--outline" onclick="document.querySelector('[data-tab=\'live\']').click(); setTimeout(()=>document.getElementById('btn-add-live').click(), 100);"><i class="fas fa-calendar-alt"></i> Schedule Class</button>
+                        </div>
+                    </div>
+
+                    <div class="lms-card">
+                        <h3>Pending Student Approvals</h3>
+                        <div class="lms-table-wrapper" style="margin-top: 1rem;">
+                            <table class="lms-table" id="pending-students-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Registered</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="4" style="text-align: center;">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STUDENTS TAB -->
+                <div class="lms-tab-pane" data-tab-pane="students">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="students-search" placeholder="Search students...">
+                        </div>
+                        <select class="lms-select" id="students-filter" style="width: auto;">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending</option>
+                            <option value="suspended">Suspended</option>
+                        </select>
+                    </div>
+                    <div class="lms-card">
+                        <div class="lms-table-wrapper">
+                            <table class="lms-table" id="all-students-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Email</th>
+                                        <th>Joined</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="5" style="text-align: center;">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COURSES TAB -->
+                <div class="lms-tab-pane" data-tab-pane="courses">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="courses-search" placeholder="Search courses...">
+                        </div>
+                        <button class="lms-btn lms-btn--primary" id="btn-add-course"><i class="fas fa-plus"></i> Add Course</button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;" id="courses-grid">
+                        <!-- Course cards will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- ASSIGNMENTS TAB -->
+                <div class="lms-tab-pane" data-tab-pane="assignments">
+                    <div class="table-toolbar">
+                        <select class="lms-select" id="assignments-course-filter" style="width: 250px;">
+                            <option value="all">All Courses</option>
+                        </select>
+                        <button class="lms-btn lms-btn--primary" id="btn-add-assignment"><i class="fas fa-plus"></i> Create Assignment</button>
+                    </div>
+                    <div class="lms-card">
+                        <div class="lms-table-wrapper">
+                            <table class="lms-table" id="assignments-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Course</th>
+                                        <th>Due Date</th>
+                                        <th>Submissions</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="5" style="text-align: center;">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QUIZZES TAB -->
+                <div class="lms-tab-pane" data-tab-pane="quizzes">
+                    <div class="table-toolbar">
+                        <select class="lms-select" id="quizzes-course-filter" style="width: 250px;">
+                            <option value="all">All Courses</option>
+                        </select>
+                        <button class="lms-btn lms-btn--primary" id="btn-add-quiz"><i class="fas fa-plus"></i> Create Quiz</button>
+                    </div>
+                    <div class="lms-card">
+                        <div class="lms-table-wrapper">
+                            <table class="lms-table" id="quizzes-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Course</th>
+                                        <th>Questions</th>
+                                        <th>Duration</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="5" style="text-align: center;">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LECTURES TAB -->
+                <div class="lms-tab-pane" data-tab-pane="lectures">
+                    <div class="table-toolbar">
+                        <select class="lms-select" id="lectures-course-filter" style="width: 250px;">
+                            <option value="all">All Courses</option>
+                        </select>
+                        <button class="lms-btn lms-btn--primary" id="btn-add-lecture"><i class="fas fa-plus"></i> Add Lecture</button>
+                    </div>
+                    <div class="lms-card">
+                        <div class="lms-table-wrapper">
+                            <table class="lms-table" id="lectures-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Course</th>
+                                        <th>Module</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="5" style="text-align: center;">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MATERIALS TAB -->
+                <div class="lms-tab-pane" data-tab-pane="materials">
+                    <div class="table-toolbar">
+                        <select class="lms-select" id="materials-course-filter" style="width: 250px;">
+                            <option value="all">All Courses</option>
+                        </select>
+                        <button class="lms-btn lms-btn--primary" id="btn-add-material"><i class="fas fa-upload"></i> Upload Material</button>
+                    </div>
+                    <div class="lms-card">
+                        <div class="lms-table-wrapper">
+                            <table class="lms-table" id="materials-table">
+                                <thead>
+                                    <tr>
+                                        <th>File</th>
+                                        <th>Course</th>
+                                        <th>Size</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="5" style="text-align: center;">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVE CLASSES TAB -->
+                <div class="lms-tab-pane" data-tab-pane="live">
+                    <div class="table-toolbar">
+                        <select class="lms-select" id="live-course-filter" style="width: 250px;">
+                            <option value="all">All Courses</option>
+                        </select>
+                        <button class="lms-btn lms-btn--primary" id="btn-add-live"><i class="fas fa-calendar-plus"></i> Schedule Class</button>
+                    </div>
+                    <div class="lms-card">
+                        <div class="lms-table-wrapper">
+                            <table class="lms-table" id="live-table">
+                                <thead>
+                                    <tr>
+                                        <th>Topic</th>
+                                        <th>Course</th>
+                                        <th>Date & Time</th>
+                                        <th>Platform</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="5" style="text-align: center;">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANALYTICS TAB -->
+                <div class="lms-tab-pane" data-tab-pane="analytics">
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Student Enrollments</h3>
+                            <canvas id="chart-enrollments"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Course Popularity</h3>
+                            <canvas id="chart-courses"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Quiz Performance</h3>
+                            <canvas id="chart-quizzes"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+
+    <!-- Course Modal -->
+    <div id="modal-course" class="admin-modal-overlay">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title" id="course-modal-title">Add Course</h3>
+                <button class="admin-modal-close" onclick="closeModal('modal-course')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="form-course">
+                    <input type="hidden" id="course-id">
+                    <div class="lms-form-group">
+                        <label>Course Title</label>
+                        <input type="text" id="course-title" class="lms-input" required>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Subject</label>
+                        <select id="course-subject" class="lms-select" required>
+                            <option value="">Select Subject</option>
+                            <option value="Quran with Tajweed">Quran with Tajweed</option>
+                            <option value="Basic Islamic Studies">Basic Islamic Studies</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="English">English</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Science">Science</option>
+                            <option value="AI & Machine Learning">AI & Machine Learning</option>
+                        </select>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Description</label>
+                        <textarea id="course-desc" class="lms-textarea" rows="4" required></textarea>
+                    </div>
+                    <div class="lms-form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="course-published">
+                        <label for="course-published" style="margin: 0;">Published (Visible to students)</label>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="lms-btn lms-btn--outline" onclick="closeModal('modal-course')">Cancel</button>
+                <button class="lms-btn lms-btn--primary" id="btn-save-course">Save Course</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assignment Modal -->
+    <div id="modal-assignment" class="admin-modal-overlay">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title" id="assignment-modal-title">Create Assignment</h3>
+                <button class="admin-modal-close" onclick="closeModal('modal-assignment')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="form-assignment">
+                    <input type="hidden" id="assignment-id">
+                    <div class="lms-form-group">
+                        <label>Course</label>
+                        <select id="assignment-course" class="lms-select" required></select>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Title</label>
+                        <input type="text" id="assignment-title" class="lms-input" required>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Description</label>
+                        <textarea id="assignment-desc" class="lms-textarea" rows="3" required></textarea>
+                    </div>
+                    <div class="lms-form-row">
+                        <div class="lms-form-group" style="flex: 1;">
+                            <label>Due Date</label>
+                            <input type="date" id="assignment-due" class="lms-input" required>
+                        </div>
+                        <div class="lms-form-group" style="flex: 1;">
+                            <label>Total Points</label>
+                            <input type="number" id="assignment-points" class="lms-input" required min="1" value="100">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="lms-btn lms-btn--outline" onclick="closeModal('modal-assignment')">Cancel</button>
+                <button class="lms-btn lms-btn--primary" id="btn-save-assignment">Save Assignment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="modal-quiz" class="admin-modal-overlay">
+        <div class="admin-modal admin-modal--large">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title" id="quiz-modal-title">Create Quiz</h3>
+                <button class="admin-modal-close" onclick="closeModal('modal-quiz')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="form-quiz">
+                    <input type="hidden" id="quiz-id">
+                    <div class="lms-form-row">
+                        <div class="lms-form-group" style="flex: 2;">
+                            <label>Title</label>
+                            <input type="text" id="quiz-title" class="lms-input" required>
+                        </div>
+                        <div class="lms-form-group" style="flex: 1;">
+                            <label>Course</label>
+                            <select id="quiz-course" class="lms-select" required></select>
+                        </div>
+                    </div>
+                    <div class="lms-form-row">
+                        <div class="lms-form-group" style="flex: 1;">
+                            <label>Duration (Minutes)</label>
+                            <input type="number" id="quiz-duration" class="lms-input" required min="1" value="30">
+                        </div>
+                        <div class="lms-form-group" style="flex: 1;">
+                            <label>Passing Score (%)</label>
+                            <input type="number" id="quiz-passing" class="lms-input" required min="1" max="100" value="60">
+                        </div>
+                    </div>
+                    <div class="lms-form-group" style="display: flex; gap: 1rem;">
+                        <label><input type="checkbox" id="quiz-random-q"> Randomize Questions</label>
+                        <label><input type="checkbox" id="quiz-random-o"> Randomize Options</label>
+                    </div>
+                    
+                    <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-color, #eee);">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h4 style="margin: 0;">Questions</h4>
+                        <button type="button" class="lms-btn lms-btn--sm lms-btn--accent" id="btn-add-question"><i class="fas fa-plus"></i> Add Question</button>
+                    </div>
+                    
+                    <div id="quiz-questions-container">
+                        <!-- Questions will be dynamically added here -->
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="lms-btn lms-btn--outline" onclick="closeModal('modal-quiz')">Cancel</button>
+                <button class="lms-btn lms-btn--primary" id="btn-save-quiz">Save Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lecture Modal -->
+    <div id="modal-lecture" class="admin-modal-overlay">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title" id="lecture-modal-title">Add Lecture</h3>
+                <button class="admin-modal-close" onclick="closeModal('modal-lecture')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="form-lecture">
+                    <input type="hidden" id="lecture-id">
+                    <div class="lms-form-group">
+                        <label>Course</label>
+                        <select id="lecture-course" class="lms-select" required></select>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Module Name (e.g., Week 1)</label>
+                        <input type="text" id="lecture-module" class="lms-input" required>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Lecture Title</label>
+                        <input type="text" id="lecture-title" class="lms-input" required>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Video URL (YouTube embed or Drive link)</label>
+                        <input type="url" id="lecture-url" class="lms-input" required>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Duration (e.g., 45 mins)</label>
+                        <input type="text" id="lecture-duration" class="lms-input" required>
+                    </div>
+                    <div class="lms-form-group">
+                        <label><input type="checkbox" id="lecture-published" checked> Published</label>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="lms-btn lms-btn--outline" onclick="closeModal('modal-lecture')">Cancel</button>
+                <button class="lms-btn lms-btn--primary" id="btn-save-lecture">Save Lecture</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Material Modal -->
+    <div id="modal-material" class="admin-modal-overlay">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title">Upload Material</h3>
+                <button class="admin-modal-close" onclick="closeModal('modal-material')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="form-material">
+                    <div class="lms-form-group">
+                        <label>Course</label>
+                        <select id="material-course" class="lms-select" required></select>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Title</label>
+                        <input type="text" id="material-title" class="lms-input" required>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Description (Optional)</label>
+                        <textarea id="material-desc" class="lms-textarea" rows="2"></textarea>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>File</label>
+                        <input type="file" id="material-file" class="lms-input" required>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="lms-btn lms-btn--outline" onclick="closeModal('modal-material')">Cancel</button>
+                <button class="lms-btn lms-btn--primary" id="btn-save-material">Upload</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Class Modal -->
+    <div id="modal-live" class="admin-modal-overlay">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title" id="live-modal-title">Schedule Class</h3>
+                <button class="admin-modal-close" onclick="closeModal('modal-live')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="form-live">
+                    <input type="hidden" id="live-id">
+                    <div class="lms-form-group">
+                        <label>Course</label>
+                        <select id="live-course" class="lms-select" required></select>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Topic</label>
+                        <input type="text" id="live-topic" class="lms-input" required>
+                    </div>
+                    <div class="lms-form-row">
+                        <div class="lms-form-group" style="flex: 1;">
+                            <label>Date</label>
+                            <input type="date" id="live-date" class="lms-input" required>
+                        </div>
+                        <div class="lms-form-group" style="flex: 1;">
+                            <label>Time</label>
+                            <input type="time" id="live-time" class="lms-input" required>
+                        </div>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Platform</label>
+                        <select id="live-platform" class="lms-select" required>
+                            <option value="Zoom">Zoom</option>
+                            <option value="Google Meet">Google Meet</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Meeting Link</label>
+                        <input type="url" id="live-link" class="lms-input" required>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="lms-btn lms-btn--outline" onclick="closeModal('modal-live')">Cancel</button>
+                <button class="lms-btn lms-btn--primary" id="btn-save-live">Schedule</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submissions View Modal -->
+    <div id="modal-submissions" class="admin-modal-overlay">
+        <div class="admin-modal admin-modal--large">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title" id="submissions-modal-title">Submissions</h3>
+                <button class="admin-modal-close" onclick="closeModal('modal-submissions')">&times;</button>
+            </div>
+            <div class="admin-modal-body" id="submissions-container">
+                <div class="lms-table-wrapper">
+                    <table class="lms-table" id="submissions-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Submitted At</th>
+                                <th>File/Text</th>
+                                <th>Grade</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grade Modal -->
+    <div id="modal-grade" class="admin-modal-overlay" style="z-index: 1010;">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title">Grade Submission</h3>
+                <button class="admin-modal-close" onclick="closeModal('modal-grade')">&times;</button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="form-grade">
+                    <input type="hidden" id="grade-submission-id">
+                    <div class="lms-form-group">
+                        <label>Grade (Out of <span id="grade-max-points">100</span>)</label>
+                        <input type="number" id="grade-score" class="lms-input" required min="0">
+                    </div>
+                    <div class="lms-form-group">
+                        <label>Feedback</label>
+                        <textarea id="grade-feedback" class="lms-textarea" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="admin-modal-footer">
+                <button class="lms-btn lms-btn--outline" onclick="closeModal('modal-grade')">Cancel</button>
+                <button class="lms-btn lms-btn--primary" id="btn-save-grade">Save Grade</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+    </script>
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

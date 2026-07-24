@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Fahad Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="lms-common.css">
+</head>
+<body class="lms-page">
+    <div class="lms-auth">
+        <div class="lms-auth-card">
+            <div class="lms-auth-card__logo">
+                <div class="lms-auth-card__logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h1>Student Portal</h1>
+                <p>Sign in to your account</p>
+            </div>
+
+            <div id="errorMsg" class="lms-auth-card__error">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <span id="errorText"></span>
+            </div>
+
+            <form id="loginForm">
+                <div class="lms-form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="lms-input" placeholder="your@email.com" required>
+                </div>
+                <div class="lms-form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="lms-input" placeholder="••••••••" required>
+                </div>
+
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;font-size:0.85rem;">
+                    <label class="lms-checkbox-group">
+                        <input type="checkbox" id="remember"> Remember me
+                    </label>
+                    <a href="forgot-password.html" class="lms-auth-card__link" style="margin:0;">Forgot password?</a>
+                </div>
+
+                <button type="submit" id="submitBtn" class="lms-btn lms-btn--primary lms-btn--block">
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In
+                </button>
+            </form>
+
+            <div class="lms-auth-card__footer">
+                <p>Don't have an account? <a href="register.html">Register</a></p>
+                <a href="../index.html" style="display:inline-block;margin-top:0.75rem;color:var(--lms-text-muted);font-size:0.82rem;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Website
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import {
+            auth, db, signInWithEmailAndPassword, onAuthStateChanged,
+            isAdmin, getUserProfile, ref, get
+        } from './firebase-config.js';
+
+        const form = document.getElementById('loginForm');
+        const errorMsg = document.getElementById('errorMsg');
+        const errorText = document.getElementById('errorText');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function showError(msg) {
+            errorText.textContent = msg;
+            errorMsg.classList.add('visible');
+        }
+
+        // Auto-redirect if already logged in
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                try {
+                    const admin = await isAdmin(user.uid);
+                    if (admin) { window.location.href = 'admin.html'; return; }
+                    const profile = await getUserProfile(user.uid);
+                    if (profile && profile.status === 'active') {
+                        window.location.href = 'dashboard.html';
+                    }
+                } catch (e) { console.error(e); }
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorMsg.classList.remove('visible');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in...';
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            try {
+                const cred = await signInWithEmailAndPassword(auth, email, password);
+                const uid = cred.user.uid;
+
+                const admin = await isAdmin(uid);
+                if (admin) { window.location.href = 'admin.html'; return; }
+
+                const profile = await getUserProfile(uid);
+                if (!profile) {
+                    await auth.signOut();
+                    showError('Account not found in database. Please register first.');
+                } else if (profile.status === 'pending') {
+                    await auth.signOut();
+                    showError('Your account is pending approval from the teacher. Please check back later.');
+                } else if (profile.status === 'suspended') {
+                    await auth.signOut();
+                    showError('Your account has been suspended. Please contact the teacher.');
+                } else {
+                    window.location.href = 'dashboard.html';
+                }
+            } catch (error) {
+                const msg = error.code === 'auth/user-not-found' ? 'No account found with this email.' :
+                            error.code === 'auth/wrong-password' ? 'Incorrect password. Try again.' :
+                            error.code === 'auth/invalid-credential' ? 'Invalid email or password.' :
+                            error.code === 'auth/too-many-requests' ? 'Too many attempts. Please wait and try again.' :
+                            error.message;
+                showError(msg);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Sign In';
+            }
+        });
+    </script>
+</body>
+</html>
