@@ -880,8 +880,46 @@
 }
 
 /* ─────────────────────────────────────────────
+   AUTH LOADING OVERLAY
+   ───────────────────────────────────────────── */
+.lms-auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--lms-bg-primary, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: opacity 0.3s ease;
+}
+.lms-auth-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.lms-auth-overlay__spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  border-top-color: var(--lms-primary, #6366f1);
+  border-radius: 50%;
+  animation: lms-spin 0.8s linear infinite;
+}
+.lms-auth-overlay p {
+  color: var(--lms-text-muted, #64748b);
+  font-size: 0.95rem;
+  font-family: var(--lms-font-body, 'Inter', sans-serif);
+}
+@keyframes lms-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────
    MODAL
    ───────────────────────────────────────────── */
+
+/* Overlay-wrapped modals (showModal from lms-common.js) */
 .lms-modal-overlay {
   position: fixed;
   inset: 0;
@@ -893,12 +931,35 @@
   justify-content: center;
   padding: 1rem;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.25s ease;
 }
+.lms-modal-overlay--visible { opacity: 1; pointer-events: auto; }
 
-.lms-modal-overlay--visible { opacity: 1; }
-
+/* Standalone modals (used in dashboard.html, course.html, admin.html) */
 .lms-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.lms-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.lms-modal__content,
+.lms-modal-overlay .lms-modal {
   background: var(--lms-bg-secondary);
   border: 1px solid var(--lms-border);
   border-radius: var(--lms-radius-lg);
@@ -909,8 +970,9 @@
   box-shadow: var(--lms-shadow-lg);
   transform: scale(0.95);
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
 }
-
+.lms-modal.active .lms-modal__content,
 .lms-modal-overlay--visible .lms-modal { transform: scale(1); }
 
 .lms-modal__header {

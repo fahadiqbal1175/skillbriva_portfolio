@@ -23,6 +23,8 @@ let coursesList = [];
 async function initAdmin() {
     try {
         const user = await requireAdmin();
+        if (!user) return;
+        document.getElementById('authOverlay')?.classList.add('hidden');
         
         // Setup User Info
         adminName.textContent = user.displayName || 'Admin User';
@@ -33,10 +35,16 @@ async function initAdmin() {
         initSidebar();
         initTabs();
 
+        document.querySelectorAll('.lms-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('active');
+            });
+        });
+
         // Setup Logout
-        btnLogout.addEventListener('click', async () => {
-            await logout();
-            window.location.href = 'login.html';
+        btnLogout.addEventListener('click', async (e) => {
+            e.preventDefault();
+            try { await logout(); } catch(err) { window.location.href = 'login.html'; }
         });
 
         // Load Initial Data

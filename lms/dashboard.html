@@ -160,6 +160,10 @@
     </style>
 </head>
 <body class="lms-page">
+    <div id="authOverlay" class="lms-auth-overlay">
+        <div class="lms-auth-overlay__spinner"></div>
+        <p>Verifying access...</p>
+    </div>
     <div class="lms-layout">
         <!-- Sidebar -->
         <aside class="lms-sidebar" id="sidebar">
@@ -506,6 +510,11 @@
             document.getElementById('videoModal').classList.remove('active');
             document.getElementById('videoIframe').src = '';
         }
+        document.querySelectorAll('.lms-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>

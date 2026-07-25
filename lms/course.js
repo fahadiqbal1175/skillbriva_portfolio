@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     try {
         currentUser = await requireAuth();
+        if (!currentUser) return;
+        document.getElementById('authOverlay')?.classList.add('hidden');
         userProfile = await getUserProfile(currentUser.uid);
         
         populateSidebarUser();
@@ -77,7 +79,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Handle logout
         document.getElementById('logoutBtn')?.addEventListener('click', async (e) => {
             e.preventDefault();
-            await logout();
+            try {
+                await logout();
+            } catch (err) {
+                console.error(err);
+            }
         });
 
         // Get Course ID
@@ -433,9 +439,11 @@ function attachEventListeners() {
             document.getElementById('submitAssignmentId').value = assignmentId;
             document.getElementById('submitComments').value = '';
             document.getElementById('submitFile').value = '';
-            document.getElementById('submitModal').style.display = 'flex';
+            document.getElementById('submitModal').classList.add('active');
         });
     });
+
+    document.querySelectorAll('.lms-modal, .lms-modal-backdrop').forEach(m => m.addEventListener('click', e => { if(e.target === m) m.classList.remove('active'); }));
 }
 
 function setupModals() {
@@ -445,7 +453,7 @@ function setupModals() {
     const saveBtn = document.getElementById('submitModalSave');
 
     const closeModal = () => {
-        if (modal) modal.style.display = 'none';
+        if (modal) modal.classList.remove('active');
     };
 
     closeBtn?.addEventListener('click', closeModal);

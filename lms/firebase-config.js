@@ -184,7 +184,12 @@ async function requireAdmin() {
 }
 
 async function logout() {
-  await signOut(auth);
+  try {
+    await signOut(auth);
+  } catch (e) {
+    console.error("Sign out error:", e);
+  }
+  sessionStorage.setItem('lms_logged_out', 'true');
   window.location.href = "login.html";
 }
 

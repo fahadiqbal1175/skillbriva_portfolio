@@ -59,6 +59,7 @@ function generateMockData(profile) {
 document.addEventListener('DOMContentLoaded', async () => {
     currentUser = await requireAuth();
     if (!currentUser) return;
+    document.getElementById('authOverlay')?.classList.add('hidden');
 
     try {
         const profile = await getOne(`users/${currentUser.uid}`);
@@ -75,9 +76,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     initUI();
     loadDashboardData();
 
-    document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+    document.getElementById('logoutBtn')?.addEventListener('click', async (e) => {
         e.preventDefault();
-        await logout();
+        try { await logout(); } catch(err) { window.location.href = 'login.html'; }
     });
 
     document.getElementById('assignmentFilter').addEventListener('change', renderAssignments);

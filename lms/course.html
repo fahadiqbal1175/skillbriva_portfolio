@@ -316,6 +316,10 @@
     </style>
 </head>
 <body class="lms-page">
+    <div id="authOverlay" class="lms-auth-overlay">
+        <div class="lms-auth-overlay__spinner"></div>
+        <p>Verifying access...</p>
+    </div>
 
     <div class="lms-layout">
         <!-- Sidebar -->
@@ -408,7 +412,7 @@
     </div>
 
     <!-- Submit Assignment Modal -->
-    <div id="submitModal" class="lms-modal-backdrop" style="display: none;">
+    <div id="submitModal" class="lms-modal-backdrop">
         <div class="lms-modal">
             <div class="lms-modal-header">
                 <h3 class="lms-modal-title" id="submitModalTitle">Submit Assignment</h3>
