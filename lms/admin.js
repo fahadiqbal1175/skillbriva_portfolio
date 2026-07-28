@@ -22,14 +22,16 @@ let coursesList = [];
 // Initialize Admin Panel
 async function initAdmin() {
     try {
-        const user = await requireAdmin();
-        if (!user) return;
+        const result = await requireAdmin();
+        if (!result) return;
+        const { user, profile } = result;
         document.getElementById('authOverlay')?.classList.add('hidden');
         
         // Setup User Info
-        adminName.textContent = user.displayName || 'Admin User';
-        adminAvatarContainer.innerHTML = renderAvatar(user.displayName, 40);
-        topbarAvatarContainer.innerHTML = renderAvatar(user.displayName, 32);
+        const displayName = (profile && profile.name) || user.displayName || 'Admin User';
+        adminName.textContent = displayName;
+        adminAvatarContainer.innerHTML = renderAvatar(displayName, 40);
+        topbarAvatarContainer.innerHTML = renderAvatar(displayName, 32);
 
         // Init Common UI
         initSidebar();

@@ -69,10 +69,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     initSidebar();
     
     try {
-        currentUser = await requireAuth();
-        if (!currentUser) return;
+        const authResult = await requireAuth();
+        if (!authResult) return;
+        currentUser = authResult.user;
         document.getElementById('authOverlay')?.classList.add('hidden');
-        userProfile = await getUserProfile(currentUser.uid);
+        userProfile = authResult.profile || await getUserProfile(currentUser.uid);
         
         populateSidebarUser();
         

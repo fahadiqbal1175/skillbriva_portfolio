@@ -57,20 +57,25 @@ function generateMockData(profile) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    currentUser = await requireAuth();
-    if (!currentUser) return;
+    const authResult = await requireAuth();
+    if (!authResult) return;
+    currentUser = authResult.user;
+    userProfile = authResult.profile;
     document.getElementById('authOverlay')?.classList.add('hidden');
 
-    try {
-        const profile = await getOne(`users/${currentUser.uid}`);
-        if (profile) {
-            userProfile = profile;
-        } else {
+    // Use profile from auth, or fetch fresh, or fallback
+    if (!userProfile) {
+        try {
+            const profile = await getOne(`users/${currentUser.uid}`);
+            if (profile) {
+                userProfile = profile;
+            } else {
+                userProfile = { name: currentUser.displayName || 'Student', email: currentUser.email, role: 'student', enrolledSubjects: [] };
+            }
+        } catch (error) {
+            console.error("Error fetching profile:", error);
             userProfile = { name: currentUser.displayName || 'Student', email: currentUser.email, role: 'student', enrolledSubjects: [] };
         }
-    } catch (error) {
-        console.error("Error fetching profile:", error);
-        userProfile = { name: currentUser.displayName || 'Student', email: currentUser.email, role: 'student', enrolledSubjects: [] };
     }
 
     initUI();

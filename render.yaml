@@ -5,6 +5,12 @@ services:
     staticPublishPath: .
     buildCommand: chmod +x build.sh && ./build.sh
     headers:
+      - path: /lms/*
+        name: Cache-Control
+        value: no-store, no-cache, must-revalidate
+      - path: /lms/*
+        name: Pragma
+        value: no-cache
       - path: /*
         name: Cache-Control
         value: public, max-age=3600

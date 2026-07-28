@@ -26,8 +26,9 @@ const screenResults = document.getElementById('screen-results');
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        currentUser = await requireAuth();
-        if (!currentUser) return;
+        const authResult = await requireAuth();
+        if (!authResult) return;
+        currentUser = authResult.user;
         document.getElementById('authOverlay')?.classList.add('hidden');
         const urlParams = new URLSearchParams(window.location.search);
         quizId = urlParams.get('id');

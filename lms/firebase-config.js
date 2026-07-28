@@ -193,6 +193,35 @@ async function logout() {
   window.location.href = "login.html";
 }
 
+// ─── Back-Button Protection ───────────────────────────────
+// When user presses browser back after logout, re-verify auth
+// This prevents cached/bfcache pages from showing after logout
+const protectedPages = ['dashboard.html', 'admin.html', 'course.html', 'quiz.html'];
+const currentPage = window.location.pathname.split('/').pop();
+
+if (protectedPages.includes(currentPage)) {
+  // Handle bfcache (back/forward cache) - fires when page is restored from cache
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      // Page was served from bfcache — re-check auth
+      const user = auth.currentUser;
+      if (!user) {
+        window.location.href = 'login.html';
+      }
+    }
+  });
+
+  // Handle tab visibility change — re-check auth when tab becomes visible
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      const user = auth.currentUser;
+      if (!user) {
+        window.location.href = 'login.html';
+      }
+    }
+  });
+}
+
 // ─── Export Everything ─────────────────────────────────────
 export {
   app,
