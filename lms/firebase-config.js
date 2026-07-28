@@ -112,8 +112,16 @@ function listen(path, callback) {
 
 function getCurrentUser() {
   return new Promise((resolve) => {
+    // Timeout after 10 seconds — Firebase might fail to initialize
+    const timeout = setTimeout(() => {
+      console.error("[LMS] getCurrentUser timed out after 10s");
+      resolve(null);
+    }, 10000);
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      clearTimeout(timeout);
       unsubscribe();
+      console.log("[LMS] Auth state:", user ? user.email : "not logged in");
       resolve(user);
     });
   });
@@ -123,11 +131,14 @@ async function isAdmin(userId) {
   try {
     const snapshot = await get(ref(db, `users/${userId}`));
     if (snapshot.exists()) {
-      return snapshot.val().role === "admin";
+      const role = (snapshot.val().role || "").toLowerCase().trim();
+      console.log("[LMS] User role from DB:", snapshot.val().role, "→ normalized:", role);
+      return role === "admin";
     }
+    console.warn("[LMS] User record not found in DB for:", userId);
     return false;
   } catch (e) {
-    console.error("Error checking admin status:", e);
+    console.error("[LMS] Error checking admin status:", e);
     return false;
   }
 }
@@ -140,47 +151,62 @@ async function getUserProfile(userId) {
     }
     return null;
   } catch (e) {
-    console.error("Error fetching user profile:", e);
+    console.error("[LMS] Error fetching user profile:", e);
     return null;
   }
 }
 
 async function requireAuth() {
-  const user = await getCurrentUser();
-  if (!user) {
+  try {
+    const user = await getCurrentUser();
+    if (!user) {
+      window.location.href = "login.html";
+      return null;
+    }
+    const profile = await getUserProfile(user.uid);
+    if (profile && profile.status === "pending") {
+      document.body.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0f172a;color:#e2e8f0;font-family:'Inter',sans-serif;">
+          <div style="text-align:center;max-width:480px;padding:2rem;">
+            <div style="font-size:4rem;margin-bottom:1rem;">⏳</div>
+            <h2 style="font-size:1.5rem;margin-bottom:1rem;color:#fbbf24;">Account Pending Approval</h2>
+            <p style="color:#94a3b8;line-height:1.7;">Your account is awaiting approval from the teacher. You'll receive access once your account is approved. Please check back later.</p>
+            <a href="login.html" style="display:inline-block;margin-top:1.5rem;padding:0.75rem 2rem;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-radius:12px;text-decoration:none;font-weight:600;">Back to Login</a>
+          </div>
+        </div>
+      `;
+      return null;
+    }
+    return { user, profile };
+  } catch (e) {
+    console.error("[LMS] requireAuth failed:", e);
     window.location.href = "login.html";
     return null;
   }
-  const profile = await getUserProfile(user.uid);
-  if (profile && profile.status === "pending") {
-    document.body.innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0f172a;color:#e2e8f0;font-family:'Inter',sans-serif;">
-        <div style="text-align:center;max-width:480px;padding:2rem;">
-          <div style="font-size:4rem;margin-bottom:1rem;">⏳</div>
-          <h2 style="font-size:1.5rem;margin-bottom:1rem;color:#fbbf24;">Account Pending Approval</h2>
-          <p style="color:#94a3b8;line-height:1.7;">Your account is awaiting approval from the teacher. You'll receive access once your account is approved. Please check back later.</p>
-          <a href="login.html" style="display:inline-block;margin-top:1.5rem;padding:0.75rem 2rem;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-radius:12px;text-decoration:none;font-weight:600;">Back to Login</a>
-        </div>
-      </div>
-    `;
-    return null;
-  }
-  return { user, profile };
 }
 
 async function requireAdmin() {
-  const user = await getCurrentUser();
-  if (!user) {
+  try {
+    const user = await getCurrentUser();
+    if (!user) {
+      console.log("[LMS] requireAdmin: no user, redirecting to login");
+      window.location.href = "login.html";
+      return null;
+    }
+    const adminCheck = await isAdmin(user.uid);
+    if (!adminCheck) {
+      console.log("[LMS] requireAdmin: not admin, redirecting to dashboard");
+      window.location.href = "dashboard.html";
+      return null;
+    }
+    const profile = await getUserProfile(user.uid);
+    console.log("[LMS] requireAdmin: success, profile:", profile);
+    return { user, profile };
+  } catch (e) {
+    console.error("[LMS] requireAdmin failed:", e);
     window.location.href = "login.html";
     return null;
   }
-  const admin = await isAdmin(user.uid);
-  if (!admin) {
-    window.location.href = "dashboard.html";
-    return null;
-  }
-  const profile = await getUserProfile(user.uid);
-  return { user, profile };
 }
 
 async function logout() {
