@@ -189,6 +189,7 @@ async function logout() {
   } catch (e) {
     console.error("Sign out error:", e);
   }
+  sessionStorage.removeItem('lms_authed');
   sessionStorage.setItem('lms_logged_out', 'true');
   window.location.href = "login.html";
 }

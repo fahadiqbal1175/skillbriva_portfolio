@@ -164,6 +164,7 @@
         <div class="lms-auth-overlay__spinner"></div>
         <p>Verifying access...</p>
     </div>
+    <script>if(sessionStorage.getItem('lms_authed'))document.getElementById('authOverlay').classList.add('hidden');</script>
     <div class="lms-layout">
         <!-- Sidebar -->
         <aside class="lms-sidebar" id="sidebar">

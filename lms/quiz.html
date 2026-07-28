@@ -136,6 +136,7 @@
         <div class="lms-auth-overlay__spinner"></div>
         <p>Loading quiz...</p>
     </div>
+    <script>if(sessionStorage.getItem('lms_authed'))document.getElementById('authOverlay').classList.add('hidden');</script>
 
     <!-- Screen 1: Quiz Info -->
     <div id="screen-info" class="lms-quiz-screen active">

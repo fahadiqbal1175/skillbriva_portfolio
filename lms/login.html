@@ -101,9 +101,6 @@
                 const cred = await signInWithEmailAndPassword(auth, email, password);
                 const uid = cred.user.uid;
 
-                const admin = await isAdmin(uid);
-                if (admin) { window.location.href = 'admin.html'; return; }
-
                 const profile = await getUserProfile(uid);
                 if (!profile) {
                     await auth.signOut();
@@ -114,7 +111,11 @@
                 } else if (profile.status === 'suspended') {
                     await auth.signOut();
                     showError('Your account has been suspended. Please contact the teacher.');
+                } else if (profile.role === 'admin') {
+                    sessionStorage.setItem('lms_authed', 'true');
+                    window.location.href = 'admin.html';
                 } else {
+                    sessionStorage.setItem('lms_authed', 'true');
                     window.location.href = 'dashboard.html';
                 }
             } catch (error) {
