@@ -43,14 +43,6 @@
     </style>
 </head>
 <body class="lms-page">
-    <div id="authOverlay" class="lms-auth-overlay">
-        <div class="lms-auth-overlay__spinner"></div>
-        <p>Verifying admin access...</p>
-    </div>
-    <script>
-        if(sessionStorage.getItem('lms_authed')){document.getElementById('authOverlay').classList.add('hidden');}
-        setTimeout(function(){var o=document.getElementById('authOverlay');if(o&&!o.classList.contains('hidden')){console.error('[LMS] Auth timeout - redirecting');window.location.href='login.html';}},15000);
-    </script>
     <div class="lms-layout">
         <!-- Sidebar -->
         <div class="lms-sidebar">

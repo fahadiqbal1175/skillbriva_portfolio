@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const authResult = await requireAuth();
         if (!authResult) return;
         currentUser = authResult.user;
-        document.getElementById('authOverlay')?.classList.add('hidden');
+
         userProfile = authResult.profile || await getUserProfile(currentUser.uid);
         
         populateSidebarUser();

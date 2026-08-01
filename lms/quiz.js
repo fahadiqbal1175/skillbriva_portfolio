@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const authResult = await requireAuth();
         if (!authResult) return;
         currentUser = authResult.user;
-        document.getElementById('authOverlay')?.classList.add('hidden');
+
         const urlParams = new URLSearchParams(window.location.search);
         quizId = urlParams.get('id');
 

@@ -25,7 +25,7 @@ async function initAdmin() {
         const result = await requireAdmin();
         if (!result) return;
         const { user, profile } = result;
-        document.getElementById('authOverlay')?.classList.add('hidden');
+
         
         // Setup User Info
         const displayName = (profile && profile.name) || user.displayName || 'Admin User';

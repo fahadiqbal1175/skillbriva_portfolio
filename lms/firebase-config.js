@@ -132,7 +132,7 @@ async function isAdmin(userId) {
     const snapshot = await get(ref(db, `users/${userId}`));
     if (snapshot.exists()) {
       const role = (snapshot.val().role || "").toLowerCase().trim();
-      console.log("[LMS] User role from DB:", snapshot.val().role, "→ normalized:", role);
+      console.log("[LMS] User role from DB:", snapshot.val().role, "-> normalized:", role);
       return role === "admin";
     }
     console.warn("[LMS] User record not found in DB for:", userId);

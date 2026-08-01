@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!authResult) return;
     currentUser = authResult.user;
     userProfile = authResult.profile;
-    document.getElementById('authOverlay')?.classList.add('hidden');
+
 
     // Use profile from auth, or fetch fresh, or fallback
     if (!userProfile) {
