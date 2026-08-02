@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Data Seeder - Fahad Academy LMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lms-common.css">
+    <style>
+        .seeder-container { max-width: 800px; margin: 40px auto; padding: 30px; background: var(--card-bg, #1e293b); border-radius: 12px; border: 1px solid var(--border-color, #334155); color: var(--text-color, #f8fafc); }
+        .progress-bar { width: 100%; height: 10px; background: var(--bg-color, #0f172a); border-radius: 5px; overflow: hidden; margin-top: 15px; display: none; }
+        .progress-fill { height: 100%; background: var(--primary-color, #3b82f6); width: 0%; transition: width 0.3s; }
+        .log-container { max-height: 300px; overflow-y: auto; background: var(--bg-color, #0f172a); padding: 15px; border-radius: 8px; font-family: monospace; font-size: 13px; margin-top: 20px; display: none;}
+        .log-item { margin-bottom: 6px; }
+        .log-success { color: #4ade80; }
+        .log-error { color: #f87171; }
+        .log-info { color: #60a5fa; }
+        .log-warning { color: #fbbf24; }
+        
+        .textarea-container textarea { width: 100%; height: 200px; background: var(--bg-color, #0f172a); border: 1px solid var(--border-color, #334155); color: var(--text-color, #f8fafc); padding: 15px; border-radius: 8px; font-family: monospace; resize: vertical; }
+        
+        .btn-danger { background-color: var(--error-color, #ef4444); color: white; border: none; }
+        .btn-danger:hover { background-color: #dc2626; }
+        .btn-primary { background-color: var(--primary-color, #3b82f6); color: white; border: none; }
+        .btn-secondary { background-color: var(--secondary-color, #64748b); color: white; border: none; }
+        
+        .tab-buttons { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color, #334155); padding-bottom: 10px; }
+        .tab-btn { background: none; border: none; color: var(--text-muted, #94a3b8); cursor: pointer; padding: 8px 16px; font-weight: 500; font-size: 14px; border-radius: 6px 6px 0 0; }
+        .tab-btn.active { color: var(--primary-color, #3b82f6); border-bottom: 2px solid var(--primary-color, #3b82f6); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .preview-container { background: var(--bg-color, #0f172a); padding: 20px; border-radius: 8px; margin-bottom: 20px; display: none; }
+        .preview-course { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color, #334155); }
+        .preview-course:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .text-muted { color: var(--text-muted, #94a3b8); }
+        .mb-3 { margin-bottom: 1rem; }
+        .mb-4 { margin-bottom: 1.5rem; }
+        .d-flex { display: flex; }
+        .gap-2 { gap: 0.5rem; }
+        .justify-content-between { justify-content: space-between; }
+        
+        /* Ensure buttons match common styles */
+        .btn { padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 500; font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
+        .btn:hover:not(:disabled) { opacity: 0.9; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        #auth-loading { text-align: center; padding: 40px; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+    <div class="seeder-container">
+        <h2 style="margin-top: 0;"><i class="fas fa-seedling text-primary"></i> Course Data Seeder</h2>
+        <p class="text-muted mb-4">Import JSON course data into Firebase RTDB.</p>
+        
+        <div id="auth-loading">
+            <p><i class="fas fa-spinner fa-spin"></i> Checking admin authorization...</p>
+        </div>
+        
+        <div id="seeder-content" style="display: none;">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-target="file-upload">Upload File</button>
+                <button class="tab-btn" data-target="raw-json">Paste JSON</button>
+            </div>
+            
+            <div id="file-upload" class="tab-content active mb-4">
+                <div class="form-group mb-3">
+                    <label for="json-file" style="display:block; margin-bottom:8px; font-weight:500;">Select JSON File</label>
+                    <input type="file" id="json-file" accept=".json" style="background: var(--bg-color, #0f172a); color: var(--text-color, #f8fafc); border: 1px solid var(--border-color, #334155); padding: 12px; border-radius: 8px; width: 100%; box-sizing: border-box;">
+                </div>
+            </div>
+            
+            <div id="raw-json" class="tab-content mb-4">
+                <div class="textarea-container mb-3">
+                    <label for="json-text" style="display:block; margin-bottom:8px; font-weight:500;">Raw JSON Data</label>
+                    <textarea id="json-text" placeholder='{ "courses": [ ... ] }' style="box-sizing: border-box;"></textarea>
+                </div>
+            </div>
+            
+            <div class="d-flex gap-2 mb-4">
+                <button id="btn-preview" class="btn btn-secondary"><i class="fas fa-eye"></i> Preview Data</button>
+                <button id="btn-import" class="btn btn-primary" disabled><i class="fas fa-upload"></i> Import to Firebase</button>
+                <button id="btn-clear" class="btn btn-danger" style="margin-left: auto;"><i class="fas fa-trash"></i> Clear All Courses</button>
+            </div>
+            
+            <div id="preview-container" class="preview-container">
+                <h4 style="margin-top:0;">Data Preview</h4>
+                <div id="preview-content"></div>
+            </div>
+            
+            <div id="import-progress" class="mb-4" style="display: none;">
+                <div class="d-flex justify-content-between mb-2">
+                    <span id="progress-text" style="font-weight: 500;">Importing...</span>
+                    <span id="progress-pct" style="font-weight: bold; color: var(--primary-color, #3b82f6);">0%</span>
+                </div>
+                <div class="progress-bar" style="display: block;">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div id="log-container" class="log-container"></div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script type="module">
+        import { 
+            auth, onAuthStateChanged, requireAdmin,
+            getAll, pushItem, setItem, removeItem
+        } from './firebase-config.js';
+        
+        let parsedData = null;
+        let existingCourses = [];
+        
+        // DOM Elements
+        const authLoading = document.getElementById('auth-loading');
+        const seederContent = document.getElementById('seeder-content');
+        const fileInput = document.getElementById('json-file');
+        const jsonText = document.getElementById('json-text');
+        const btnPreview = document.getElementById('btn-preview');
+        const btnImport = document.getElementById('btn-import');
+        const btnClear = document.getElementById('btn-clear');
+        const previewContainer = document.getElementById('preview-container');
+        const previewContent = document.getElementById('preview-content');
+        const progressContainer = document.getElementById('import-progress');
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        const progressPct = document.getElementById('progress-pct');
+        const logContainer = document.getElementById('log-container');
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Auth Check
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                try {
+                    const isAdminUser = await requireAdmin();
+                    // requireAdmin already handles redirect if not admin, but returns null
+                    if (isAdminUser) {
+                        authLoading.style.display = 'none';
+                        seederContent.style.display = 'block';
+                        await loadExistingCourses();
+                    }
+                } catch (error) {
+                    authLoading.innerHTML = `<p class="log-error"><i class="fas fa-exclamation-triangle"></i> Access Denied: You must be an admin to view this page.</p>`;
+                }
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+        
+        // Tab Switching
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.target).classList.add('active');
+                
+                // Reset parsed data on tab switch
+                parsedData = null;
+                btnImport.disabled = true;
+                previewContainer.style.display = 'none';
+            });
+        });
+        
+        async function loadExistingCourses() {
+            try {
+                log('Loading existing courses...', 'info');
+                // Use getAll helper to fetch existing courses
+                const coursesMap = await getAll('courses');
+                // Convert to array
+                existingCourses = coursesMap ? Object.keys(coursesMap).map(key => ({ id: key, ...coursesMap[key] })) : [];
+                log(`Found ${existingCourses.length} existing courses.`, 'info');
+            } catch (err) {
+                log('Error loading existing courses: ' + err.message, 'error');
+                existingCourses = [];
+            }
+        }
+        
+        function log(msg, type = 'info') {
+            logContainer.style.display = 'block';
+            const item = document.createElement('div');
+            item.className = `log-item log-${type}`;
+            const icon = type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle';
+            item.innerHTML = `<i class="fas fa-${icon}"></i> ${msg}`;
+            logContainer.appendChild(item);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        function updateProgress(pct, text) {
+            progressContainer.style.display = 'block';
+            progressFill.style.width = `${pct}%`;
+            progressPct.textContent = `${Math.round(pct)}%`;
+            if (text) progressText.textContent = text;
+        }
+        
+        btnPreview.addEventListener('click', () => {
+            logContainer.innerHTML = ''; // Clear logs
+            let data = null;
+            
+            const activeTab = document.querySelector('.tab-content.active').id;
+            
+            if (activeTab === 'file-upload') {
+                const file = fileInput.files[0];
+                if (!file) {
+                    alert('Please select a JSON file first.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        data = JSON.parse(e.target.result);
+                        showPreview(data);
+                    } catch (err) {
+                        log('Error parsing JSON file: ' + err.message, 'error');
+                        alert('Invalid JSON format.');
+                    }
+                };
+                reader.readAsText(file);
+            } else {
+                const text = jsonText.value.trim();
+                if (!text) {
+                    alert('Please paste some JSON data first.');
+                    return;
+                }
+                try {
+                    data = JSON.parse(text);
+                    showPreview(data);
+                } catch (err) {
+                    log('Error parsing JSON text: ' + err.message, 'error');
+                    alert('Invalid JSON format.');
+                }
+            }
+        });
+        
+        function showPreview(data) {
+            if (!data || !data.courses || !Array.isArray(data.courses)) {
+                log('Invalid data structure. Must contain a "courses" array.', 'error');
+                return;
+            }
+            
+            parsedData = data;
+            
+            let html = `<p>Found <strong>${data.courses.length}</strong> courses to import:</p>`;
+            
+            data.courses.forEach(c => {
+                const isExisting = existingCourses.some(ec => ec.title === c.title);
+                const status = isExisting ? '<span class="log-warning" style="font-size:0.9em;"><i class="fas fa-exclamation-circle"></i> Will skip - already exists</span>' : '<span class="log-success" style="font-size:0.9em;"><i class="fas fa-plus-circle"></i> New</span>';
+                
+                const modulesCount = c.modules ? c.modules.length : 0;
+                const lecturesCount = c.lectures ? c.lectures.length : 0;
+                const assignmentsCount = c.assignments ? c.assignments.length : 0;
+                const quizzesCount = c.quizzes ? c.quizzes.length : 0;
+                
+                html += `
+                    <div class="preview-course">
+                        <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 4px;">${c.title} ${status}</div>
+                        <div class="text-muted" style="font-size: 0.9em;">
+                            <i class="fas fa-folder"></i> ${modulesCount} modules | 
+                            <i class="fas fa-video"></i> ${lecturesCount} lectures | 
+                            <i class="fas fa-tasks"></i> ${assignmentsCount} assignments | 
+                            <i class="fas fa-question-circle"></i> ${quizzesCount} quizzes
+                        </div>
+                    </div>
+                `;
+            });
+            
+            previewContent.innerHTML = html;
+            previewContainer.style.display = 'block';
+            
+            const newCourses = data.courses.filter(c => !existingCourses.some(ec => ec.title === c.title));
+            btnImport.disabled = newCourses.length === 0;
+            
+            if (newCourses.length === 0) {
+                log('No new courses to import. All courses in the data already exist.', 'warning');
+            } else {
+                log(`Ready to import ${newCourses.length} new courses.`, 'success');
+            }
+        }
+        
+        btnImport.addEventListener('click', async () => {
+            if (!parsedData || !parsedData.courses) return;
+            
+            const coursesToImport = parsedData.courses.filter(c => !existingCourses.some(ec => ec.title === c.title));
+            
+            if (coursesToImport.length === 0) {
+                alert('No new courses to import.');
+                return;
+            }
+            
+            if (!confirm(`Are you sure you want to import ${coursesToImport.length} courses?`)) return;
+            
+            btnImport.disabled = true;
+            btnPreview.disabled = true;
+            btnClear.disabled = true;
+            
+            logContainer.innerHTML = '';
+            log('Starting import...', 'info');
+            
+            let coursesCreated = 0;
+            let lecturesCreated = 0;
+            let assignmentsCreated = 0;
+            let quizzesCreated = 0;
+            
+            const totalItems = coursesToImport.length;
+            
+            for (let i = 0; i < coursesToImport.length; i++) {
+                const cData = coursesToImport[i];
+                log(`Importing course: ${cData.title}`, 'info');
+                
+                try {
+                    // 1. Create Course object
+                    const courseObj = {
+                        title: cData.title || 'Untitled Course',
+                        subject: cData.subject || '',
+                        level: cData.level || 'Beginner',
+                        description: cData.description || '',
+                        longDescription: cData.longDescription || '',
+                        objectives: cData.objectives || [],
+                        prerequisites: cData.prerequisites || '',
+                        published: true,
+                        createdAt: Date.now(),
+                        updatedAt: Date.now()
+                    };
+                    
+                    // Get auto-generated key by pushing
+                    const courseKey = await pushItem('courses', courseObj);
+                    coursesCreated++;
+                    log(`Created course: ${courseKey}`, 'success');
+                    
+                    // Map modules with new generated IDs to keep track
+                    const moduleMap = {}; // { originalModuleId/Title : newModuleId }
+                    const modulesToSave = [];
+                    
+                    if (cData.modules && Array.isArray(cData.modules)) {
+                        cData.modules.forEach(m => {
+                            const newModId = m.id || `mod_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+                            moduleMap[m.id || m.title] = newModId;
+                            
+                            modulesToSave.push({
+                                id: newModId,
+                                title: m.title || 'Untitled Module',
+                                description: m.description || '',
+                                order: m.order || 0
+                            });
+                        });
+                        
+                        // Update course with modules directly as array since that's how it's structured
+                        await setItem(`courses/${courseKey}/modules`, modulesToSave);
+                    }
+                    
+                    // Helper to get new module ID
+                    const getModuleId = (originalIdOrTitle) => {
+                        if (moduleMap[originalIdOrTitle]) return moduleMap[originalIdOrTitle];
+                        if (modulesToSave.length > 0) return modulesToSave[0].id; // fallback to first module
+                        return 'default_module';
+                    };
+                    
+                    // 2. Import Lectures
+                    if (cData.lectures && Array.isArray(cData.lectures)) {
+                        for (const lec of cData.lectures) {
+                            const lecObj = {
+                                ...lec,
+                                courseId: courseKey,
+                                moduleId: getModuleId(lec.moduleId || lec.moduleTitle),
+                                createdAt: Date.now(),
+                                published: true
+                            };
+                            delete lecObj.moduleTitle; // cleanup
+                            
+                            await pushItem('lectures', lecObj);
+                            lecturesCreated++;
+                        }
+                        log(`Imported ${cData.lectures.length} lectures.`, 'success');
+                    }
+                    
+                    // 3. Import Assignments
+                    if (cData.assignments && Array.isArray(cData.assignments)) {
+                        for (const assn of cData.assignments) {
+                            const dueInDays = assn.dueInDays || 7;
+                            const dueDate = Date.now() + (dueInDays * 24 * 60 * 60 * 1000);
+                                
+                            const assnObj = {
+                                ...assn,
+                                courseId: courseKey,
+                                moduleId: getModuleId(assn.moduleId || assn.moduleTitle),
+                                dueDate: dueDate,
+                                dueInDays: dueInDays,
+                                createdAt: Date.now(),
+                                published: true
+                            };
+                            delete assnObj.moduleTitle;
+                            
+                            await pushItem('assignments', assnObj);
+                            assignmentsCreated++;
+                        }
+                        log(`Imported ${cData.assignments.length} assignments.`, 'success');
+                    }
+                    
+                    // 4. Import Quizzes
+                    if (cData.quizzes && Array.isArray(cData.quizzes)) {
+                        for (const quiz of cData.quizzes) {
+                            const quizObj = {
+                                ...quiz,
+                                courseId: courseKey,
+                                moduleId: getModuleId(quiz.moduleId || quiz.moduleTitle),
+                                createdAt: Date.now(),
+                                published: true
+                            };
+                            delete quizObj.moduleTitle;
+                            // questions array is included via ...quiz spread
+                            
+                            await pushItem('quizzes', quizObj);
+                            quizzesCreated++;
+                        }
+                        log(`Imported ${cData.quizzes.length} quizzes.`, 'success');
+                    }
+                    
+                } catch (err) {
+                    log(`Error importing course ${cData.title}: ${err.message}`, 'error');
+                }
+                
+                updateProgress(((i + 1) / totalItems) * 100, `Imported ${i+1}/${totalItems} courses`);
+            }
+            
+            updateProgress(100, 'Import Complete');
+            log(`Import complete! Summary:`, 'info');
+            log(`- ${coursesCreated} Courses`, 'success');
+            log(`- ${lecturesCreated} Lectures`, 'success');
+            log(`- ${assignmentsCreated} Assignments`, 'success');
+            log(`- ${quizzesCreated} Quizzes`, 'success');
+            
+            // Reload courses list
+            await loadExistingCourses();
+            
+            btnPreview.disabled = false;
+            btnClear.disabled = false;
+        });
+        
+        btnClear.addEventListener('click', async () => {
+            if (!confirm('DANGER: This will delete ALL courses, lectures, assignments, and quizzes from the database. This action cannot be undone.\n\nAre you absolutely sure?')) {
+                return;
+            }
+            
+            const confirmWord = prompt('Type "DELETE" to confirm:');
+            if (confirmWord !== 'DELETE') {
+                alert('Action cancelled.');
+                return;
+            }
+            
+            try {
+                btnImport.disabled = true;
+                btnPreview.disabled = true;
+                btnClear.disabled = true;
+                
+                logContainer.innerHTML = '';
+                log('Clearing all course data...', 'warning');
+                
+                await removeItem('courses');
+                await removeItem('lectures');
+                await removeItem('assignments');
+                await removeItem('quizzes');
+                
+                log('All data successfully cleared.', 'success');
+                
+                await loadExistingCourses();
+                
+            } catch (err) {
+                log('Error clearing data: ' + err.message, 'error');
+            } finally {
+                btnPreview.disabled = false;
+                btnClear.disabled = false;
+                
+                // Re-evaluate if there is something to import
+                if (parsedData) {
+                    showPreview(parsedData);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

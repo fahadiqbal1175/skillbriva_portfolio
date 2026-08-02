@@ -1,0 +1,14 @@
+{
+  "totalCourses": 3,
+  "totalLectures": 57,
+  "totalAssignments": 19,
+  "totalQuizzes": 19,
+  "totalQuestions": 164,
+  "subjects": {
+    "Quran with Tajweed": [
+      "Noorani Qaida — Learn to Read Arabic",
+      "Tajweed Rules — Proper Quran Recitation",
+      "Quran Memorization & Advanced Tajweed"
+    ]
+  }
+}

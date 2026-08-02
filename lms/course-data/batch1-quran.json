@@ -1,0 +1,2593 @@
+{
+  "courses": [
+    {
+      "title": "Noorani Qaida — Learn to Read Arabic",
+      "subject": "Quran with Tajweed",
+      "level": "Beginner",
+      "description": "A step-by-step foundation course teaching complete beginners how to recognize, pronounce, and join Arabic letters so they can begin reading the Quran.",
+      "longDescription": "Noorani Qaida — Learn to Read Arabic is the traditional first step for anyone who wants to read the Quran but has never learned Arabic script before. The course starts from zero: recognizing each of the 28 letters, hearing and reproducing their correct sounds, and learning how those letters change shape depending on where they sit in a word.\n\nFrom there, students move on to short and long vowels, building the phonetic building blocks needed to sound out real words. The course closes with guided practice on short, commonly recited surahs, so that by the end students can read simple Quranic text slowly and correctly rather than by memorized repetition alone.\n\nThis course is designed for children and adults alike, including new Muslims and non-native Arabic speakers, and assumes no prior knowledge of Arabic.",
+      "objectives": [
+        "Recognize and correctly pronounce all 28 letters of the Arabic alphabet",
+        "Identify the isolated, initial, medial, and final forms of each letter",
+        "Understand how connecting and non-connecting letters combine into words",
+        "Apply the three short vowels (Fatha, Kasra, Damma) and Sukoon while reading",
+        "Distinguish and correctly produce long vowel (madd) sounds",
+        "Read short, commonly recited surahs slowly and accurately"
+      ],
+      "prerequisites": "None",
+      "published": true,
+      "modules": [
+        {
+          "id": "mod-1",
+          "title": "Module 1: Arabic Alphabet",
+          "description": "Introduction to the 28 letters of the Arabic alphabet (Huroof al-Hijaa) and their basic sounds.",
+          "order": 1
+        },
+        {
+          "id": "mod-2",
+          "title": "Module 2: Letter Forms",
+          "description": "How each Arabic letter changes shape depending on its position in a word.",
+          "order": 2
+        },
+        {
+          "id": "mod-3",
+          "title": "Module 3: Joining Letters",
+          "description": "Learning how connecting and non-connecting letters combine to form words.",
+          "order": 3
+        },
+        {
+          "id": "mod-4",
+          "title": "Module 4: Short Vowels",
+          "description": "Fatha, Kasra, Damma and Sukoon, and how they change letter sounds.",
+          "order": 4
+        },
+        {
+          "id": "mod-5",
+          "title": "Module 5: Long Vowels",
+          "description": "The three madd letters (Alif, Waw, Yaa) and elongated vowel sounds.",
+          "order": 5
+        },
+        {
+          "id": "mod-6",
+          "title": "Module 6: Practice Surahs",
+          "description": "Applying everything learned to read short, commonly recited surahs.",
+          "order": 6
+        }
+      ],
+      "lectures": [
+        {
+          "moduleId": "mod-1",
+          "title": "1.1 - Introduction to the Arabic Alphabet (Huroof al-Hijaa)",
+          "duration": "22 mins",
+          "description": "Overview of all 28 Arabic letters, their names, and why Noorani Qaida is the traditional starting point for learning to read the Quran.",
+          "videoId": "RUnAKCzFejc",
+          "published": true
+        },
+        {
+          "moduleId": "mod-1",
+          "title": "1.2 - Pronouncing Alif Baa Taa Thaa Correctly",
+          "duration": "20 mins",
+          "description": "Careful pronunciation practice for the first four letters of the alphabet with mouth and tongue positioning tips.",
+          "videoId": "6x-3E-Phdug",
+          "published": true
+        },
+        {
+          "moduleId": "mod-1",
+          "title": "1.3 - Practicing the Full Alphabet: Jeem to Yaa",
+          "duration": "25 mins",
+          "description": "Continuing alphabet practice from Jeem through to the final letter Yaa, with repetition drills.",
+          "videoId": "19Wt5zM6PMo",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.1 - Isolated Letter Forms",
+          "duration": "18 mins",
+          "description": "Recognizing each letter in its standalone (isolated) written form.",
+          "videoId": "9bBg1aYO0_A",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.2 - Initial, Medial, and Final Letter Forms",
+          "duration": "24 mins",
+          "description": "How letters change shape at the beginning, middle, and end of a word.",
+          "videoId": "yRRuVRT6Kao",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.3 - Distinguishing Similar-Looking Letters by Their Dots",
+          "duration": "19 mins",
+          "description": "Telling apart letters that share a base shape but differ by the number and placement of dots (e.g., Baa, Taa, Thaa).",
+          "videoId": "yaHTi02zVtY",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.1 - How Arabic Letters Connect Within a Word",
+          "duration": "21 mins",
+          "description": "The basic rules of letter joining and why Arabic is a cursive, connected script.",
+          "videoId": "cvZvpityd5k",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.2 - The Six Non-Connecting Letters",
+          "duration": "17 mins",
+          "description": "Identifying Alif, Daal, Dhaal, Raa, Zaay, and Waw — the letters that never connect to the letter after them.",
+          "videoId": "RUnAKCzFejc",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.3 - Reading Simple Two- and Three-Letter Joined Words",
+          "duration": "23 mins",
+          "description": "Guided practice sounding out short joined words using the letters learned so far.",
+          "videoId": "6x-3E-Phdug",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.1 - Fatha, Kasra, and Damma (The Three Short Vowels)",
+          "duration": "20 mins",
+          "description": "Introducing the three short vowel marks and the sounds they add to consonants.",
+          "videoId": "19Wt5zM6PMo",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.2 - Sukoon: Reading Letters With No Vowel",
+          "duration": "16 mins",
+          "description": "Understanding the sukoon mark and how it silences the vowel on a letter.",
+          "videoId": "9bBg1aYO0_A",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.3 - Reading Practice: Mixed Short-Vowel Words",
+          "duration": "25 mins",
+          "description": "Applying Fatha, Kasra, Damma, and Sukoon together in guided reading exercises.",
+          "videoId": "yRRuVRT6Kao",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.1 - The Three Madd Letters: Alif, Waw, and Yaa",
+          "duration": "22 mins",
+          "description": "Introducing long vowel sounds created by Alif Madd, Waw Madd, and Yaa Madd.",
+          "videoId": "Y0vxeAJ4-l4",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.2 - Distinguishing Short vs Long Vowel Sounds",
+          "duration": "18 mins",
+          "description": "Ear-training exercises to hear and reproduce the difference between a short vowel and its elongated counterpart.",
+          "videoId": "xdXpjbnzDr0",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.3 - Reading Practice With Long Vowels",
+          "duration": "24 mins",
+          "description": "Guided reading of words containing long vowels, building reading speed and accuracy.",
+          "videoId": "-lz60H8L76s",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.1 - Reading Surah Al-Fatihah Letter by Letter",
+          "duration": "26 mins",
+          "description": "Applying every rule learned so far to read the opening chapter of the Quran slowly and correctly.",
+          "videoId": "xuwRT8Q5dOI",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.2 - Reading Surah Al-Ikhlas, Al-Falaq, and An-Nas",
+          "duration": "24 mins",
+          "description": "Practicing the three short protective surahs commonly memorized first by beginners.",
+          "videoId": "dyliFOsUPkU",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.3 - Final Reading Assessment Preparation",
+          "duration": "20 mins",
+          "description": "Review session consolidating alphabet, vowels, and joining rules before the final Noorani Qaida assessment.",
+          "videoId": "gLoOGRV3dqw",
+          "published": true
+        }
+      ],
+      "assignments": [
+        {
+          "moduleId": "mod-1",
+          "title": "Alphabet Recitation Recording",
+          "description": "Record yourself reciting all 28 letters of the Arabic alphabet in order, from Alif to Yaa. Pronounce each letter clearly and pause briefly between letters. Re-record if you mispronounce a letter rather than editing the audio. Submit the audio file along with a short note on which two letters you found hardest to pronounce.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "Letter Forms Worksheet",
+          "description": "Complete the attached worksheet by writing each of the 28 letters in its isolated, initial, medial, and final forms. Use a pencil and write each form at least twice for practice. Circle any letter whose medial and final forms look most different from its isolated form. Submit a clear photo or scan of your completed worksheet.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "Word-Joining Practice Sheet",
+          "description": "Take the 15 letter pairs provided and join them into connected words following the rules covered in this module. For each pair, note whether both letters connect on both sides or whether a non-connecting letter breaks the join. Double-check your joins against the reference sheet before submitting. Hand in your completed sheet as a single PDF or image.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "Short Vowel Reading Test",
+          "description": "Read aloud the 20 practice words provided, each containing a mix of Fatha, Kasra, Damma, and Sukoon, and record your recitation. Read at a slow, deliberate pace so each vowel sound is distinct. Note any words you had to repeat more than twice. Submit the recording along with the list of words you found difficult.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "Long Vowel Comparison Exercise",
+          "description": "For each of the 10 word pairs provided, record yourself reading the short-vowel version followed immediately by the long-vowel version so the difference in length is audible. Hold each long vowel for roughly two counts as taught in the lesson. Listen back to your own recording and note any pairs that sounded too similar. Submit the recording and your self-assessment notes.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "Surah Al-Fatihah Full Recitation",
+          "description": "Record a complete, unedited recitation of Surah Al-Fatihah applying the letter forms, joining rules, and vowel rules covered throughout this course. Recite at a measured pace rather than rushing. Listen to your own recording once before submitting and note any verse you would like feedback on. Submit the audio file as your final module assignment.",
+          "points": 100,
+          "dueInDays": 10
+        }
+      ],
+      "quizzes": [
+        {
+          "moduleId": "mod-1",
+          "title": "Module 1 Quiz: Arabic Alphabet",
+          "duration": 15,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many letters are in the Arabic alphabet as taught in Noorani Qaida?",
+              "points": 2,
+              "options": [
+                "26",
+                "28",
+                "29",
+                "30"
+              ],
+              "correctAnswer": "28"
+            },
+            {
+              "type": "mcq",
+              "text": "Which letter is the first letter of the Arabic alphabet?",
+              "points": 2,
+              "options": [
+                "Baa",
+                "Alif",
+                "Taa",
+                "Jeem"
+              ],
+              "correctAnswer": "Alif"
+            },
+            {
+              "type": "mcq",
+              "text": "Which letter is the last letter of the Arabic alphabet?",
+              "points": 2,
+              "options": [
+                "Waw",
+                "Haa",
+                "Yaa",
+                "Laam"
+              ],
+              "correctAnswer": "Yaa"
+            },
+            {
+              "type": "mcq",
+              "text": "Which pair of letters is distinguished mainly by the number of dots above them?",
+              "points": 2,
+              "options": [
+                "Baa and Taa",
+                "Alif and Laam",
+                "Meem and Noon",
+                "Waw and Yaa"
+              ],
+              "correctAnswer": "Baa and Taa"
+            },
+            {
+              "type": "mcq",
+              "text": "Noorani Qaida is traditionally used to teach which skill first?",
+              "points": 2,
+              "options": [
+                "Tafseer of the Quran",
+                "Reading Arabic letters and words",
+                "Arabic grammar rules",
+                "Islamic history"
+              ],
+              "correctAnswer": "Reading Arabic letters and words"
+            },
+            {
+              "type": "tf",
+              "text": "The Arabic alphabet is read and written from left to right.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "tf",
+              "text": "The letter Haa has a throat sound.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "short",
+              "text": "Name any two Arabic letters that are pronounced from the throat (Halq).",
+              "points": 2,
+              "correctAnswer": "Any two of: Hamza, Haa, Ain, Haa (heavy), Ghain, Khaa"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "Module 2 Quiz: Letter Forms",
+          "duration": 15,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many written forms can most Arabic letters take depending on position?",
+              "points": 2,
+              "options": [
+                "Two",
+                "Three",
+                "Four",
+                "Five"
+              ],
+              "correctAnswer": "Four"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of the following is NOT one of the four letter position forms?",
+              "points": 2,
+              "options": [
+                "Isolated",
+                "Initial",
+                "Rotated",
+                "Final"
+              ],
+              "correctAnswer": "Rotated"
+            },
+            {
+              "type": "mcq",
+              "text": "A letter written completely on its own, not connected to any other letter, is in which form?",
+              "points": 2,
+              "options": [
+                "Medial form",
+                "Isolated form",
+                "Final form",
+                "Compound form"
+              ],
+              "correctAnswer": "Isolated form"
+            },
+            {
+              "type": "mcq",
+              "text": "What visually distinguishes the letter Taa from the letter Baa?",
+              "points": 2,
+              "options": [
+                "The base shape",
+                "The number and position of dots",
+                "The direction it faces",
+                "Its size"
+              ],
+              "correctAnswer": "The number and position of dots"
+            },
+            {
+              "type": "mcq",
+              "text": "The medial form of a letter appears when the letter is:",
+              "points": 2,
+              "options": [
+                "At the start of a word only",
+                "At the end of a word only",
+                "Between two other connected letters",
+                "Written alone"
+              ],
+              "correctAnswer": "Between two other connected letters"
+            },
+            {
+              "type": "tf",
+              "text": "Every Arabic letter has exactly four different written forms.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "tf",
+              "text": "Dots above or below a letter can completely change which letter it represents.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "short",
+              "text": "What is the term for a letter's written form when it stands completely alone?",
+              "points": 2,
+              "correctAnswer": "Isolated form"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "Module 3 Quiz: Joining Letters",
+          "duration": 15,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many Arabic letters do not connect to the letter that comes after them?",
+              "points": 2,
+              "options": [
+                "Four",
+                "Five",
+                "Six",
+                "Seven"
+              ],
+              "correctAnswer": "Six"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of these letters is a non-connecting letter?",
+              "points": 2,
+              "options": [
+                "Baa",
+                "Alif",
+                "Meem",
+                "Seen"
+              ],
+              "correctAnswer": "Alif"
+            },
+            {
+              "type": "mcq",
+              "text": "When a non-connecting letter appears in the middle of a word, what happens to the next letter?",
+              "points": 2,
+              "options": [
+                "It disappears",
+                "It starts a new connected segment in its initial or isolated form",
+                "It becomes silent",
+                "It merges into the previous letter"
+              ],
+              "correctAnswer": "It starts a new connected segment in its initial or isolated form"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of the following is a non-connecting letter?",
+              "points": 2,
+              "options": [
+                "Raa",
+                "Baa",
+                "Seen",
+                "Kaaf"
+              ],
+              "correctAnswer": "Raa"
+            },
+            {
+              "type": "mcq",
+              "text": "Arabic script is best described as:",
+              "points": 2,
+              "options": [
+                "A block script with separated letters",
+                "A cursive script where most letters join",
+                "A picture-based script",
+                "A vertical script"
+              ],
+              "correctAnswer": "A cursive script where most letters join"
+            },
+            {
+              "type": "tf",
+              "text": "The letter Waw is one of the six non-connecting letters.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "All 28 Arabic letters connect to both the letter before and after them.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name three of the six non-connecting Arabic letters.",
+              "points": 2,
+              "correctAnswer": "Any three of: Alif, Daal, Dhaal, Raa, Zaay, Waw"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "Module 4 Quiz: Short Vowels",
+          "duration": 15,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Which short vowel mark produces an 'a' sound and is written as a small diagonal line above the letter?",
+              "points": 2,
+              "options": [
+                "Kasra",
+                "Damma",
+                "Fatha",
+                "Sukoon"
+              ],
+              "correctAnswer": "Fatha"
+            },
+            {
+              "type": "mcq",
+              "text": "Which short vowel mark produces an 'i' sound and is written below the letter?",
+              "points": 2,
+              "options": [
+                "Fatha",
+                "Kasra",
+                "Damma",
+                "Shaddah"
+              ],
+              "correctAnswer": "Kasra"
+            },
+            {
+              "type": "mcq",
+              "text": "Which short vowel mark produces a 'u' sound and looks like a small loop above the letter?",
+              "points": 2,
+              "options": [
+                "Fatha",
+                "Kasra",
+                "Damma",
+                "Tanween"
+              ],
+              "correctAnswer": "Damma"
+            },
+            {
+              "type": "mcq",
+              "text": "What does a Sukoon mark indicate?",
+              "points": 2,
+              "options": [
+                "A doubled letter",
+                "A long vowel sound",
+                "No vowel sound after the letter",
+                "A stop in recitation"
+              ],
+              "correctAnswer": "No vowel sound after the letter"
+            },
+            {
+              "type": "mcq",
+              "text": "How is a Sukoon typically represented in writing?",
+              "points": 2,
+              "options": [
+                "A small circle above the letter",
+                "A small loop",
+                "A vertical line",
+                "A dot below the letter"
+              ],
+              "correctAnswer": "A small circle above the letter"
+            },
+            {
+              "type": "tf",
+              "text": "A letter with a Sukoon is pronounced with no vowel sound attached to it.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Fatha, Kasra, and Damma are all considered long vowels.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Which short vowel mark is placed below a letter rather than above it?",
+              "points": 2,
+              "correctAnswer": "Kasra"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "Module 5 Quiz: Long Vowels",
+          "duration": 15,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Which three letters are used to create long vowel (madd) sounds?",
+              "points": 2,
+              "options": [
+                "Alif, Waw, Yaa",
+                "Baa, Taa, Thaa",
+                "Meem, Noon, Laam",
+                "Ain, Ghain, Haa"
+              ],
+              "correctAnswer": "Alif, Waw, Yaa"
+            },
+            {
+              "type": "mcq",
+              "text": "Alif Madd occurs when Alif follows a letter carrying which short vowel?",
+              "points": 2,
+              "options": [
+                "Kasra",
+                "Damma",
+                "Fatha",
+                "Sukoon"
+              ],
+              "correctAnswer": "Fatha"
+            },
+            {
+              "type": "mcq",
+              "text": "Waw Madd (elongating Waw) occurs when a saakin Waw follows a letter carrying which vowel?",
+              "points": 2,
+              "options": [
+                "Fatha",
+                "Kasra",
+                "Damma",
+                "Tanween"
+              ],
+              "correctAnswer": "Damma"
+            },
+            {
+              "type": "mcq",
+              "text": "Yaa Madd (elongating Yaa) occurs when a saakin Yaa follows a letter carrying which vowel?",
+              "points": 2,
+              "options": [
+                "Damma",
+                "Fatha",
+                "Kasra",
+                "Sukoon"
+              ],
+              "correctAnswer": "Kasra"
+            },
+            {
+              "type": "mcq",
+              "text": "Roughly how many counts is a natural (basic) madd typically held for in beginner reading practice?",
+              "points": 2,
+              "options": [
+                "One count",
+                "Two counts",
+                "Four counts",
+                "Six counts"
+              ],
+              "correctAnswer": "Two counts"
+            },
+            {
+              "type": "tf",
+              "text": "A long vowel sound is held for a shorter duration than a short vowel.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "tf",
+              "text": "The letter Alif can only create a long vowel sound; it never carries a short vowel itself.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "short",
+              "text": "What is the general Arabic term for an elongated vowel sound?",
+              "points": 2,
+              "correctAnswer": "Madd"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "Module 6 Quiz: Practice Surahs",
+          "duration": 15,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Which surah is recited in every unit (rakah) of the five daily prayers?",
+              "points": 2,
+              "options": [
+                "Al-Ikhlas",
+                "Al-Fatihah",
+                "An-Nas",
+                "Al-Falaq"
+              ],
+              "correctAnswer": "Al-Fatihah"
+            },
+            {
+              "type": "mcq",
+              "text": "How many verses does Surah Al-Fatihah contain?",
+              "points": 2,
+              "options": [
+                "Five",
+                "Six",
+                "Seven",
+                "Eight"
+              ],
+              "correctAnswer": "Seven"
+            },
+            {
+              "type": "mcq",
+              "text": "Surah Al-Ikhlas primarily describes:",
+              "points": 2,
+              "options": [
+                "The Day of Judgment",
+                "The oneness of Allah",
+                "The story of Prophet Musa",
+                "Rules of fasting"
+              ],
+              "correctAnswer": "The oneness of Allah"
+            },
+            {
+              "type": "mcq",
+              "text": "Surah Al-Falaq and Surah An-Nas are together known as:",
+              "points": 2,
+              "options": [
+                "Al-Muawwidhatayn",
+                "As-Sab al-Mathani",
+                "Al-Mufassal",
+                "Al-Baqarah pair"
+              ],
+              "correctAnswer": "Al-Muawwidhatayn"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the recommended pace for a beginner reading a practice surah for the first time?",
+              "points": 2,
+              "options": [
+                "As fast as possible",
+                "Slow and deliberate",
+                "Silently, without sound",
+                "Only in a group"
+              ],
+              "correctAnswer": "Slow and deliberate"
+            },
+            {
+              "type": "tf",
+              "text": "Surah An-Nas is the very last surah in the order of the Quran (Surah 114).",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "It is recommended for a beginner to prioritize speed over correct pronunciation.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name one of the three short surahs practiced for seeking protection (besides Al-Fatihah) in this module.",
+              "points": 2,
+              "correctAnswer": "Al-Ikhlas, Al-Falaq, or An-Nas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tajweed Rules — Proper Quran Recitation",
+      "subject": "Quran with Tajweed",
+      "level": "Intermediate",
+      "description": "A structured Tajweed course covering articulation points, letter characteristics, and the core rules of Noon Sakinah, Meem Sakinah, Madd, and Waqf.",
+      "longDescription": "Tajweed Rules — Proper Quran Recitation is built for students who can already read Arabic script (for example, those who have completed a Noorani Qaida course) and are ready to recite the Quran with correct, rule-based pronunciation. The course begins with Makharij, the precise articulation points of each letter, and Sifaat, the qualities that give each letter its character, including Qalqalah and the heavy/light letter distinction.\n\nStudents then progress through the core rulebook of Tajweed: the four rules of Noon Sakinah and Tanween (Izhar, Idgham, Iqlab, Ikhfa), the three rules of Meem Sakinah (Ikhfa Shafawi, Idgham Shafawi, Izhar Shafawi), the natural and secondary Madd (elongation) rules, and the classical Waqf (stopping) signs used throughout the Mushaf.\n\nThe final module brings every rule together in applied recitation of real Quranic passages, with a focus on correcting the common mistakes intermediate students make when moving from rule memorization to fluent, rule-compliant recitation.",
+      "objectives": [
+        "Identify the five major Makharij and correctly articulate letters from each region",
+        "Apply Sifaat rules including Qalqalah, Tafkheem, and Tarqeeq",
+        "Correctly apply the four rules of Noon Sakinah and Tanween",
+        "Correctly apply the three rules of Meem Sakinah",
+        "Distinguish and apply Madd Asli and the main types of Madd Far'i",
+        "Recognize waqf signs and apply correct, meaning-preserving stops",
+        "Recite real Quranic passages fluently while applying all Tajweed rules together"
+      ],
+      "prerequisites": "Ability to read Arabic script (completion of Noorani Qaida or equivalent)",
+      "published": true,
+      "modules": [
+        {
+          "id": "mod-1",
+          "title": "Module 1: Makhaarij (Articulation Points)",
+          "description": "The physical points in the mouth and throat from which each Arabic letter is produced.",
+          "order": 1
+        },
+        {
+          "id": "mod-2",
+          "title": "Module 2: Sifaat (Letter Characteristics)",
+          "description": "The qualities that give each letter its distinct sound, including Qalqalah and Tafkheem/Tarqeeq.",
+          "order": 2
+        },
+        {
+          "id": "mod-3",
+          "title": "Module 3: Noon Sakinah and Tanween",
+          "description": "The four rules governing a silent Noon or Tanween: Izhar, Idgham, Iqlab, and Ikhfa.",
+          "order": 3
+        },
+        {
+          "id": "mod-4",
+          "title": "Module 4: Meem Sakinah",
+          "description": "The three rules governing a silent Meem: Ikhfa Shafawi, Idgham Shafawi, and Izhar Shafawi.",
+          "order": 4
+        },
+        {
+          "id": "mod-5",
+          "title": "Module 5: Madd (Elongation Rules)",
+          "description": "Natural and secondary madd rules that determine how long a vowel is elongated.",
+          "order": 5
+        },
+        {
+          "id": "mod-6",
+          "title": "Module 6: Waqf (Rules of Stopping)",
+          "description": "Recognizing waqf signs in the Mushaf and knowing where it is correct, necessary, or forbidden to pause.",
+          "order": 6
+        },
+        {
+          "id": "mod-7",
+          "title": "Module 7: Applied Recitation",
+          "description": "Bringing all Tajweed rules together in fluent, accurate recitation of real Quranic passages.",
+          "order": 7
+        }
+      ],
+      "lectures": [
+        {
+          "moduleId": "mod-1",
+          "title": "1.1 - The Five Major Articulation Regions",
+          "duration": "24 mins",
+          "description": "Overview of the throat, tongue, lips, nasal cavity, and oral cavity as the five broad regions where Arabic letters are articulated.",
+          "videoId": "A50an842ZPM",
+          "published": true
+        },
+        {
+          "moduleId": "mod-1",
+          "title": "1.2 - Makharij of the Throat Letters (Huroof al-Halq)",
+          "duration": "22 mins",
+          "description": "Detailed practice on the six throat letters and their three sub-points: deep, middle, and near throat.",
+          "videoId": "b09mwQBTu0M",
+          "published": true
+        },
+        {
+          "moduleId": "mod-1",
+          "title": "1.3 - Makharij of the Tongue Letters (Huroof al-Lisaan)",
+          "duration": "26 mins",
+          "description": "Covering the largest group of letters, articulated from ten points along the tongue.",
+          "videoId": "bLjDYMu14xg",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.1 - Introduction to Sifaat al-Huruf",
+          "duration": "20 mins",
+          "description": "What Sifaat are, how they differ from Makharij, and why they matter for correct recitation.",
+          "videoId": "m5d0qLHT5iI",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.2 - Qalqalah: The Bouncing Letters",
+          "duration": "18 mins",
+          "description": "Identifying the five Qalqalah letters (Qaf, Taa, Baa, Jeem, Daal) and practicing the echoing bounce sound when they carry sukoon.",
+          "videoId": "54arR-auqcI",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.3 - Tafkheem and Tarqeeq: Heavy and Light Letters",
+          "duration": "23 mins",
+          "description": "Distinguishing the seven heavy (mufakhkham) letters from light (muraqqaq) letters and how this changes pronunciation.",
+          "videoId": "oSBAQwDUEV4",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.1 - Izhar and Idgham of Noon Sakinah",
+          "duration": "24 mins",
+          "description": "Clear pronunciation (Izhar) with throat letters, and merging (Idgham) with or without Ghunnah for the letters ي ر م ل و ن.",
+          "videoId": "GXbfEkMg_AY",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.2 - Iqlab: Converting Noon to Meem",
+          "duration": "16 mins",
+          "description": "Practicing the single-letter rule where Noon Sakinah or Tanween followed by Baa is converted into a nasalized Meem sound.",
+          "videoId": "uUsLokomXAY",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.3 - Ikhfa: Concealing the Noon Sound",
+          "duration": "25 mins",
+          "description": "Practicing the concealment of Noon Sakinah or Tanween before the remaining fifteen Ikhfa letters.",
+          "videoId": "Z7oy4rppmAk",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.1 - Ikhfa Shafawi: Concealing Meem Before Baa",
+          "duration": "17 mins",
+          "description": "The single-letter rule where Meem Sakinah followed by Baa is pronounced with a concealed, nasalized sound.",
+          "videoId": "-YrfRpwFMe8",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.2 - Idgham Shafawi: Merging Meem With Meem",
+          "duration": "15 mins",
+          "description": "Merging Meem Sakinah into a following Meem with a two-count Ghunnah.",
+          "videoId": "A50an842ZPM",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.3 - Izhar Shafawi: Clear Meem With All Other Letters",
+          "duration": "18 mins",
+          "description": "The default rule where Meem Sakinah is pronounced clearly before the 26 letters other than Baa and Meem.",
+          "videoId": "b09mwQBTu0M",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.1 - Madd Asli: The Natural Two-Count Madd",
+          "duration": "20 mins",
+          "description": "Reviewing the basic natural madd that occurs whenever a madd letter is not followed by a hamzah or sukoon.",
+          "videoId": "Y0vxeAJ4-l4",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.2 - Madd Far'i: Secondary Madd Types",
+          "duration": "27 mins",
+          "description": "Introducing Madd Muttasil, Madd Munfasil, and Madd Laazim, and how the count extends beyond the natural two counts.",
+          "videoId": "xdXpjbnzDr0",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.3 - Madd Practice With Quranic Examples",
+          "duration": "24 mins",
+          "description": "Applying natural and secondary madd rules to real ayat, with attention to consistent counting.",
+          "videoId": "-lz60H8L76s",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.1 - Recognizing Waqf Signs in the Mushaf",
+          "duration": "19 mins",
+          "description": "Introducing the common stopping symbols printed in the Quran, including meem, laa, qaf-laa-alif, and jeem.",
+          "videoId": "Ga7PCcwvpcI",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.2 - Waqf Lazim, Jaiz, and Mamnoo",
+          "duration": "21 mins",
+          "description": "Distinguishing compulsory stops, permissible stops, and places where stopping is forbidden because it would distort the meaning.",
+          "videoId": "v8CC-y0iW7A",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.3 - Practicing Correct Stops in Selected Ayat",
+          "duration": "22 mins",
+          "description": "Guided practice identifying and applying the correct waqf sign in a set of selected verses.",
+          "videoId": "xCqsgAbqSzs",
+          "published": true
+        },
+        {
+          "moduleId": "mod-7",
+          "title": "7.1 - Reciting the Opening of Surah Al-Baqarah With Tajweed",
+          "duration": "28 mins",
+          "description": "Applying Makharij, Sifaat, Noon and Meem rules, Madd, and Waqf together while reciting Al-Baqarah 1-20.",
+          "videoId": "s6R-RFPWM8s",
+          "published": true
+        },
+        {
+          "moduleId": "mod-7",
+          "title": "7.2 - Common Recitation Mistakes and How to Correct Them",
+          "duration": "20 mins",
+          "description": "Reviewing the most frequent Tajweed errors intermediate students make and practical drills to fix them.",
+          "videoId": "B1SLLUeywU0",
+          "published": true
+        },
+        {
+          "moduleId": "mod-7",
+          "title": "7.3 - Recitation Assessment and Feedback Session",
+          "duration": "25 mins",
+          "description": "A structured recitation review session preparing students for individual teacher feedback on their Tajweed application.",
+          "videoId": "nZY2PlijdXk",
+          "published": true
+        }
+      ],
+      "assignments": [
+        {
+          "moduleId": "mod-1",
+          "title": "Makharij Identification Chart",
+          "description": "Complete the provided chart by matching each of the 28 letters to its correct articulation point (throat, tongue, lips, nasal cavity, or oral cavity). Record a short audio clip pronouncing one example letter from each of the five regions. Double-check tongue-letter placements against the lesson diagram, since this group has the most sub-points. Submit the completed chart and your audio clip together.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "Qalqalah and Tafkheem Recitation Drill",
+          "description": "Select five ayat containing at least one Qalqalah letter each and five ayat containing at least one heavy (mufakhkham) letter each. Record yourself reciting all ten ayat, clearly bringing out the Qalqalah bounce and the heaviness of the mufakhkham letters. List the specific letters you applied each rule to beside each ayah reference. Submit your recording along with the annotated ayah list.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "Noon Sakinah and Tanween Worksheet",
+          "description": "Go through the one-page passage provided and underline every instance of Noon Sakinah or Tanween. For each instance, label it Izhar, Idgham, Iqlab, or Ikhfa based on the letter that follows. Recite the full passage aloud once you have finished labeling and record the recitation. Submit both the labeled passage and the audio recording.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "Meem Sakinah Rule Application",
+          "description": "Using the ten example ayat provided, identify every occurrence of Meem Sakinah and label each one as Ikhfa Shafawi, Idgham Shafawi, or Izhar Shafawi. Explain in one sentence per example why that rule applies based on the following letter. Record yourself reciting the ten ayat applying the rules correctly. Submit your written labels alongside the recording.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "Madd Counting Exercise",
+          "description": "Review the five ayat provided and mark every madd letter, classifying each as Madd Asli, Madd Muttasil, Madd Munfasil, or Madd Laazim with the correct count for each. Recite the ayat aloud while consciously holding each madd for its correct duration, and record this recitation. Compare your recording to the reference audio and note any madd you held for the wrong length. Submit your markings, recording, and self-comparison notes.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "Waqf Sign Mapping Assignment",
+          "description": "Take the one-page excerpt provided and identify every waqf sign present, writing its name and meaning next to each occurrence. Practice reciting the excerpt, stopping only where the signs indicate it is correct or necessary to do so. Note any place where you were tempted to stop but the sign forbade it, and explain why stopping there would change the meaning. Submit your annotated excerpt and a brief written explanation.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-7",
+          "title": "Full Tajweed Recitation Project",
+          "description": "Choose any ten consecutive ayat from Juz Amma that you have not previously recited for this course and prepare a full Tajweed-applied recitation. Annotate a printed or written copy of the ayat marking every Noon Sakinah/Tanween rule, Meem Sakinah rule, madd type, and waqf sign you identify. Record your final recitation only after you are satisfied with your annotation and practice. Submit the annotated ayat and the final recording as your capstone assignment for this course.",
+          "points": 150,
+          "dueInDays": 10
+        }
+      ],
+      "quizzes": [
+        {
+          "moduleId": "mod-1",
+          "title": "Module 1 Quiz: Makhaarij",
+          "duration": 18,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "According to the majority of scholars, how many major articulation regions (Makharij) are there?",
+              "points": 2,
+              "options": [
+                "Three",
+                "Four",
+                "Five",
+                "Six"
+              ],
+              "correctAnswer": "Five"
+            },
+            {
+              "type": "mcq",
+              "text": "Which region produces the largest number of Arabic letters?",
+              "points": 2,
+              "options": [
+                "The throat",
+                "The lips",
+                "The tongue",
+                "The nasal cavity"
+              ],
+              "correctAnswer": "The tongue"
+            },
+            {
+              "type": "mcq",
+              "text": "The letter Haa (ح) and Ain (ع) are articulated from which region?",
+              "points": 2,
+              "options": [
+                "The lips",
+                "The throat",
+                "The tongue tip",
+                "The nasal cavity"
+              ],
+              "correctAnswer": "The throat"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of the following letters is articulated from the lips (Shafatain)?",
+              "points": 2,
+              "options": [
+                "Kaaf",
+                "Qaf",
+                "Meem",
+                "Ain"
+              ],
+              "correctAnswer": "Meem"
+            },
+            {
+              "type": "mcq",
+              "text": "The nasal cavity (Al-Khayshoom) is the source of which sound?",
+              "points": 2,
+              "options": [
+                "The heavy letters",
+                "The Ghunnah (nasal) sound",
+                "The Qalqalah bounce",
+                "The nun letters only"
+              ],
+              "correctAnswer": "The Ghunnah (nasal) sound"
+            },
+            {
+              "type": "tf",
+              "text": "The tongue has more articulation points than any other region of the mouth or throat.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Makharij refers to how a letter sounds, while Sifaat refers to where a letter is produced.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "What is the Arabic term for the articulation point of a letter?",
+              "points": 2,
+              "correctAnswer": "Makhraj (plural: Makharij)"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "Module 2 Quiz: Sifaat",
+          "duration": 18,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many letters make up the Qalqalah group?",
+              "points": 2,
+              "options": [
+                "Three",
+                "Four",
+                "Five",
+                "Six"
+              ],
+              "correctAnswer": "Five"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of the following is a Qalqalah letter?",
+              "points": 2,
+              "options": [
+                "Seen",
+                "Qaf",
+                "Laam",
+                "Faa"
+              ],
+              "correctAnswer": "Qaf"
+            },
+            {
+              "type": "mcq",
+              "text": "Qalqalah occurs when a Qalqalah letter carries which state?",
+              "points": 2,
+              "options": [
+                "A Fatha",
+                "A Damma",
+                "A Sukoon",
+                "A Shaddah with Kasra"
+              ],
+              "correctAnswer": "A Sukoon"
+            },
+            {
+              "type": "mcq",
+              "text": "Tafkheem refers to letters pronounced with which quality?",
+              "points": 2,
+              "options": [
+                "Lightness",
+                "Heaviness/thickness",
+                "Silence",
+                "Nasalization"
+              ],
+              "correctAnswer": "Heaviness/thickness"
+            },
+            {
+              "type": "mcq",
+              "text": "Which term describes the opposite of Tafkheem — a light, thin letter sound?",
+              "points": 2,
+              "options": [
+                "Idgham",
+                "Ikhfa",
+                "Tarqeeq",
+                "Qalqalah"
+              ],
+              "correctAnswer": "Tarqeeq"
+            },
+            {
+              "type": "tf",
+              "text": "Sifaat al-Huruf describes how a letter sounds, such as heavy, light, whispered, or voiced.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "All Arabic letters are pronounced with the same weight and intensity.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name the five Qalqalah letters.",
+              "points": 2,
+              "correctAnswer": "Qaf, Taa, Baa, Jeem, Daal"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "Module 3 Quiz: Noon Sakinah and Tanween",
+          "duration": 18,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many main rules govern Noon Sakinah and Tanween?",
+              "points": 2,
+              "options": [
+                "Two",
+                "Three",
+                "Four",
+                "Five"
+              ],
+              "correctAnswer": "Four"
+            },
+            {
+              "type": "mcq",
+              "text": "Izhar (clear pronunciation) of Noon Sakinah occurs before which group of letters?",
+              "points": 2,
+              "options": [
+                "The six throat letters",
+                "The Qalqalah letters",
+                "The heavy letters",
+                "The Madd letters"
+              ],
+              "correctAnswer": "The six throat letters"
+            },
+            {
+              "type": "mcq",
+              "text": "Iqlab occurs only before which single letter?",
+              "points": 2,
+              "options": [
+                "Meem",
+                "Baa",
+                "Laam",
+                "Waw"
+              ],
+              "correctAnswer": "Baa"
+            },
+            {
+              "type": "mcq",
+              "text": "What happens to the Noon sound during Iqlab?",
+              "points": 2,
+              "options": [
+                "It is dropped completely",
+                "It is converted into a nasalized Meem sound",
+                "It becomes a heavy letter",
+                "It is doubled"
+              ],
+              "correctAnswer": "It is converted into a nasalized Meem sound"
+            },
+            {
+              "type": "mcq",
+              "text": "Ikhfa applies to how many of the remaining Arabic letters?",
+              "points": 2,
+              "options": [
+                "Ten",
+                "Twelve",
+                "Fifteen",
+                "Twenty"
+              ],
+              "correctAnswer": "Fifteen"
+            },
+            {
+              "type": "tf",
+              "text": "Idgham with Ghunnah applies to the letters ي ن م و.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Tanween and Noon Sakinah follow completely different sets of rules.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "What is the Arabic term for the rule where a Noon Sakinah is hidden with a nasal sound before fifteen letters?",
+              "points": 2,
+              "correctAnswer": "Ikhfa"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "Module 4 Quiz: Meem Sakinah",
+          "duration": 18,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many rules govern Meem Sakinah?",
+              "points": 2,
+              "options": [
+                "Two",
+                "Three",
+                "Four",
+                "Five"
+              ],
+              "correctAnswer": "Three"
+            },
+            {
+              "type": "mcq",
+              "text": "Ikhfa Shafawi occurs when Meem Sakinah is followed by which letter?",
+              "points": 2,
+              "options": [
+                "Meem",
+                "Baa",
+                "Noon",
+                "Faa"
+              ],
+              "correctAnswer": "Baa"
+            },
+            {
+              "type": "mcq",
+              "text": "Idgham Shafawi occurs when Meem Sakinah is followed by which letter?",
+              "points": 2,
+              "options": [
+                "Baa",
+                "Meem",
+                "Laam",
+                "Raa"
+              ],
+              "correctAnswer": "Meem"
+            },
+            {
+              "type": "mcq",
+              "text": "Izhar Shafawi applies when Meem Sakinah is followed by:",
+              "points": 2,
+              "options": [
+                "Only Baa",
+                "Only Meem",
+                "Any letter except Baa and Meem",
+                "Any of the throat letters only"
+              ],
+              "correctAnswer": "Any letter except Baa and Meem"
+            },
+            {
+              "type": "mcq",
+              "text": "The term 'Shafawi' in Meem Sakinah rules refers to which articulation point?",
+              "points": 2,
+              "options": [
+                "The throat",
+                "The tongue",
+                "The lips",
+                "The nose"
+              ],
+              "correctAnswer": "The lips"
+            },
+            {
+              "type": "tf",
+              "text": "Idgham Shafawi and Ikhfa Shafawi are both accompanied by a Ghunnah.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Izhar Shafawi requires a nasal sound to be added to the Meem.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "What does 'Shafawi' mean in Arabic, and why are Meem Sakinah rules given this name?",
+              "points": 2,
+              "correctAnswer": "Shafawi means 'lip-related'; the rules are named this because Meem is articulated from the lips"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "Module 5 Quiz: Madd",
+          "duration": 18,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Madd Asli (the natural madd) is typically held for how many counts?",
+              "points": 2,
+              "options": [
+                "One count",
+                "Two counts",
+                "Four counts",
+                "Six counts"
+              ],
+              "correctAnswer": "Two counts"
+            },
+            {
+              "type": "mcq",
+              "text": "Madd Muttasil occurs when a madd letter is followed by a hamzah:",
+              "points": 2,
+              "options": [
+                "In the same word",
+                "In the following word only",
+                "Never with a hamzah",
+                "Only at the end of a surah"
+              ],
+              "correctAnswer": "In the same word"
+            },
+            {
+              "type": "mcq",
+              "text": "Madd Munfasil occurs when a madd letter is followed by a hamzah:",
+              "points": 2,
+              "options": [
+                "In the same word",
+                "At the start of the next word",
+                "Only before Sukoon",
+                "Only in Surah Al-Fatihah"
+              ],
+              "correctAnswer": "At the start of the next word"
+            },
+            {
+              "type": "mcq",
+              "text": "Madd Laazim is generally held for how many counts?",
+              "points": 2,
+              "options": [
+                "Two counts",
+                "Four counts",
+                "Six counts",
+                "Eight counts"
+              ],
+              "correctAnswer": "Six counts"
+            },
+            {
+              "type": "mcq",
+              "text": "Which three letters can function as madd letters?",
+              "points": 2,
+              "options": [
+                "Alif, Waw, Yaa",
+                "Baa, Taa, Thaa",
+                "Noon, Meem, Laam",
+                "Ain, Ghain, Qaf"
+              ],
+              "correctAnswer": "Alif, Waw, Yaa"
+            },
+            {
+              "type": "tf",
+              "text": "Madd Laazim is generally the longest of the standard madd durations.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Madd Asli occurs when a madd letter is immediately followed by a hamzah.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "What condition must be met for a madd letter to only produce Madd Asli (natural madd) rather than a secondary madd?",
+              "points": 2,
+              "correctAnswer": "It must not be followed by a hamzah or a sukoon"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "Module 6 Quiz: Waqf",
+          "duration": 18,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "What does the Arabic word 'Waqf' mean?",
+              "points": 2,
+              "options": [
+                "Continue",
+                "Stop",
+                "Repeat",
+                "Skip"
+              ],
+              "correctAnswer": "Stop"
+            },
+            {
+              "type": "mcq",
+              "text": "The waqf sign meem (م) indicates:",
+              "points": 2,
+              "options": [
+                "A forbidden stop",
+                "A compulsory stop",
+                "An optional stop",
+                "A stop only for beginners"
+              ],
+              "correctAnswer": "A compulsory stop"
+            },
+            {
+              "type": "mcq",
+              "text": "The waqf sign 'laa' (لا) generally indicates that stopping there is:",
+              "points": 2,
+              "options": [
+                "Compulsory",
+                "Recommended",
+                "Not allowed, as it may distort the meaning",
+                "Only for the imam"
+              ],
+              "correctAnswer": "Not allowed, as it may distort the meaning"
+            },
+            {
+              "type": "mcq",
+              "text": "Why is correct application of waqf important in Quran recitation?",
+              "points": 2,
+              "options": [
+                "It makes recitation faster",
+                "It preserves the intended meaning of the verse",
+                "It is only a stylistic choice",
+                "It has no effect on meaning"
+              ],
+              "correctAnswer": "It preserves the intended meaning of the verse"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of these is one of the four classical categories of waqf?",
+              "points": 2,
+              "options": [
+                "Waqf Taam (complete stop)",
+                "Waqf Sareeh",
+                "Waqf Khafeef",
+                "Waqf Ajnabi"
+              ],
+              "correctAnswer": "Waqf Taam (complete stop)"
+            },
+            {
+              "type": "tf",
+              "text": "Stopping at a waqf sign marked as forbidden can change the meaning of the verse.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "All waqf signs in the Mushaf require the reciter to stop every single time.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "What is the general term for the symbols printed in the Mushaf that guide a reciter on where to pause?",
+              "points": 2,
+              "correctAnswer": "Alamat al-Waqf (waqf signs)"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-7",
+          "title": "Module 7 Quiz: Applied Recitation",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "When reciting fluently, which combination of rules must a student apply simultaneously?",
+              "points": 2,
+              "options": [
+                "Only Madd rules",
+                "Only Waqf signs",
+                "Makharij, Sifaat, Noon/Meem rules, Madd, and Waqf together",
+                "Only Noon Sakinah rules"
+              ],
+              "correctAnswer": "Makharij, Sifaat, Noon/Meem rules, Madd, and Waqf together"
+            },
+            {
+              "type": "mcq",
+              "text": "A common mistake among intermediate students is rushing through which rule, causing it to be lost?",
+              "points": 2,
+              "options": [
+                "Madd counts",
+                "Letter shapes",
+                "Alphabet order",
+                "Surah numbering"
+              ],
+              "correctAnswer": "Madd counts"
+            },
+            {
+              "type": "mcq",
+              "text": "Applying Tafkheem incorrectly on a light letter would result in:",
+              "points": 2,
+              "options": [
+                "A correct recitation",
+                "The letter sounding unnaturally heavy",
+                "No audible difference",
+                "A change in meaning only"
+              ],
+              "correctAnswer": "The letter sounding unnaturally heavy"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the best way to identify and correct a recurring Tajweed mistake?",
+              "points": 2,
+              "options": [
+                "Ignore it and keep reciting",
+                "Record and review your own recitation, or get teacher feedback",
+                "Only read silently",
+                "Skip the difficult ayat"
+              ],
+              "correctAnswer": "Record and review your own recitation, or get teacher feedback"
+            },
+            {
+              "type": "mcq",
+              "text": "Why is it recommended to recite slowly (Tarteel) at this stage rather than quickly?",
+              "points": 2,
+              "options": [
+                "Slow recitation looks more impressive",
+                "It allows each Tajweed rule to be applied correctly",
+                "It is required only in Ramadan",
+                "It has no real benefit"
+              ],
+              "correctAnswer": "It allows each Tajweed rule to be applied correctly"
+            },
+            {
+              "type": "tf",
+              "text": "Once Tajweed rules are learned individually, combining them fluently in real recitation still takes practice.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "A reciter with correct Tajweed never needs feedback from a teacher.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name one specific area (e.g. Madd, Waqf, Ikhfa) you should focus on reviewing if you consistently rush your recitation.",
+              "points": 2,
+              "correctAnswer": "Madd (elongation counts) or Waqf (stopping rules), or similar reasonable answer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Quran Memorization & Advanced Tajweed",
+      "subject": "Quran with Tajweed",
+      "level": "Advanced",
+      "description": "An advanced course combining structured Hifz (memorization) methodology with advanced Tajweed rules, a Qiraat introduction, and basic Tafseer.",
+      "longDescription": "Quran Memorization & Advanced Tajweed is designed for students who have already mastered basic Tajweed and want to move toward Hifz (memorization) with a deeper, more refined command of recitation. The course opens with proven memorization methodology — building a daily routine, using spaced review, and handling Mutashabihat (verses that closely resemble one another) — before applying these techniques directly to a structured review of Juz Amma.\n\nFrom there, the course moves into advanced Tajweed territory beyond the basics: refined Ghunnah control, Idghaam Kabeer between moving letters, and less common techniques such as Imalah and Ishmam. Students are then introduced to the seven canonical Qiraat, focusing on Hafs 'an 'Asim (the riwayah used in most modern Mushafs) and a brief comparison with Warsh 'an Nafi'.\n\nA module on Tafseer basics ensures memorization is paired with understanding, using Surah Al-Fatihah as a practical case study. The course concludes with a comprehensive review module and a mock Hifz assessment to consolidate everything learned across the full three-course sequence.",
+      "objectives": [
+        "Design and follow a structured daily Hifz routine using spaced review",
+        "Recite the surahs of Juz Amma fluently and accurately from memory",
+        "Apply advanced Tajweed rules including Idghaam Kabeer, Imalah, and Ishmam",
+        "Describe the seven canonical Qiraat and compare Hafs 'an 'Asim with Warsh 'an Nafi'",
+        "Explain the basic meaning of Surah Al-Fatihah using foundational Tafseer tools",
+        "Perform a comprehensive, rule-compliant recitation under mock assessment conditions"
+      ],
+      "prerequisites": "Completion of Tajweed Rules — Proper Quran Recitation or equivalent intermediate Tajweed knowledge",
+      "published": true,
+      "modules": [
+        {
+          "id": "mod-1",
+          "title": "Module 1: Memorization Techniques",
+          "description": "Proven Hifz methods for building and maintaining new memorization.",
+          "order": 1
+        },
+        {
+          "id": "mod-2",
+          "title": "Module 2: Juz Amma Review",
+          "description": "Systematic review recitation of the 37 short surahs in the final juz of the Quran.",
+          "order": 2
+        },
+        {
+          "id": "mod-3",
+          "title": "Module 3: Advanced Tajweed",
+          "description": "Ghunnah mastery and less common rules including Idghaam Kabeer and Imalah.",
+          "order": 3
+        },
+        {
+          "id": "mod-4",
+          "title": "Module 4: Qiraat Introduction",
+          "description": "An introduction to the seven canonical modes of Quranic recitation.",
+          "order": 4
+        },
+        {
+          "id": "mod-5",
+          "title": "Module 5: Tafseer Basics",
+          "description": "Foundational tools and approach for understanding the meaning of what is recited.",
+          "order": 5
+        },
+        {
+          "id": "mod-6",
+          "title": "Module 6: Comprehensive Review",
+          "description": "A full recap of Tajweed rules and preparation for a mock Hifz assessment.",
+          "order": 6
+        }
+      ],
+      "lectures": [
+        {
+          "moduleId": "mod-1",
+          "title": "1.1 - Building a Daily Hifz Routine",
+          "duration": "22 mins",
+          "description": "Structuring consistent daily new-memorization and review sessions, including the concept of a fixed daily portion (wird).",
+          "videoId": "1Ast36-x6vQ",
+          "published": true
+        },
+        {
+          "moduleId": "mod-1",
+          "title": "1.2 - Repetition and Spaced Review Methods",
+          "duration": "20 mins",
+          "description": "Using structured repetition (reading each verse multiple times before reciting from memory) and spaced review intervals to move verses into long-term memory.",
+          "videoId": "1Ast36-x6vQ",
+          "published": true
+        },
+        {
+          "moduleId": "mod-1",
+          "title": "1.3 - Handling Mutashabihat (Similar Verses)",
+          "duration": "18 mins",
+          "description": "Techniques for distinguishing and correctly recalling verses in the Quran that closely resemble one another.",
+          "videoId": "1Ast36-x6vQ",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.1 - Review: Surah An-Naba to Surah Al-Buruj",
+          "duration": "26 mins",
+          "description": "Guided review recitation of the earlier, longer surahs of Juz Amma.",
+          "videoId": "xuwRT8Q5dOI",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.2 - Review: Surah At-Tariq to Surah Al-Bayyinah",
+          "duration": "24 mins",
+          "description": "Continuing structured review through the middle portion of Juz Amma.",
+          "videoId": "dyliFOsUPkU",
+          "published": true
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "2.3 - Review: Surah Az-Zalzalah to Surah An-Nas",
+          "duration": "23 mins",
+          "description": "Completing review of the final, shortest surahs of the Quran.",
+          "videoId": "gLoOGRV3dqw",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.1 - Mastering Ghunnah Duration and Quality",
+          "duration": "21 mins",
+          "description": "Refining the two-count nasal Ghunnah sound across Idgham, Ikhfa, Iqlab, and Meem/Noon Mushaddad.",
+          "videoId": "GXbfEkMg_AY",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.2 - Idghaam Kabeer: Mutamathilain, Mutajanisain, Mutaqaribain",
+          "duration": "25 mins",
+          "description": "Advanced merging rules that occur between two moving letters that are identical, share a makhraj, or are close in articulation.",
+          "videoId": "bLjDYMu14xg",
+          "published": true
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "3.3 - Imalah, Ishmam, and Other Advanced Recitation Techniques",
+          "duration": "22 mins",
+          "description": "Introducing less frequent advanced techniques found in specific riwayat, including Imalah (vowel tilting) and Ishmam (lip rounding after a stop).",
+          "videoId": "54arR-auqcI",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.1 - What Are the Seven Qiraat?",
+          "duration": "24 mins",
+          "description": "An overview of the seven canonically transmitted modes (Qiraat) of reciting the Quran and their scholarly chains of transmission.",
+          "videoId": "m5d0qLHT5iI",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.2 - Hafs 'an 'Asim: The Most Widely Used Riwayah",
+          "duration": "20 mins",
+          "description": "Focusing on the riwayah used in most printed Mushafs worldwide and how it relates to the broader Qiraat tradition.",
+          "videoId": "oSBAQwDUEV4",
+          "published": true
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "4.3 - A Brief Comparison With Warsh 'an Nafi'",
+          "duration": "19 mins",
+          "description": "Comparing a handful of well-known recitation differences between Hafs and Warsh to illustrate how Qiraat differences work in practice.",
+          "videoId": "A50an842ZPM",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.1 - What Is Tafseer and Why It Matters",
+          "duration": "20 mins",
+          "description": "Introducing Tafseer as the discipline of explaining Quranic meaning, and why memorizers benefit from understanding what they recite.",
+          "videoId": "xuwRT8Q5dOI",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.2 - Tafseer of Surah Al-Fatihah",
+          "duration": "26 mins",
+          "description": "A verse-by-verse walkthrough of the meaning of Surah Al-Fatihah as a practical introduction to Tafseer study.",
+          "videoId": "dyliFOsUPkU",
+          "published": true
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "5.3 - Basic Tools for Tafseer Study",
+          "duration": "18 mins",
+          "description": "Introducing word-by-word translation, classical Tafseer texts, and how to approach them as a student rather than a scholar.",
+          "videoId": "gLoOGRV3dqw",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.1 - Full Tajweed Rules Recap",
+          "duration": "28 mins",
+          "description": "A consolidated review of Makharij, Sifaat, Noon/Meem rules, Madd, and Waqf across all three courses.",
+          "videoId": "GXbfEkMg_AY",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.2 - Mock Hifz Test Preparation",
+          "duration": "24 mins",
+          "description": "Simulating a Hifz assessment format, including random-start recitation and connecting-verse tests.",
+          "videoId": "1Ast36-x6vQ",
+          "published": true
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "6.3 - Final Course Review and Next Steps",
+          "duration": "20 mins",
+          "description": "Wrapping up the course with guidance on continuing Hifz beyond Juz Amma and maintaining Tajweed standards long-term.",
+          "videoId": "B1SLLUeywU0",
+          "published": true
+        }
+      ],
+      "assignments": [
+        {
+          "moduleId": "mod-1",
+          "title": "Personal Hifz Plan",
+          "description": "Design a one-week Hifz plan that includes a fixed daily new-memorization portion and a separate daily review portion, following the spaced review approach covered in this module. Include specific times of day you intend to study and how you will track what you have reviewed. Test the plan for three days and note where it succeeded or broke down. Submit your written plan along with your three-day progress notes.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "Juz Amma Recitation Checkpoint",
+          "description": "Choose five surahs from Juz Amma covered in this module's review and record yourself reciting each one fully from memory, without looking at the Mushaf. Note the timestamp of any point where you hesitated or needed a prompt. Review your own recording and identify any Mutashabihat verses that caused confusion. Submit the recording along with your hesitation notes.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "Advanced Rule Identification Assignment",
+          "description": "In the two-page passage provided, identify and label every instance of Idghaam Kabeer (Mutamathilain, Mutajanisain, or Mutaqaribain) and every extended Ghunnah. Recite the passage aloud applying these advanced rules and record your recitation. Compare your labeling with the answer key provided and correct any mistakes in a different color. Submit your corrected labeling and your recording.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "Qiraat Comparison Reflection",
+          "description": "Listen to the two provided recitations of the same short passage, one in Hafs 'an 'Asim and one in Warsh 'an Nafi', and write down at least three specific differences you notice. For each difference, note whether it affects pronunciation, word form, or both. Reflect briefly on why multiple authentic Qiraat exist within the Islamic scholarly tradition. Submit your written comparison and reflection.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "Tafseer Reflection on Surah Al-Fatihah",
+          "description": "Write a short reflection, at least one paragraph per verse, on the meaning of each of the seven verses of Surah Al-Fatihah based on the lecture and any classical Tafseer source you consult. Note at least one practical lesson you personally draw from the surah. Cite which Tafseer source or sources you referred to. Submit your written reflection as a single document.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "Final Comprehensive Hifz and Tajweed Assessment",
+          "description": "Record a complete recitation of two full surahs from Juz Amma from memory, applying every Tajweed rule covered across this course sequence (Makharij, Sifaat, Noon/Meem rules, Madd, and Waqf). Before recording, self-review using the full rules checklist provided and mark any rule you are still unsure about. After recording, write a short self-assessment identifying your two strongest areas and two areas you plan to keep practicing. Submit your recording, checklist, and self-assessment as your final project for this course.",
+          "points": 150,
+          "dueInDays": 14
+        }
+      ],
+      "quizzes": [
+        {
+          "moduleId": "mod-1",
+          "title": "Module 1 Quiz: Memorization Techniques",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "What is the term for a student's fixed daily portion of new Quran memorization?",
+              "points": 2,
+              "options": [
+                "Wird",
+                "Waqf",
+                "Sanad",
+                "Tafseer"
+              ],
+              "correctAnswer": "Wird"
+            },
+            {
+              "type": "mcq",
+              "text": "Which method involves repeating each verse multiple times before attempting to recite it from memory?",
+              "points": 2,
+              "options": [
+                "The spaced repetition method",
+                "The repetition method",
+                "The mock test method",
+                "The Mutashabihat method"
+              ],
+              "correctAnswer": "The repetition method"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the main purpose of a spaced review schedule?",
+              "points": 2,
+              "options": [
+                "To memorize faster in one sitting",
+                "To move memorized material into long-term memory through review at increasing intervals",
+                "To skip difficult surahs",
+                "To avoid reciting to a teacher"
+              ],
+              "correctAnswer": "To move memorized material into long-term memory through review at increasing intervals"
+            },
+            {
+              "type": "mcq",
+              "text": "What are Mutashabihat verses?",
+              "points": 2,
+              "options": [
+                "Verses about the Day of Judgment",
+                "Verses that closely resemble one another in wording",
+                "The longest verses in the Quran",
+                "Verses that must always be recited last"
+              ],
+              "correctAnswer": "Verses that closely resemble one another in wording"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of these is a recommended technique for reinforcing memorization?",
+              "points": 2,
+              "options": [
+                "Reciting only silently and never aloud",
+                "Reciting memorized portions during voluntary prayers",
+                "Memorizing only once with no review",
+                "Avoiding teacher feedback"
+              ],
+              "correctAnswer": "Reciting memorized portions during voluntary prayers"
+            },
+            {
+              "type": "mcq",
+              "text": "Breaking a long ayah into smaller phrases before memorizing it whole is an example of which approach?",
+              "points": 2,
+              "options": [
+                "The line-by-line or segment approach",
+                "The Qiraat comparison approach",
+                "The Waqf mapping approach",
+                "The Ghunnah approach"
+              ],
+              "correctAnswer": "The line-by-line or segment approach"
+            },
+            {
+              "type": "tf",
+              "text": "Regular, spaced review is considered more effective for long-term retention than memorizing once and never reviewing.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Forgetting previously memorized verses is unusual and indicates a serious problem.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "What Arabic term is used for a person who has memorized the entire Quran?",
+              "points": 2,
+              "correctAnswer": "Hafiz (female: Hafizah)"
+            },
+            {
+              "type": "short",
+              "text": "Name one recommended way to reinforce memorized verses beyond simple silent repetition.",
+              "points": 2,
+              "correctAnswer": "Any reasonable answer such as: reciting aloud, reciting in prayer, writing the verse, teaching it to someone else, or listening to a reciter"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-2",
+          "title": "Module 2 Quiz: Juz Amma Review",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Which surah begins with the question 'What are they asking one another about?'",
+              "points": 2,
+              "options": [
+                "An-Naba",
+                "Al-Buruj",
+                "At-Tariq",
+                "Al-Bayyinah"
+              ],
+              "correctAnswer": "An-Naba"
+            },
+            {
+              "type": "mcq",
+              "text": "Surah Al-Buruj is named after which subject?",
+              "points": 2,
+              "options": [
+                "The constellations/mansions of stars",
+                "The night star",
+                "The clear evidence",
+                "The earthquake"
+              ],
+              "correctAnswer": "The constellations/mansions of stars"
+            },
+            {
+              "type": "mcq",
+              "text": "Surah At-Tariq takes its name from which subject?",
+              "points": 2,
+              "options": [
+                "The night star/comer",
+                "The overwhelming event",
+                "The clot",
+                "The earthquake"
+              ],
+              "correctAnswer": "The night star/comer"
+            },
+            {
+              "type": "mcq",
+              "text": "Surah Al-Bayyinah is generally translated as:",
+              "points": 2,
+              "options": [
+                "The Clear Evidence",
+                "The Star",
+                "The Fig",
+                "The Splitting"
+              ],
+              "correctAnswer": "The Clear Evidence"
+            },
+            {
+              "type": "mcq",
+              "text": "Surah Az-Zalzalah describes which event?",
+              "points": 2,
+              "options": [
+                "The Day of Judgment's earthquake",
+                "The story of the Elephant",
+                "The night journey",
+                "The victory of Makkah"
+              ],
+              "correctAnswer": "The Day of Judgment's earthquake"
+            },
+            {
+              "type": "mcq",
+              "text": "Which surah is the very last chapter in the order of the Quran?",
+              "points": 2,
+              "options": [
+                "Al-Ikhlas",
+                "Al-Falaq",
+                "An-Nas",
+                "Al-Kawthar"
+              ],
+              "correctAnswer": "An-Nas"
+            },
+            {
+              "type": "mcq",
+              "text": "Juz Amma refers to which portion of the Quran?",
+              "points": 2,
+              "options": [
+                "The first juz",
+                "The final (thirtieth) juz",
+                "Only Surah Al-Baqarah",
+                "The middle ten surahs"
+              ],
+              "correctAnswer": "The final (thirtieth) juz"
+            },
+            {
+              "type": "tf",
+              "text": "Juz Amma contains 37 surahs, most of which are shorter than surahs found earlier in the Quran.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Surah An-Naba comes after Surah An-Nas in the order of the Mushaf.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name any one surah reviewed in this module between An-Naba and Al-Buruj.",
+              "points": 2,
+              "correctAnswer": "Any surah from An-Naba to Al-Buruj, e.g. An-Nazi'at, 'Abasa, At-Takwir, Al-Infitar, Al-Mutaffifin, Al-Inshiqaq"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-3",
+          "title": "Module 3 Quiz: Advanced Tajweed",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Idghaam Mutamathilain occurs when two adjacent letters are:",
+              "points": 2,
+              "options": [
+                "Completely identical",
+                "From different makharij entirely",
+                "Both heavy letters",
+                "Both throat letters"
+              ],
+              "correctAnswer": "Completely identical"
+            },
+            {
+              "type": "mcq",
+              "text": "Idghaam Mutajanisain occurs between two letters that:",
+              "points": 2,
+              "options": [
+                "Share the same makhraj but differ in Sifaat",
+                "Are always identical",
+                "Are always in different words",
+                "Are both madd letters"
+              ],
+              "correctAnswer": "Share the same makhraj but differ in Sifaat"
+            },
+            {
+              "type": "mcq",
+              "text": "Idghaam Mutaqaribain occurs between two letters that are:",
+              "points": 2,
+              "options": [
+                "Identical in every way",
+                "Close to each other in makhraj and/or Sifaat",
+                "From completely opposite articulation points",
+                "Always Qalqalah letters"
+              ],
+              "correctAnswer": "Close to each other in makhraj and/or Sifaat"
+            },
+            {
+              "type": "mcq",
+              "text": "Ghunnah is typically held for how many counts in standard cases like Idgham and Ikhfa?",
+              "points": 2,
+              "options": [
+                "One count",
+                "Two counts",
+                "Four counts",
+                "Six counts"
+              ],
+              "correctAnswer": "Two counts"
+            },
+            {
+              "type": "mcq",
+              "text": "Imalah refers to:",
+              "points": 2,
+              "options": [
+                "A doubling of a letter",
+                "Tilting a Fatha vowel sound toward a Kasra sound",
+                "A type of stop sign",
+                "An extended Madd"
+              ],
+              "correctAnswer": "Tilting a Fatha vowel sound toward a Kasra sound"
+            },
+            {
+              "type": "mcq",
+              "text": "Ishmam is a technique applied in which context?",
+              "points": 2,
+              "options": [
+                "While making a stop, rounding the lips without sound to hint at a Damma",
+                "While reciting Tanween",
+                "Only in Surah Al-Fatihah",
+                "Only for beginners"
+              ],
+              "correctAnswer": "While making a stop, rounding the lips without sound to hint at a Damma"
+            },
+            {
+              "type": "mcq",
+              "text": "Advanced Tajweed rules like Imalah and Ishmam are typically associated with:",
+              "points": 2,
+              "options": [
+                "Every riwayah equally and identically",
+                "Specific riwayat/Qiraat where they are transmitted",
+                "Only modern recitation styles",
+                "Only Noorani Qaida"
+              ],
+              "correctAnswer": "Specific riwayat/Qiraat where they are transmitted"
+            },
+            {
+              "type": "tf",
+              "text": "Idghaam Kabeer rules apply to two moving (non-sakin) letters, unlike Idghaam of Noon Sakinah.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Ghunnah quality and duration should remain consistent regardless of which rule triggers it.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "short",
+              "text": "What is the key difference between Idghaam Mutamathilain and Idghaam Mutajanisain?",
+              "points": 2,
+              "correctAnswer": "Mutamathilain involves two completely identical letters, while Mutajanisain involves two letters that share the same makhraj but differ in their sifaat"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-4",
+          "title": "Module 4 Quiz: Qiraat Introduction",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many canonical Qiraat (modes of recitation) are traditionally recognized?",
+              "points": 2,
+              "options": [
+                "Five",
+                "Seven",
+                "Ten",
+                "Twelve"
+              ],
+              "correctAnswer": "Seven"
+            },
+            {
+              "type": "mcq",
+              "text": "Which riwayah is used in most printed Mushafs distributed worldwide today?",
+              "points": 2,
+              "options": [
+                "Warsh 'an Nafi'",
+                "Qalun 'an Nafi'",
+                "Hafs 'an 'Asim",
+                "Ad-Duri 'an Abi 'Amr"
+              ],
+              "correctAnswer": "Hafs 'an 'Asim"
+            },
+            {
+              "type": "mcq",
+              "text": "What does the term 'riwayah' refer to in the context of Qiraat?",
+              "points": 2,
+              "options": [
+                "A type of Waqf sign",
+                "A specific transmission of a Qiraat through a particular narrator",
+                "A style of calligraphy",
+                "A translation of the Quran"
+              ],
+              "correctAnswer": "A specific transmission of a Qiraat through a particular narrator"
+            },
+            {
+              "type": "mcq",
+              "text": "Warsh 'an Nafi' is a riwayah historically most associated with reciters in which region?",
+              "points": 2,
+              "options": [
+                "North and West Africa",
+                "South Asia",
+                "East Asia",
+                "Central Europe"
+              ],
+              "correctAnswer": "North and West Africa"
+            },
+            {
+              "type": "mcq",
+              "text": "The differences between authentic Qiraat generally involve:",
+              "points": 2,
+              "options": [
+                "Changes to the core meaning of the Quran",
+                "Variations in pronunciation, vowelling, or word form within the same authentic transmission",
+                "Different chapters of the Quran entirely",
+                "Additions of new verses"
+              ],
+              "correctAnswer": "Variations in pronunciation, vowelling, or word form within the same authentic transmission"
+            },
+            {
+              "type": "mcq",
+              "text": "Each of the seven Qiraat is transmitted through:",
+              "points": 2,
+              "options": [
+                "A single unverified source",
+                "An authenticated chain of narration (isnad) back to the Prophet",
+                "Modern audio recordings only",
+                "Personal preference of the reciter"
+              ],
+              "correctAnswer": "An authenticated chain of narration (isnad) back to the Prophet"
+            },
+            {
+              "type": "mcq",
+              "text": "Studying an introduction to Qiraat mainly helps an advanced student to:",
+              "points": 2,
+              "options": [
+                "Replace their current Tajweed knowledge",
+                "Understand and appreciate legitimate recitation differences they may encounter",
+                "Avoid learning Tajweed rules",
+                "Skip Hifz review"
+              ],
+              "correctAnswer": "Understand and appreciate legitimate recitation differences they may encounter"
+            },
+            {
+              "type": "tf",
+              "text": "All seven canonical Qiraat are considered authentic, mutawatir transmissions of the Quran.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Qiraat differences change the meaning of the Quran in a way that contradicts other Qiraat.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name the riwayah most commonly printed and used worldwide today, along with its narrator's name.",
+              "points": 2,
+              "correctAnswer": "Hafs 'an 'Asim (narrated by Hafs from Imam 'Asim)"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-5",
+          "title": "Module 5 Quiz: Tafseer Basics",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "What does the term 'Tafseer' refer to?",
+              "points": 2,
+              "options": [
+                "The science of Quranic recitation rules",
+                "The explanation and interpretation of Quranic meaning",
+                "The memorization method for Hifz",
+                "The study of Arabic calligraphy"
+              ],
+              "correctAnswer": "The explanation and interpretation of Quranic meaning"
+            },
+            {
+              "type": "mcq",
+              "text": "Surah Al-Fatihah is often described as containing a summary of:",
+              "points": 2,
+              "options": [
+                "Only the rules of inheritance",
+                "The core themes of the entire Quran",
+                "Only historical narratives",
+                "Arabic grammar rules"
+              ],
+              "correctAnswer": "The core themes of the entire Quran"
+            },
+            {
+              "type": "mcq",
+              "text": "What is a practical benefit of studying basic Tafseer alongside memorization?",
+              "points": 2,
+              "options": [
+                "It replaces the need for correct Tajweed",
+                "It deepens understanding and reflection on what is being recited",
+                "It shortens the memorization process",
+                "It removes the need for review"
+              ],
+              "correctAnswer": "It deepens understanding and reflection on what is being recited"
+            },
+            {
+              "type": "mcq",
+              "text": "A word-by-word translation is a useful beginner tool because it:",
+              "points": 2,
+              "options": [
+                "Provides deep scholarly analysis on its own",
+                "Helps connect individual Arabic words to their meaning",
+                "Replaces classical Tafseer entirely",
+                "Is only useful for Qiraat study"
+              ],
+              "correctAnswer": "Helps connect individual Arabic words to their meaning"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of these is an example of a classical Tafseer approach a beginner might be introduced to?",
+              "points": 2,
+              "options": [
+                "Explaining verses using other verses and authentic hadith",
+                "Relying solely on personal opinion with no sources",
+                "Ignoring the historical context of revelation",
+                "Skipping difficult verses entirely"
+              ],
+              "correctAnswer": "Explaining verses using other verses and authentic hadith"
+            },
+            {
+              "type": "mcq",
+              "text": "In Surah Al-Fatihah, the verse 'Guide us to the straight path' is primarily a form of:",
+              "points": 2,
+              "options": [
+                "Historical narration",
+                "Supplication (dua)",
+                "Legal ruling",
+                "Prophetic biography"
+              ],
+              "correctAnswer": "Supplication (dua)"
+            },
+            {
+              "type": "mcq",
+              "text": "Approaching Tafseer study at a beginner level should generally involve:",
+              "points": 2,
+              "options": [
+                "Issuing new religious rulings independently",
+                "Learning basic meanings while respecting the limits of one's knowledge",
+                "Rejecting classical scholarship",
+                "Avoiding any secondary sources"
+              ],
+              "correctAnswer": "Learning basic meanings while respecting the limits of one's knowledge"
+            },
+            {
+              "type": "tf",
+              "text": "Understanding the meaning of what is recited can enhance a student's connection to their memorization.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "A beginner-level Tafseer student is expected to derive new legal rulings independently.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name one classical or contemporary Tafseer resource type a student might consult (e.g. a specific tool or resource category), as discussed in this module.",
+              "points": 2,
+              "correctAnswer": "Any reasonable answer such as: a classical Tafseer text, a word-by-word translation, or a reputable translated Tafseer resource"
+            }
+          ]
+        },
+        {
+          "moduleId": "mod-6",
+          "title": "Module 6 Quiz: Comprehensive Review",
+          "duration": 25,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Which of the following correctly lists the main categories of Tajweed knowledge covered across this course sequence?",
+              "points": 2,
+              "options": [
+                "Makharij, Sifaat, Noon/Meem rules, Madd, Waqf",
+                "Only Madd and Waqf",
+                "Only Makharij and Qiraat",
+                "Only Hifz techniques"
+              ],
+              "correctAnswer": "Makharij, Sifaat, Noon/Meem rules, Madd, Waqf"
+            },
+            {
+              "type": "mcq",
+              "text": "In a mock Hifz test, a 'random-start' exercise typically asks the student to:",
+              "points": 2,
+              "options": [
+                "Only recite the first verse of a surah",
+                "Continue reciting correctly from any given point in a memorized surah",
+                "Recite silently with no assessment",
+                "Skip any difficult sections"
+              ],
+              "correctAnswer": "Continue reciting correctly from any given point in a memorized surah"
+            },
+            {
+              "type": "mcq",
+              "text": "Which rule set governs a silent Noon followed by the letter Baa?",
+              "points": 2,
+              "options": [
+                "Ikhfa Shafawi",
+                "Iqlab",
+                "Idgham Shafawi",
+                "Izhar Shafawi"
+              ],
+              "correctAnswer": "Iqlab"
+            },
+            {
+              "type": "mcq",
+              "text": "Which rule set governs a silent Meem followed by another Meem?",
+              "points": 2,
+              "options": [
+                "Ikhfa",
+                "Iqlab",
+                "Idgham Shafawi",
+                "Izhar"
+              ],
+              "correctAnswer": "Idgham Shafawi"
+            },
+            {
+              "type": "mcq",
+              "text": "A Madd letter followed by a hamzah within the same word produces which type of Madd?",
+              "points": 2,
+              "options": [
+                "Madd Asli",
+                "Madd Muttasil",
+                "Madd Munfasil",
+                "Madd Laazim"
+              ],
+              "correctAnswer": "Madd Muttasil"
+            },
+            {
+              "type": "mcq",
+              "text": "Which waqf sign generally indicates a stop is compulsory?",
+              "points": 2,
+              "options": [
+                "Laa",
+                "Meem",
+                "Sad-Laam-Ya",
+                "Qif"
+              ],
+              "correctAnswer": "Meem"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the most reliable long-term strategy for maintaining both Hifz and Tajweed accuracy after finishing a course?",
+              "points": 2,
+              "options": [
+                "Stopping all review once the course ends",
+                "Continued spaced review and periodic teacher feedback",
+                "Relying on memory alone with no further recitation",
+                "Switching focus entirely away from recitation"
+              ],
+              "correctAnswer": "Continued spaced review and periodic teacher feedback"
+            },
+            {
+              "type": "tf",
+              "text": "Combining Makharij, Sifaat, Noon/Meem rules, Madd, and Waqf fluently in real-time recitation is the ultimate goal of studying Tajweed.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Once a student passes a Hifz assessment, no further review of memorized material is needed.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "List two specific Tajweed rule categories you personally feel most confident applying, based on this course sequence.",
+              "points": 3,
+              "correctAnswer": "Open-ended; any two reasonable categories such as Makharij, Sifaat, Noon Sakinah rules, Meem Sakinah rules, Madd, or Waqf"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

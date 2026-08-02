@@ -335,7 +335,8 @@ async function submitQuiz() {
         const ans = answers[i];
         if (q.type === 'mcq' || q.type === 'true-false') {
             autoGradedQs++;
-            if (ans === q.correctAnswer) {
+            const correctAnswer = q.correctAnswer || (q.correctOption !== undefined ? q.options[q.correctOption] : null);
+            if (ans === correctAnswer) {
                 correct++;
             } else if (ans !== null && ans !== '') {
                 incorrect++;
@@ -433,7 +434,8 @@ function buildReviewSection(data) {
 
     questions.forEach((q, i) => {
         const ans = data.answers[i];
-        const isCorrect = ans === q.correctAnswer;
+        const correctAnswer = q.correctAnswer || (q.correctOption !== undefined ? q.options[q.correctOption] : null);
+        const isCorrect = ans === correctAnswer;
         const isShort = q.type === 'short-answer';
 
         const item = document.createElement('div');
@@ -451,7 +453,7 @@ function buildReviewSection(data) {
             content += `
                 <div>
                     <span style="color: var(--text-secondary);">Correct Answer:</span> 
-                    <strong style="color: var(--success-color);">${escapeHtml(q.correctAnswer)}</strong>
+                    <strong style="color: var(--success-color);">${escapeHtml(correctAnswer)}</strong>
                 </div>
             `;
         } else {

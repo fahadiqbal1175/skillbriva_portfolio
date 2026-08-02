@@ -644,6 +644,12 @@
             </div>
 
             <div class="lms-preview__actions">
+              <a href="lms/dashboard.html?demo=true" class="btn btn--primary btn--lg">
+                <i class="fas fa-play-circle"></i> Try Interactive Demo
+              </a>
+              <button onclick="openTourModal()" class="btn btn--outline btn--lg">
+                <i class="fas fa-route"></i> Take a Quick Tour
+              </button>
               <a href="lms/login.html" class="btn btn--primary btn--lg">Student Login</a>
               <a href="lms/register.html" class="btn btn--outline btn--lg">Register</a>
             </div>
@@ -887,7 +893,178 @@
     <i class="fa-solid fa-chevron-up"></i>
   </button>
 
+  <!-- Guided Tour Modal -->
+  <div id="tourModal" class="tour-modal" style="display: none;">
+    <div class="tour-modal__overlay" onclick="closeTourModal()"></div>
+    <div class="tour-modal__container">
+      <button class="tour-modal__close" onclick="closeTourModal()">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="tour-modal__slides">
+        <!-- Slide 1: Dashboard Overview -->
+        <div class="tour-slide active" data-slide="0">
+          <div class="tour-slide__icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h2>Your Personal Dashboard</h2>
+          <p>Get a bird's-eye view of your learning journey. Track enrolled courses, pending assignments, quiz scores, and upcoming live classes — all in one place.</p>
+          <div class="tour-slide__features">
+            <div class="tour-feature"><i class="fas fa-book-open"></i><span>Course Tracking</span></div>
+            <div class="tour-feature"><i class="fas fa-chart-line"></i><span>Progress Analytics</span></div>
+            <div class="tour-feature"><i class="fas fa-bell"></i><span>Smart Reminders</span></div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Course Library -->
+        <div class="tour-slide" data-slide="1">
+          <div class="tour-slide__icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h2>32+ Comprehensive Courses</h2>
+          <p>From Quran & Tajweed to AI & Machine Learning — access full curricula covering Grade 1 through A-Level. Each course includes structured modules, video lectures, and practice materials.</p>
+          <div class="tour-slide__features">
+            <div class="tour-feature"><i class="fas fa-layer-group"></i><span>Structured Modules</span></div>
+            <div class="tour-feature"><i class="fas fa-play-circle"></i><span>Video Lectures</span></div>
+            <div class="tour-feature"><i class="fas fa-file-pdf"></i><span>Study Materials</span></div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Interactive Quizzes -->
+        <div class="tour-slide" data-slide="2">
+          <div class="tour-slide__icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <h2>Interactive Quizzes & Assessments</h2>
+          <p>Test your knowledge with timed quizzes featuring MCQs, True/False, and short-answer questions. Get instant auto-grading with detailed answer reviews to learn from your mistakes.</p>
+          <div class="tour-slide__features">
+            <div class="tour-feature"><i class="fas fa-clock"></i><span>Timed Tests</span></div>
+            <div class="tour-feature"><i class="fas fa-check-double"></i><span>Auto-Grading</span></div>
+            <div class="tour-feature"><i class="fas fa-redo"></i><span>Answer Review</span></div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Live Classes -->
+        <div class="tour-slide" data-slide="3">
+          <div class="tour-slide__icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h2>Live Classes via Zoom & Google Meet</h2>
+          <p>Join interactive live sessions with your teacher. Get real-time explanations, ask questions, and participate in discussions. Missed a class? Watch the recording anytime.</p>
+          <div class="tour-slide__features">
+            <div class="tour-feature"><i class="fas fa-users"></i><span>Interactive Sessions</span></div>
+            <div class="tour-feature"><i class="fas fa-record-vinyl"></i><span>Class Recordings</span></div>
+            <div class="tour-feature"><i class="fas fa-calendar-check"></i><span>Scheduled Classes</span></div>
+          </div>
+        </div>
+
+        <!-- Slide 5: Progress Tracking -->
+        <div class="tour-slide" data-slide="4">
+          <div class="tour-slide__icon">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h2>Track Your Progress</h2>
+          <p>Visual charts and gradebooks show your performance across all courses. Monitor quiz scores, assignment grades, and course completion — so you always know where you stand.</p>
+          <div class="tour-slide__features">
+            <div class="tour-feature"><i class="fas fa-trophy"></i><span>Score History</span></div>
+            <div class="tour-feature"><i class="fas fa-tasks"></i><span>Completion Tracking</span></div>
+            <div class="tour-feature"><i class="fas fa-medal"></i><span>Grade Reports</span></div>
+          </div>
+        </div>
+
+        <!-- Slide 6: CTA -->
+        <div class="tour-slide" data-slide="5">
+          <div class="tour-slide__icon tour-slide__icon--cta">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h2>Ready to Start Learning?</h2>
+          <p>Join Fahad Academy today and get access to comprehensive courses, expert tutoring, and a world-class learning experience — all from the comfort of your home.</p>
+          <div class="tour-slide__cta">
+            <a href="lms/register.html" class="tour-cta-btn tour-cta-btn--primary">
+              <i class="fas fa-user-plus"></i> Register for Free
+            </a>
+            <a href="lms/dashboard.html?demo=true" class="tour-cta-btn tour-cta-btn--outline">
+              <i class="fas fa-play"></i> Try the Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="tour-modal__nav">
+        <button class="tour-nav-btn" id="tourPrevBtn" onclick="changeTourSlide(-1)">
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <div class="tour-dots" id="tourDots"></div>
+        <button class="tour-nav-btn tour-nav-btn--primary" id="tourNextBtn" onclick="changeTourSlide(1)">
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
+  <script>
+    // Guided Tour Modal
+    let currentTourSlide = 0;
+    const totalTourSlides = 6;
+
+    function openTourModal() {
+      const modal = document.getElementById('tourModal');
+      modal.style.display = 'flex';
+      currentTourSlide = 0;
+      updateTourSlide();
+      document.body.style.overflow = 'hidden';
+      // Generate dots
+      const dotsContainer = document.getElementById('tourDots');
+      dotsContainer.innerHTML = Array.from({length: totalTourSlides}, (_, i) => 
+        `<button class="tour-dot ${i === 0 ? 'active' : ''}" onclick="goToTourSlide(${i})"></button>`
+      ).join('');
+    }
+
+    function closeTourModal() {
+      document.getElementById('tourModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function changeTourSlide(direction) {
+      currentTourSlide += direction;
+      if (currentTourSlide < 0) currentTourSlide = 0;
+      if (currentTourSlide >= totalTourSlides) currentTourSlide = totalTourSlides - 1;
+      updateTourSlide();
+    }
+
+    function goToTourSlide(index) {
+      currentTourSlide = index;
+      updateTourSlide();
+    }
+
+    function updateTourSlide() {
+      const slides = document.querySelectorAll('.tour-slide');
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentTourSlide);
+      });
+      
+      const dots = document.querySelectorAll('.tour-dot');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentTourSlide);
+      });
+      
+      // Update nav buttons
+      document.getElementById('tourPrevBtn').style.visibility = currentTourSlide === 0 ? 'hidden' : 'visible';
+      const nextBtn = document.getElementById('tourNextBtn');
+      if (currentTourSlide === totalTourSlides - 1) {
+        nextBtn.style.visibility = 'hidden';
+      } else {
+        nextBtn.style.visibility = 'visible';
+      }
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeTourModal();
+    });
+  </script>
 </body>
 
 </html>

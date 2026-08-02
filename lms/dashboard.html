@@ -15,6 +15,37 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="lms-common.css">
     <style>
+        .lms-demo-banner {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            padding: 12px 24px;
+            text-align: center;
+            color: white;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(99, 102, 241, 0.3);
+        }
+        .lms-demo-banner__content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .lms-demo-banner__close {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .lms-demo-banner__close:hover { color: white; }
         .lms-course-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -235,6 +266,16 @@
             </header>
 
             <div class="lms-content">
+                <!-- Demo Mode Banner -->
+                <div id="demoBanner" class="lms-demo-banner" style="display: none;">
+                  <div class="lms-demo-banner__content">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>You're exploring <strong>Fahad Academy</strong> in Demo Mode</span>
+                    <a href="register.html" class="lms-btn lms-btn--accent lms-btn--sm" style="background: white; color: #6366f1;">Register Now — It's Free!</a>
+                    <button class="lms-demo-banner__close" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
+                  </div>
+                </div>
+
                 <!-- Overview Tab -->
                 <div class="lms-tab-pane active" data-tab-pane="overview">
                     <div class="lms-card mb-4">

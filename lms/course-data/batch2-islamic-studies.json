@@ -1,0 +1,1718 @@
+{
+  "courses": [
+    {
+      "title": "Islamic Studies — Primary (Grade 1-5)",
+      "subject": "Basic Islamic Studies",
+      "level": "Primary",
+      "description": "A gentle introduction to the foundations of Islam for young learners — pillars of faith, Prophet stories, daily duas, and good manners.",
+      "longDescription": "This course introduces primary school students (Grades 1-5) to the core building blocks of Islamic belief and practice in a simple, age-appropriate way. Students learn the Five Pillars of Islam and the Six Pillars of Iman, hear the stories of beloved Prophets, and memorize short daily duas for everyday moments like waking up, eating, and leaving home.\n\nThe course also walks students step by step through wudu and Salah so they can begin praying with confidence, and closes with lessons on Islamic manners (Akhlaq) — honesty, kindness to parents, and good behavior with neighbors and friends. Lessons combine short videos, hands-on drawing/craft assignments, and simple quizzes to reinforce memorization and understanding.",
+      "objectives": [
+        "Recite and explain the Five Pillars of Islam and Six Pillars of Iman",
+        "Retell simple stories of the Prophets and identify the lessons within them",
+        "Memorize and correctly use short daily duas",
+        "Perform wudu and pray a basic Salah with correct movements",
+        "Demonstrate good Islamic manners at home and with others"
+      ],
+      "prerequisites": "None",
+      "published": true,
+      "modules": [
+        {
+          "id": "p-mod-1",
+          "title": "Module 1: Pillars of Islam",
+          "description": "The five pillars that form the foundation of Muslim practice.",
+          "order": 1
+        },
+        {
+          "id": "p-mod-2",
+          "title": "Module 2: Pillars of Iman",
+          "description": "The six articles of faith every Muslim believes in.",
+          "order": 2
+        },
+        {
+          "id": "p-mod-3",
+          "title": "Module 3: Prophet's Stories",
+          "description": "Simple stories of the Prophets for young learners.",
+          "order": 3
+        },
+        {
+          "id": "p-mod-4",
+          "title": "Module 4: Daily Duas",
+          "description": "Short duas for everyday moments — waking, eating, leaving home.",
+          "order": 4
+        },
+        {
+          "id": "p-mod-5",
+          "title": "Module 5: Basic Fiqh/Prayer",
+          "description": "How to perform wudu and the basics of Salah step by step.",
+          "order": 5
+        },
+        {
+          "id": "p-mod-6",
+          "title": "Module 6: Good Manners in Islam",
+          "description": "Akhlaq — kindness, honesty, and respect taught by Islam.",
+          "order": 6
+        }
+      ],
+      "lectures": [
+        {
+          "moduleId": "p-mod-1",
+          "title": "1.1 - Introduction to the Five Pillars of Islam",
+          "duration": "15 mins",
+          "description": "An overview of the five pillars — Shahada, Salah, Zakat, Sawm, Hajj — and why they matter.",
+          "videoId": null,
+          "videoSearchSuggestion": "Bayyinah Kids - Five Pillars of Islam for children",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-1",
+          "title": "1.2 - Shahada and Salah — The Foundations",
+          "duration": "18 mins",
+          "description": "What the declaration of faith means and why daily prayer is central to a Muslim's day.",
+          "videoId": null,
+          "videoSearchSuggestion": "Islamic studies for kids - Shahada and Salah explained",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-1",
+          "title": "1.3 - Zakat, Sawm and Hajj",
+          "duration": "18 mins",
+          "description": "Understanding charity, fasting in Ramadan, and the pilgrimage to Makkah in simple terms.",
+          "videoId": null,
+          "videoSearchSuggestion": "Zakat Sawm Hajj for children animated",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-2",
+          "title": "2.1 - What is Iman?",
+          "duration": "15 mins",
+          "description": "Introducing belief (Iman) and the six things every Muslim believes in.",
+          "videoId": null,
+          "videoSearchSuggestion": "Six pillars of Iman for kids animated",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-2",
+          "title": "2.2 - Belief in Allah, Angels and Books",
+          "duration": "18 mins",
+          "description": "Learning about Tawheed, the angels, and the holy books sent by Allah.",
+          "videoId": null,
+          "videoSearchSuggestion": "Belief in Allah angels and holy books kids lesson",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-2",
+          "title": "2.3 - Belief in Prophets, the Last Day and Qadar",
+          "duration": "18 mins",
+          "description": "Understanding the role of Prophets, the Day of Judgment, and divine decree.",
+          "videoId": null,
+          "videoSearchSuggestion": "Belief in prophets day of judgment qadar for kids",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-3",
+          "title": "3.1 - The Story of Prophet Adam (AS)",
+          "duration": "15 mins",
+          "description": "The creation of Adam and Hawwa and the lesson of seeking forgiveness.",
+          "videoId": null,
+          "videoSearchSuggestion": "Story of Prophet Adam AS for kids",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-3",
+          "title": "3.2 - The Story of Prophet Ibrahim (AS)",
+          "duration": "18 mins",
+          "description": "Ibrahim's search for the truth and his trust in Allah.",
+          "videoId": null,
+          "videoSearchSuggestion": "Story of Prophet Ibrahim AS for kids animated",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-3",
+          "title": "3.3 - The Story of Prophet Yunus (AS)",
+          "duration": "18 mins",
+          "description": "Yunus and the whale — a lesson in patience and repentance.",
+          "videoId": null,
+          "videoSearchSuggestion": "Story of Prophet Yunus AS and the whale kids",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-4",
+          "title": "4.1 - Dua for Waking Up and Sleeping",
+          "duration": "12 mins",
+          "description": "Memorizing the short duas said upon waking and before sleeping.",
+          "videoId": null,
+          "videoSearchSuggestion": "Dua for waking up and sleeping kids Islamic studies",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-4",
+          "title": "4.2 - Dua Before and After Eating",
+          "duration": "12 mins",
+          "description": "Learning the dua said before starting a meal and after finishing it.",
+          "videoId": null,
+          "videoSearchSuggestion": "Dua before and after eating for children",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-4",
+          "title": "4.3 - Dua for Leaving and Entering the Home",
+          "duration": "12 mins",
+          "description": "Short duas for leaving the house and entering it, plus the dua for the bathroom.",
+          "videoId": null,
+          "videoSearchSuggestion": "Dua for leaving and entering home kids",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-5",
+          "title": "5.1 - How to Perform Wudu",
+          "duration": "20 mins",
+          "description": "Step-by-step demonstration of the ablution (wudu) required before prayer.",
+          "videoId": null,
+          "videoSearchSuggestion": "How to perform wudu step by step for kids",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-5",
+          "title": "5.2 - The Positions of Salah",
+          "duration": "20 mins",
+          "description": "Learning Qiyam, Ruku, Sujood and Juloos — the physical positions of prayer.",
+          "videoId": null,
+          "videoSearchSuggestion": "Positions of Salah for kids Qiyam Ruku Sujood",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-5",
+          "title": "5.3 - Praying Salah Step by Step",
+          "duration": "22 mins",
+          "description": "Putting it all together — a full walkthrough of a two-rakah prayer.",
+          "videoId": null,
+          "videoSearchSuggestion": "How to pray two rakah Salah step by step kids",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-6",
+          "title": "6.1 - Honesty and Truthfulness (Sidq)",
+          "duration": "15 mins",
+          "description": "Why Islam places such importance on always telling the truth.",
+          "videoId": null,
+          "videoSearchSuggestion": "Islamic manners honesty for kids stories",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-6",
+          "title": "6.2 - Kindness to Parents and Elders",
+          "duration": "15 mins",
+          "description": "Birr-ul-Walidayn — respecting and obeying parents in Islam.",
+          "videoId": null,
+          "videoSearchSuggestion": "Kindness to parents in Islam for kids",
+          "published": true
+        },
+        {
+          "moduleId": "p-mod-6",
+          "title": "6.3 - Being Kind to Neighbors and Friends",
+          "duration": "15 mins",
+          "description": "Simple examples of good manners with neighbors, classmates and animals.",
+          "videoId": null,
+          "videoSearchSuggestion": "Good manners with neighbors Islam kids lesson",
+          "published": true
+        }
+      ],
+      "assignments": [
+        {
+          "moduleId": "p-mod-1",
+          "title": "Draw and Label the Five Pillars",
+          "description": "Draw a large poster showing all five pillars of Islam as separate pictures (e.g. a mosque for Salah, a moneybox for Zakat). Label each picture with its correct name. Write one sentence under each picture explaining what it means. Color your poster neatly and bring it to class to present in two minutes.",
+          "points": 50,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "p-mod-2",
+          "title": "My Iman Booklet",
+          "description": "Create a small 6-page booklet, one page for each pillar of Iman. On each page, write the name of the belief and draw a picture that represents it. Under the picture, write one sentence in your own words explaining what you believe. Staple the pages together to make your booklet.",
+          "points": 50,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "p-mod-3",
+          "title": "Retell a Prophet's Story",
+          "description": "Choose one Prophet's story from this module (Adam, Ibrahim, or Yunus). Write a short retelling of the story in 6-8 sentences using your own words. Draw one picture showing the most important part of the story. Be ready to share your story out loud with the class.",
+          "points": 50,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "p-mod-4",
+          "title": "Dua Memorization Chart",
+          "description": "Make a chart with four boxes, one for each dua learned in this module. Write out each dua in Arabic (or transliteration) and its English meaning in the correct box. Practice reciting each dua at the correct time for one full week. Ask a parent to sign the chart confirming you practiced.",
+          "points": 50,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "p-mod-5",
+          "title": "Wudu and Salah Practice Log",
+          "description": "For five days, practice performing wudu correctly before each prayer. Keep a simple daily log noting which prayer you performed and whether you remembered every step of wudu. Ask a parent or older sibling to watch you once and give feedback. Submit your completed log at the end of the week.",
+          "points": 50,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "p-mod-6",
+          "title": "Good Manners Diary",
+          "description": "Keep a diary for three days where you write down one kind or honest action you did each day (e.g. helping a parent, telling the truth in a hard situation). Write 2-3 sentences describing what you did and how it made you feel. Also write one thing you want to improve about your manners.",
+          "points": 50,
+          "dueInDays": 7
+        }
+      ],
+      "quizzes": [
+        {
+          "moduleId": "p-mod-1",
+          "title": "Module 1 Quiz: Pillars of Islam",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many pillars of Islam are there?",
+              "points": 2,
+              "options": [
+                "3",
+                "4",
+                "5",
+                "6"
+              ],
+              "correctAnswer": "5"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the first pillar of Islam called?",
+              "points": 2,
+              "options": [
+                "Salah",
+                "Shahada",
+                "Zakat",
+                "Hajj"
+              ],
+              "correctAnswer": "Shahada"
+            },
+            {
+              "type": "mcq",
+              "text": "How many times a day do Muslims pray Salah?",
+              "points": 2,
+              "options": [
+                "3",
+                "4",
+                "5",
+                "6"
+              ],
+              "correctAnswer": "5"
+            },
+            {
+              "type": "mcq",
+              "text": "In which Islamic month do Muslims fast?",
+              "points": 2,
+              "options": [
+                "Shawwal",
+                "Muharram",
+                "Ramadan",
+                "Rajab"
+              ],
+              "correctAnswer": "Ramadan"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the name of the pilgrimage to Makkah?",
+              "points": 2,
+              "options": [
+                "Umrah",
+                "Hajj",
+                "Ziyarat",
+                "Sawm"
+              ],
+              "correctAnswer": "Hajj"
+            },
+            {
+              "type": "tf",
+              "text": "Zakat means giving charity to those in need.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Every Muslim must perform Hajj every single year.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name the five pillars of Islam in the correct order.",
+              "points": 3,
+              "correctAnswer": "Shahada, Salah, Zakat, Sawm, Hajj"
+            }
+          ]
+        },
+        {
+          "moduleId": "p-mod-2",
+          "title": "Module 2 Quiz: Pillars of Iman",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "How many pillars of Iman (belief) are there?",
+              "points": 2,
+              "options": [
+                "4",
+                "5",
+                "6",
+                "7"
+              ],
+              "correctAnswer": "6"
+            },
+            {
+              "type": "mcq",
+              "text": "Belief in one God who has no partner is called:",
+              "points": 2,
+              "options": [
+                "Salah",
+                "Tawheed",
+                "Zakat",
+                "Sawm"
+              ],
+              "correctAnswer": "Tawheed"
+            },
+            {
+              "type": "mcq",
+              "text": "What are Angels made from?",
+              "points": 2,
+              "options": [
+                "Clay",
+                "Fire",
+                "Light",
+                "Water"
+              ],
+              "correctAnswer": "Light"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the last holy book sent by Allah?",
+              "points": 2,
+              "options": [
+                "The Torah",
+                "The Injeel",
+                "The Zabur",
+                "The Quran"
+              ],
+              "correctAnswer": "The Quran"
+            },
+            {
+              "type": "mcq",
+              "text": "Belief in the Day of Judgment means believing in:",
+              "points": 2,
+              "options": [
+                "A holiday",
+                "Life after death and accountability",
+                "A new prophet",
+                "A new book"
+              ],
+              "correctAnswer": "Life after death and accountability"
+            },
+            {
+              "type": "tf",
+              "text": "Muslims believe in all the Prophets sent by Allah, not just Prophet Muhammad (SAW).",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Qadar means that nothing in the universe is planned by Allah.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "List the six pillars of Iman.",
+              "points": 3,
+              "correctAnswer": "Belief in Allah, Angels, Books, Prophets, the Day of Judgment, and Qadar (divine decree)"
+            }
+          ]
+        },
+        {
+          "moduleId": "p-mod-3",
+          "title": "Module 3 Quiz: Prophet's Stories",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Who was the first human and Prophet created by Allah?",
+              "points": 2,
+              "options": [
+                "Nuh (AS)",
+                "Adam (AS)",
+                "Ibrahim (AS)",
+                "Musa (AS)"
+              ],
+              "correctAnswer": "Adam (AS)"
+            },
+            {
+              "type": "mcq",
+              "text": "Which Prophet is known for breaking the idols to show his people the truth?",
+              "points": 2,
+              "options": [
+                "Yunus (AS)",
+                "Ibrahim (AS)",
+                "Adam (AS)",
+                "Yusuf (AS)"
+              ],
+              "correctAnswer": "Ibrahim (AS)"
+            },
+            {
+              "type": "mcq",
+              "text": "Which Prophet was swallowed by a big fish (whale)?",
+              "points": 2,
+              "options": [
+                "Ibrahim (AS)",
+                "Adam (AS)",
+                "Yunus (AS)",
+                "Nuh (AS)"
+              ],
+              "correctAnswer": "Yunus (AS)"
+            },
+            {
+              "type": "mcq",
+              "text": "What did Prophet Adam (AS) do after making a mistake?",
+              "points": 2,
+              "options": [
+                "He hid from Allah",
+                "He asked Allah for forgiveness",
+                "He blamed someone else",
+                "He stopped believing"
+              ],
+              "correctAnswer": "He asked Allah for forgiveness"
+            },
+            {
+              "type": "mcq",
+              "text": "What lesson does the story of Prophet Yunus (AS) mainly teach us?",
+              "points": 2,
+              "options": [
+                "To be impatient",
+                "To never make dua",
+                "Patience and turning back to Allah",
+                "To avoid the sea"
+              ],
+              "correctAnswer": "Patience and turning back to Allah"
+            },
+            {
+              "type": "tf",
+              "text": "Prophet Ibrahim (AS) is known as a close friend of Allah (Khalilullah).",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Prophet Yunus (AS) never asked Allah for forgiveness inside the whale.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "What did Prophet Ibrahim (AS) do when his people worshipped idols?",
+              "points": 3,
+              "correctAnswer": "He questioned idol worship, broke the idols, and called his people to worship the one true God"
+            }
+          ]
+        },
+        {
+          "moduleId": "p-mod-4",
+          "title": "Module 4 Quiz: Daily Duas",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "When should you say the dua for waking up?",
+              "points": 2,
+              "options": [
+                "Before sleeping",
+                "As soon as you wake up",
+                "Before eating",
+                "After school"
+              ],
+              "correctAnswer": "As soon as you wake up"
+            },
+            {
+              "type": "mcq",
+              "text": "What should a Muslim say before starting to eat?",
+              "points": 2,
+              "options": [
+                "Bismillah",
+                "Alhamdulillah",
+                "Subhanallah",
+                "Astaghfirullah"
+              ],
+              "correctAnswer": "Bismillah"
+            },
+            {
+              "type": "mcq",
+              "text": "What do we say after finishing a meal?",
+              "points": 2,
+              "options": [
+                "Bismillah",
+                "Alhamdulillah",
+                "Allahu Akbar",
+                "La ilaha illallah"
+              ],
+              "correctAnswer": "Alhamdulillah"
+            },
+            {
+              "type": "mcq",
+              "text": "With which foot should you enter the bathroom, according to the sunnah?",
+              "points": 2,
+              "options": [
+                "Right foot",
+                "Left foot",
+                "Either foot",
+                "It does not matter"
+              ],
+              "correctAnswer": "Left foot"
+            },
+            {
+              "type": "mcq",
+              "text": "With which foot should you enter the masjid or your home, according to the sunnah?",
+              "points": 2,
+              "options": [
+                "Left foot",
+                "Right foot",
+                "Either foot",
+                "It does not matter"
+              ],
+              "correctAnswer": "Right foot"
+            },
+            {
+              "type": "tf",
+              "text": "It is Sunnah to say a dua before leaving the house.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Muslims are not taught any dua for eating food.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Why is it important to say Bismillah before starting any good action?",
+              "points": 3,
+              "correctAnswer": "It means starting in the name of Allah, seeking His blessing and remembering Him before beginning the action"
+            }
+          ]
+        },
+        {
+          "moduleId": "p-mod-5",
+          "title": "Module 5 Quiz: Basic Fiqh/Prayer",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "What is the Arabic word for the ritual washing done before prayer?",
+              "points": 2,
+              "options": [
+                "Ghusl",
+                "Wudu",
+                "Tayammum",
+                "Salah"
+              ],
+              "correctAnswer": "Wudu"
+            },
+            {
+              "type": "mcq",
+              "text": "Which part of the body is washed first in wudu?",
+              "points": 2,
+              "options": [
+                "Feet",
+                "Face",
+                "Hands",
+                "Ears"
+              ],
+              "correctAnswer": "Hands"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the standing position in Salah called?",
+              "points": 2,
+              "options": [
+                "Ruku",
+                "Sujood",
+                "Qiyam",
+                "Juloos"
+              ],
+              "correctAnswer": "Qiyam"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the position of prostration in Salah called?",
+              "points": 2,
+              "options": [
+                "Qiyam",
+                "Ruku",
+                "Sujood",
+                "Juloos"
+              ],
+              "correctAnswer": "Sujood"
+            },
+            {
+              "type": "mcq",
+              "text": "How many rakahs are usually prayed in Fajr prayer?",
+              "points": 2,
+              "options": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ],
+              "correctAnswer": "2"
+            },
+            {
+              "type": "tf",
+              "text": "Wudu must be performed correctly before every Salah.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Ruku is the sitting position at the end of prayer.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name the four main positions of Salah in order.",
+              "points": 3,
+              "correctAnswer": "Qiyam (standing), Ruku (bowing), Sujood (prostration), Juloos (sitting)"
+            }
+          ]
+        },
+        {
+          "moduleId": "p-mod-6",
+          "title": "Module 6 Quiz: Good Manners in Islam",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "What is the Arabic word for good character/manners?",
+              "points": 2,
+              "options": [
+                "Fiqh",
+                "Akhlaq",
+                "Iman",
+                "Salah"
+              ],
+              "correctAnswer": "Akhlaq"
+            },
+            {
+              "type": "mcq",
+              "text": "Islam teaches that a Muslim should always:",
+              "points": 2,
+              "options": [
+                "Tell lies to stay safe",
+                "Tell the truth",
+                "Ignore the truth",
+                "Break promises"
+              ],
+              "correctAnswer": "Tell the truth"
+            },
+            {
+              "type": "mcq",
+              "text": "Being kind and obedient to parents is called:",
+              "points": 2,
+              "options": [
+                "Sidq",
+                "Sabr",
+                "Birr-ul-Walidayn",
+                "Zakat"
+              ],
+              "correctAnswer": "Birr-ul-Walidayn"
+            },
+            {
+              "type": "mcq",
+              "text": "How should a Muslim treat their neighbors?",
+              "points": 2,
+              "options": [
+                "With kindness and respect",
+                "With no concern",
+                "Only if they are Muslim",
+                "Ignore them completely"
+              ],
+              "correctAnswer": "With kindness and respect"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of these is an example of good manners?",
+              "points": 2,
+              "options": [
+                "Interrupting others",
+                "Helping someone who dropped their books",
+                "Making fun of a classmate",
+                "Refusing to share"
+              ],
+              "correctAnswer": "Helping someone who dropped their books"
+            },
+            {
+              "type": "tf",
+              "text": "The Prophet Muhammad (SAW) was known for having the best character.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Islam teaches that kindness should only be shown to family members.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Give one example of good manners you can show to your neighbors.",
+              "points": 3,
+              "correctAnswer": "Answers may vary — e.g. greeting them politely, helping them, or being quiet and respectful"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Islamic Studies — Middle School (Grade 6-8)",
+      "subject": "Basic Islamic Studies",
+      "level": "Middle School",
+      "description": "A deeper study of the Prophet's life, Hadith, Fiqh, Islamic history, Quranic themes, character, and world religions for middle schoolers.",
+      "longDescription": "Building on primary-level foundations, this course takes Grade 6-8 students through the Seerah of Prophet Muhammad (SAW) in more historical detail, introduces the science of Hadith and its major collections, and covers the Fiqh of worship (Salah, Sawm, Zakat, Hajj) with practical rulings. Students also study the early Islamic Caliphate and the spread of Islam.\n\nThe course then turns to major themes in the Quran, the development of strong Islamic character (Sabr, Shukr, honesty, avoiding backbiting), and closes with a respectful, age-appropriate introduction to other major world religions — helping students understand their own faith more deeply while engaging thoughtfully with a diverse world.",
+      "objectives": [
+        "Explain key events in the Seerah of Prophet Muhammad (SAW) with approximate dates and significance",
+        "Define Hadith terminology and identify the major hadith collections",
+        "Apply basic fiqh rulings related to Salah, Sawm, Zakat and Hajj",
+        "Describe the achievements of the four Rightly Guided Caliphs",
+        "Identify major Quranic themes and extract lessons from Quranic stories",
+        "Demonstrate understanding of core Islamic character traits",
+        "Compare basic beliefs of Islam with other major world religions respectfully"
+      ],
+      "prerequisites": "Completion of Islamic Studies — Primary (Grade 1-5) or equivalent foundational knowledge",
+      "published": true,
+      "modules": [
+        {
+          "id": "m-mod-1",
+          "title": "Module 1: Seerah of Prophet Muhammad (SAW)",
+          "description": "The life of the final Prophet from Makkah to Madinah.",
+          "order": 1
+        },
+        {
+          "id": "m-mod-2",
+          "title": "Module 2: Hadith Studies",
+          "description": "An introduction to the sayings and traditions of the Prophet (SAW).",
+          "order": 2
+        },
+        {
+          "id": "m-mod-3",
+          "title": "Module 3: Fiqh of Worship",
+          "description": "The rulings of Salah, Sawm, Zakat and Hajj in more depth.",
+          "order": 3
+        },
+        {
+          "id": "m-mod-4",
+          "title": "Module 4: Islamic History",
+          "description": "The Rightly Guided Caliphs and the early spread of Islam.",
+          "order": 4
+        },
+        {
+          "id": "m-mod-5",
+          "title": "Module 5: Quran Themes",
+          "description": "Major themes running through the Quran.",
+          "order": 5
+        },
+        {
+          "id": "m-mod-6",
+          "title": "Module 6: Ethics & Character",
+          "description": "Building strong Islamic character and moral decision-making.",
+          "order": 6
+        },
+        {
+          "id": "m-mod-7",
+          "title": "Module 7: Comparative Religion Basics",
+          "description": "A respectful introduction to other major world religions.",
+          "order": 7
+        }
+      ],
+      "lectures": [
+        {
+          "moduleId": "m-mod-1",
+          "title": "1.1 - Makkah Before Islam and the Prophet's Early Life",
+          "duration": "25 mins",
+          "description": "The social and religious conditions of pre-Islamic Makkah and the birth and early life of Prophet Muhammad (SAW).",
+          "videoId": null,
+          "videoSearchSuggestion": "Yaqeen Institute Seerah - Prophet Muhammad early life",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-1",
+          "title": "1.2 - The First Revelation and Early Muslims",
+          "duration": "25 mins",
+          "description": "The revelation in the Cave of Hira, the first believers, and the years of persecution in Makkah.",
+          "videoId": null,
+          "videoSearchSuggestion": "Seerah first revelation cave of Hira lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-1",
+          "title": "1.3 - The Hijrah and the Establishment of Madinah",
+          "duration": "25 mins",
+          "description": "The migration to Madinah and the building of the first Muslim community.",
+          "videoId": null,
+          "videoSearchSuggestion": "Seerah of the Prophet Hijrah to Madinah lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-2",
+          "title": "2.1 - What is Hadith? Sunnah vs Quran",
+          "duration": "20 mins",
+          "description": "Defining Hadith and Sunnah and understanding their relationship to the Quran.",
+          "videoId": null,
+          "videoSearchSuggestion": "Introduction to Hadith studies for students",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-2",
+          "title": "2.2 - Famous Hadith and Their Lessons",
+          "duration": "22 mins",
+          "description": "Studying well-known hadith such as 'Actions are by intentions' and their practical lessons.",
+          "videoId": null,
+          "videoSearchSuggestion": "Famous hadith explained for middle school students",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-2",
+          "title": "2.3 - Major Hadith Collections",
+          "duration": "20 mins",
+          "description": "An overview of Sahih al-Bukhari, Sahih Muslim and the other Kutub al-Sittah.",
+          "videoId": null,
+          "videoSearchSuggestion": "Six major hadith collections Kutub al-Sittah overview",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-3",
+          "title": "3.1 - Fiqh of Salah in Depth",
+          "duration": "22 mins",
+          "description": "Conditions, pillars, and things that break the prayer.",
+          "videoId": null,
+          "videoSearchSuggestion": "Fiqh of Salah conditions and pillars lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-3",
+          "title": "3.2 - Fiqh of Sawm and Zakat",
+          "duration": "22 mins",
+          "description": "Rules of fasting, who must fast, and how Zakat is calculated.",
+          "videoId": null,
+          "videoSearchSuggestion": "Fiqh of fasting and zakat calculation lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-3",
+          "title": "3.3 - Fiqh of Hajj and Umrah",
+          "duration": "22 mins",
+          "description": "The rites of Hajj and Umrah and the difference between the two.",
+          "videoId": null,
+          "videoSearchSuggestion": "Fiqh of Hajj and Umrah rites explained",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-4",
+          "title": "4.1 - Abu Bakr and Umar (RA): The First Two Caliphs",
+          "duration": "22 mins",
+          "description": "The leadership, challenges, and achievements of the first two Rightly Guided Caliphs.",
+          "videoId": null,
+          "videoSearchSuggestion": "Khulafa Rashidun Abu Bakr and Umar history lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-4",
+          "title": "4.2 - Uthman and Ali (RA): The Final Two Caliphs",
+          "duration": "22 mins",
+          "description": "The compilation of the Quran under Uthman and the challenges faced by Ali (RA).",
+          "videoId": null,
+          "videoSearchSuggestion": "Khulafa Rashidun Uthman and Ali history lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-4",
+          "title": "4.3 - The Early Spread of Islam",
+          "duration": "20 mins",
+          "description": "How Islam spread across Arabia, the Levant, Persia and North Africa.",
+          "videoId": null,
+          "videoSearchSuggestion": "Early spread of Islam history documentary lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-5",
+          "title": "5.1 - Tawheed and Prophethood in the Quran",
+          "duration": "20 mins",
+          "description": "How the Quran establishes the oneness of Allah and the role of Prophets.",
+          "videoId": null,
+          "videoSearchSuggestion": "Themes of the Quran Tawheed and Prophethood lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-5",
+          "title": "5.2 - Stories in the Quran and Their Lessons",
+          "duration": "22 mins",
+          "description": "How Quranic stories of past nations teach moral and spiritual lessons.",
+          "videoId": null,
+          "videoSearchSuggestion": "Stories in the Quran lessons for students",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-5",
+          "title": "5.3 - The Quran on Justice and Community",
+          "duration": "20 mins",
+          "description": "Quranic teachings on fairness, charity, and building a just society.",
+          "videoId": null,
+          "videoSearchSuggestion": "Quran themes justice and community lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-6",
+          "title": "6.1 - Sabr and Shukr: Patience and Gratitude",
+          "duration": "18 mins",
+          "description": "Understanding patience in hardship and gratitude in ease as core Islamic virtues.",
+          "videoId": null,
+          "videoSearchSuggestion": "Sabr and Shukr Islamic character lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-6",
+          "title": "6.2 - Honesty, Trust and Keeping Promises",
+          "duration": "18 mins",
+          "description": "The importance of Amanah (trustworthiness) and Sidq (truthfulness) in daily life.",
+          "videoId": null,
+          "videoSearchSuggestion": "Islamic ethics honesty and trustworthiness lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-6",
+          "title": "6.3 - Avoiding Backbiting and Gossip",
+          "duration": "18 mins",
+          "description": "What Ghibah is, why it is forbidden, and how to build a habit of guarding the tongue.",
+          "videoId": null,
+          "videoSearchSuggestion": "Islamic manners avoiding backbiting lecture",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-7",
+          "title": "7.1 - Introduction to Christianity and Judaism",
+          "duration": "22 mins",
+          "description": "A respectful overview of core beliefs in Christianity and Judaism and shared Abrahamic roots.",
+          "videoId": null,
+          "videoSearchSuggestion": "Comparative religion Christianity and Judaism overview for students",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-7",
+          "title": "7.2 - Introduction to Hinduism and Buddhism",
+          "duration": "22 mins",
+          "description": "A respectful overview of core beliefs and practices in Hinduism and Buddhism.",
+          "videoId": null,
+          "videoSearchSuggestion": "Comparative religion Hinduism and Buddhism overview for students",
+          "published": true
+        },
+        {
+          "moduleId": "m-mod-7",
+          "title": "7.3 - What Makes Islamic Belief Distinct",
+          "duration": "20 mins",
+          "description": "Comparing core Islamic beliefs about God, revelation, and the afterlife with other traditions.",
+          "videoId": null,
+          "videoSearchSuggestion": "What makes Islamic belief distinct comparative religion lecture",
+          "published": true
+        }
+      ],
+      "assignments": [
+        {
+          "moduleId": "m-mod-1",
+          "title": "Seerah Timeline Project",
+          "description": "Create a timeline poster of the Prophet Muhammad's (SAW) life from birth to the Hijrah, including at least 8 key events with dates and one-sentence descriptions. Use images or simple drawings to illustrate at least three events. Write a short paragraph (5-6 sentences) explaining which event you find most inspiring and why. Submit your timeline as a poster or a typed document.",
+          "points": 100,
+          "dueInDays": 10
+        },
+        {
+          "moduleId": "m-mod-2",
+          "title": "Hadith Reflection Essay",
+          "description": "Choose one hadith studied in this module and write a 200-300 word reflection. Explain the meaning of the hadith, the context in which it was said if known, and how you can apply its lesson in your own life this week. Include the Arabic text or translation of the hadith at the top of your essay. Proofread your essay before submitting.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "m-mod-3",
+          "title": "Compare the Five Prayers Chart",
+          "description": "Create a table comparing the five daily prayers: Fajr, Dhuhr, Asr, Maghrib and Isha. For each prayer, list the number of rakahs (Sunnah and Fard), the approximate time window, and one fiqh ruling specific to that prayer. Research using a reliable Islamic source if needed. Submit your completed chart.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "m-mod-4",
+          "title": "Profile of a Rightly Guided Caliph",
+          "description": "Select one of the four Rightly Guided Caliphs (Abu Bakr, Umar, Uthman, or Ali) and write a one-page biography. Cover his relationship to the Prophet (SAW), key achievements during his caliphate, and one major challenge he faced. Use at least two specific historical events as evidence. Cite where you found your information.",
+          "points": 100,
+          "dueInDays": 10
+        },
+        {
+          "moduleId": "m-mod-5",
+          "title": "Quranic Theme Presentation",
+          "description": "Prepare a short 5-slide presentation on one major Quran theme covered in this module (Tawheed, Prophethood, Justice, or a Quranic story). Include at least two verses (with translation) that support the theme. Explain in your own words what the theme teaches Muslims today. Be ready to present for 3-4 minutes in class.",
+          "points": 100,
+          "dueInDays": 10
+        },
+        {
+          "moduleId": "m-mod-6",
+          "title": "Character Self-Assessment Journal",
+          "description": "Over one week, keep a daily journal entry (3-4 sentences per day) reflecting on a moment where you practiced or struggled with one of the virtues studied in this module (patience, gratitude, honesty, or avoiding backbiting). At the end of the week, write a short summary paragraph identifying one area you want to improve and how.",
+          "points": 100,
+          "dueInDays": 7
+        },
+        {
+          "moduleId": "m-mod-7",
+          "title": "Comparative Religion Summary Table",
+          "description": "Create a table comparing Islam, Christianity, Judaism, Hinduism and Buddhism across four categories: view of God, holy book(s), view of the afterlife, and main place of worship. Write a short closing paragraph (4-5 sentences) on what you learned about respecting people of other faiths while holding firmly to your own beliefs. Use only respectful, accurate language throughout.",
+          "points": 100,
+          "dueInDays": 10
+        }
+      ],
+      "quizzes": [
+        {
+          "moduleId": "m-mod-1",
+          "title": "Module 1 Quiz: Seerah of Prophet Muhammad (SAW)",
+          "duration": 25,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "In which city was Prophet Muhammad (SAW) born?",
+              "points": 2,
+              "options": [
+                "Madinah",
+                "Makkah",
+                "Taif",
+                "Jerusalem"
+              ],
+              "correctAnswer": "Makkah"
+            },
+            {
+              "type": "mcq",
+              "text": "Where did the Prophet (SAW) receive the first revelation?",
+              "points": 2,
+              "options": [
+                "Cave of Thawr",
+                "Cave of Hira",
+                "Mount Uhud",
+                "Masjid al-Aqsa"
+              ],
+              "correctAnswer": "Cave of Hira"
+            },
+            {
+              "type": "mcq",
+              "text": "Who was the first person to accept Islam?",
+              "points": 2,
+              "options": [
+                "Abu Bakr (RA)",
+                "Khadijah (RA)",
+                "Umar (RA)",
+                "Ali (RA)"
+              ],
+              "correctAnswer": "Khadijah (RA)"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the migration from Makkah to Madinah called?",
+              "points": 2,
+              "options": [
+                "Isra",
+                "Miraj",
+                "Hijrah",
+                "Ghazwa"
+              ],
+              "correctAnswer": "Hijrah"
+            },
+            {
+              "type": "mcq",
+              "text": "Approximately how old was the Prophet (SAW) when he received the first revelation?",
+              "points": 2,
+              "options": [
+                "25",
+                "30",
+                "40",
+                "50"
+              ],
+              "correctAnswer": "40"
+            },
+            {
+              "type": "tf",
+              "text": "The Islamic (Hijri) calendar begins from the year of the Hijrah.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "The Prophet (SAW) was born in Madinah.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Why is the Hijrah considered such a turning point in Islamic history?",
+              "points": 3,
+              "correctAnswer": "It marked the start of the first organized Muslim community/state in Madinah and freedom to practice Islam openly, and became the start of the Islamic calendar"
+            }
+          ]
+        },
+        {
+          "moduleId": "m-mod-2",
+          "title": "Module 2 Quiz: Hadith Studies",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "What is a Hadith?",
+              "points": 2,
+              "options": [
+                "A verse of the Quran",
+                "A recorded saying, action, or approval of the Prophet (SAW)",
+                "A prayer time",
+                "A Islamic month"
+              ],
+              "correctAnswer": "A recorded saying, action, or approval of the Prophet (SAW)"
+            },
+            {
+              "type": "mcq",
+              "text": "The chain of narrators of a hadith is called the:",
+              "points": 2,
+              "options": [
+                "Matn",
+                "Isnad",
+                "Tafsir",
+                "Fatwa"
+              ],
+              "correctAnswer": "Isnad"
+            },
+            {
+              "type": "mcq",
+              "text": "Which collection is considered by most scholars to be the most authentic hadith collection?",
+              "points": 2,
+              "options": [
+                "Sunan Abu Dawud",
+                "Sahih al-Bukhari",
+                "Jami at-Tirmidhi",
+                "Sunan Ibn Majah"
+              ],
+              "correctAnswer": "Sahih al-Bukhari"
+            },
+            {
+              "type": "mcq",
+              "text": "A hadith graded as fully authentic and reliable is called:",
+              "points": 2,
+              "options": [
+                "Da'if",
+                "Mawdu'",
+                "Sahih",
+                "Munkar"
+              ],
+              "correctAnswer": "Sahih"
+            },
+            {
+              "type": "mcq",
+              "text": "How many major hadith collections make up the 'Kutub al-Sittah'?",
+              "points": 2,
+              "options": [
+                "Four",
+                "Five",
+                "Six",
+                "Seven"
+              ],
+              "correctAnswer": "Six"
+            },
+            {
+              "type": "tf",
+              "text": "The famous hadith 'Actions are judged by intentions' teaches that sincerity matters in worship.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Hadith are considered less important than the Quran and carry no religious authority.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Explain the difference between the Quran and Hadith as sources of Islamic guidance.",
+              "points": 3,
+              "correctAnswer": "The Quran is the direct word of Allah revealed to the Prophet, while Hadith are the recorded sayings, actions, and approvals of the Prophet (SAW) that explain and apply the Quran"
+            }
+          ]
+        },
+        {
+          "moduleId": "m-mod-3",
+          "title": "Module 3 Quiz: Fiqh of Worship",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Which of the following breaks a person's wudu?",
+              "points": 2,
+              "options": [
+                "Talking",
+                "Using the washroom",
+                "Eating a snack quietly",
+                "Sitting still"
+              ],
+              "correctAnswer": "Using the washroom"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the minimum amount of wealth held for a year that makes Zakat obligatory called?",
+              "points": 2,
+              "options": [
+                "Fidyah",
+                "Nisab",
+                "Sadaqah",
+                "Kaffarah"
+              ],
+              "correctAnswer": "Nisab"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the standard percentage of Zakat on savings?",
+              "points": 2,
+              "options": [
+                "1%",
+                "2.5%",
+                "5%",
+                "10%"
+              ],
+              "correctAnswer": "2.5%"
+            },
+            {
+              "type": "mcq",
+              "text": "Who is exempted from fasting due to illness or travel but must make up the days later?",
+              "points": 2,
+              "options": [
+                "No one",
+                "The traveler or sick person",
+                "Only children",
+                "Only elders"
+              ],
+              "correctAnswer": "The traveler or sick person"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the difference between Hajj and Umrah?",
+              "points": 2,
+              "options": [
+                "They are exactly the same",
+                "Hajj has fixed dates and specific rites; Umrah can be performed anytime and is shorter",
+                "Umrah is only for men",
+                "Hajj is only recommended, not obligatory"
+              ],
+              "correctAnswer": "Hajj has fixed dates and specific rites; Umrah can be performed anytime and is shorter"
+            },
+            {
+              "type": "tf",
+              "text": "Zakat is only obligatory on Muslims who own wealth above the Nisab threshold for a full lunar year.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "A person can perform Hajj at any time of the year they choose.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "List two conditions that make Salah invalid if not met.",
+              "points": 3,
+              "correctAnswer": "Examples include: not having wudu, facing away from the Qibla, missing an obligatory pillar such as Sujood, or impurity on the body/clothes/place of prayer (any two)"
+            }
+          ]
+        },
+        {
+          "moduleId": "m-mod-4",
+          "title": "Module 4 Quiz: Islamic History",
+          "duration": 25,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Who was the first Caliph after the Prophet Muhammad (SAW)?",
+              "points": 2,
+              "options": [
+                "Umar (RA)",
+                "Abu Bakr (RA)",
+                "Uthman (RA)",
+                "Ali (RA)"
+              ],
+              "correctAnswer": "Abu Bakr (RA)"
+            },
+            {
+              "type": "mcq",
+              "text": "During whose caliphate was the Quran compiled into a single standardized text?",
+              "points": 2,
+              "options": [
+                "Abu Bakr (RA)",
+                "Umar (RA)",
+                "Uthman (RA)",
+                "Ali (RA)"
+              ],
+              "correctAnswer": "Uthman (RA)"
+            },
+            {
+              "type": "mcq",
+              "text": "Who is known for greatly expanding the Islamic state and establishing structured administration?",
+              "points": 2,
+              "options": [
+                "Abu Bakr (RA)",
+                "Umar (RA)",
+                "Uthman (RA)",
+                "Ali (RA)"
+              ],
+              "correctAnswer": "Umar (RA)"
+            },
+            {
+              "type": "mcq",
+              "text": "The four Caliphs after the Prophet (SAW) are collectively known as:",
+              "points": 2,
+              "options": [
+                "Ansar",
+                "Muhajireen",
+                "Khulafa Rashidun",
+                "Sahaba only"
+              ],
+              "correctAnswer": "Khulafa Rashidun"
+            },
+            {
+              "type": "mcq",
+              "text": "Which Caliph was the cousin and son-in-law of the Prophet (SAW)?",
+              "points": 2,
+              "options": [
+                "Abu Bakr (RA)",
+                "Umar (RA)",
+                "Uthman (RA)",
+                "Ali (RA)"
+              ],
+              "correctAnswer": "Ali (RA)"
+            },
+            {
+              "type": "tf",
+              "text": "The term 'Khulafa Rashidun' means 'Rightly Guided Caliphs'.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Islam did not spread beyond the Arabian Peninsula during the time of the Rightly Guided Caliphs.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Why is the compilation of the Quran under Caliph Uthman (RA) historically significant?",
+              "points": 3,
+              "correctAnswer": "It ensured a single standardized written text of the Quran was preserved and distributed, preventing variation as Islam spread to new regions"
+            }
+          ]
+        },
+        {
+          "moduleId": "m-mod-5",
+          "title": "Module 5 Quiz: Quran Themes",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "What does 'Tawheed' mean?",
+              "points": 2,
+              "options": [
+                "Prayer",
+                "The oneness of Allah",
+                "Charity",
+                "Fasting"
+              ],
+              "correctAnswer": "The oneness of Allah"
+            },
+            {
+              "type": "mcq",
+              "text": "Quranic stories of past nations are primarily meant to:",
+              "points": 2,
+              "options": [
+                "Entertain readers",
+                "Teach moral and spiritual lessons",
+                "Replace history books",
+                "Confuse readers"
+              ],
+              "correctAnswer": "Teach moral and spiritual lessons"
+            },
+            {
+              "type": "mcq",
+              "text": "Which theme refers to Allah sending messengers to guide humanity?",
+              "points": 2,
+              "options": [
+                "Zakat",
+                "Prophethood",
+                "Qadar",
+                "Nisab"
+              ],
+              "correctAnswer": "Prophethood"
+            },
+            {
+              "type": "mcq",
+              "text": "The Quran's teachings on justice apply to:",
+              "points": 2,
+              "options": [
+                "Only Muslims",
+                "Only rulers",
+                "All people, including how we treat others fairly",
+                "Only family members"
+              ],
+              "correctAnswer": "All people, including how we treat others fairly"
+            },
+            {
+              "type": "mcq",
+              "text": "Which of these is a major theme repeated throughout the Quran?",
+              "points": 2,
+              "options": [
+                "Sports",
+                "Tawheed (Oneness of God)",
+                "Fashion trends",
+                "Modern technology"
+              ],
+              "correctAnswer": "Tawheed (Oneness of God)"
+            },
+            {
+              "type": "tf",
+              "text": "The Quran presents stories of previous Prophets to draw lessons for the reader, not just as history.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "The Quran has no teachings related to justice or community life.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Choose one Quranic story you studied and explain one lesson it teaches.",
+              "points": 3,
+              "correctAnswer": "Answers will vary based on the story studied — should identify a specific moral or spiritual lesson tied to the story"
+            }
+          ]
+        },
+        {
+          "moduleId": "m-mod-6",
+          "title": "Module 6 Quiz: Ethics & Character",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "What does 'Sabr' mean?",
+              "points": 2,
+              "options": [
+                "Gratitude",
+                "Patience",
+                "Honesty",
+                "Charity"
+              ],
+              "correctAnswer": "Patience"
+            },
+            {
+              "type": "mcq",
+              "text": "What does 'Shukr' mean?",
+              "points": 2,
+              "options": [
+                "Patience",
+                "Gratitude",
+                "Trust",
+                "Justice"
+              ],
+              "correctAnswer": "Gratitude"
+            },
+            {
+              "type": "mcq",
+              "text": "Being trustworthy with what is given to you is called:",
+              "points": 2,
+              "options": [
+                "Amanah",
+                "Ghibah",
+                "Sidq",
+                "Sabr"
+              ],
+              "correctAnswer": "Amanah"
+            },
+            {
+              "type": "mcq",
+              "text": "Speaking about someone behind their back in a way they would dislike is called:",
+              "points": 2,
+              "options": [
+                "Sidq",
+                "Amanah",
+                "Ghibah",
+                "Shukr"
+              ],
+              "correctAnswer": "Ghibah"
+            },
+            {
+              "type": "mcq",
+              "text": "Islam teaches that keeping promises reflects:",
+              "points": 2,
+              "options": [
+                "Weakness",
+                "Strong character and trustworthiness",
+                "Foolishness",
+                "Nothing important"
+              ],
+              "correctAnswer": "Strong character and trustworthiness"
+            },
+            {
+              "type": "tf",
+              "text": "Ghibah (backbiting) is discouraged in Islam even if what is said is true.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Sabr only applies during times of hardship and never during times of ease.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Explain why honesty (Sidq) is considered a core Islamic value.",
+              "points": 3,
+              "correctAnswer": "Honesty builds trust, reflects sincerity of faith, and is emphasized repeatedly in the Quran and Sunnah as essential to good character"
+            }
+          ]
+        },
+        {
+          "moduleId": "m-mod-7",
+          "title": "Module 7 Quiz: Comparative Religion Basics",
+          "duration": 20,
+          "passingScore": 60,
+          "randomizeQuestions": true,
+          "randomizeOptions": true,
+          "questions": [
+            {
+              "type": "mcq",
+              "text": "Which religion shares Abrahamic roots with Islam?",
+              "points": 2,
+              "options": [
+                "Hinduism",
+                "Buddhism",
+                "Christianity",
+                "Shinto"
+              ],
+              "correctAnswer": "Christianity"
+            },
+            {
+              "type": "mcq",
+              "text": "What is the main holy book of Judaism called?",
+              "points": 2,
+              "options": [
+                "Torah",
+                "Gospel",
+                "Vedas",
+                "Tripitaka"
+              ],
+              "correctAnswer": "Torah"
+            },
+            {
+              "type": "mcq",
+              "text": "Which religion is centered on the teachings of Siddhartha Gautama?",
+              "points": 2,
+              "options": [
+                "Hinduism",
+                "Buddhism",
+                "Judaism",
+                "Christianity"
+              ],
+              "correctAnswer": "Buddhism"
+            },
+            {
+              "type": "mcq",
+              "text": "Islam's core belief that distinguishes it clearly from other religions is:",
+              "points": 2,
+              "options": [
+                "Belief in multiple gods",
+                "Strict Tawheed — the absolute oneness of God",
+                "No belief in an afterlife",
+                "No holy scripture"
+              ],
+              "correctAnswer": "Strict Tawheed — the absolute oneness of God"
+            },
+            {
+              "type": "mcq",
+              "text": "Approaching people of other faiths with respect while holding your own beliefs is:",
+              "points": 2,
+              "options": [
+                "Discouraged in Islam",
+                "Encouraged in Islam",
+                "Only for scholars",
+                "Not addressed in Islam"
+              ],
+              "correctAnswer": "Encouraged in Islam"
+            },
+            {
+              "type": "tf",
+              "text": "Islam, Christianity and Judaism are all considered Abrahamic religions.",
+              "points": 1,
+              "correctAnswer": "true"
+            },
+            {
+              "type": "tf",
+              "text": "Learning about other religions means a Muslim must agree with their beliefs.",
+              "points": 1,
+              "correctAnswer": "false"
+            },
+            {
+              "type": "short",
+              "text": "Name one similarity and one key difference between Islam and Christianity.",
+              "points": 3,
+              "correctAnswer": "Similarity: both are Abrahamic and believe in one God and prophets/revelation (answers may vary). Difference: Islam holds strict Tawheed and does not view Jesus as divine, while Christianity holds the Trinity and Jesus's divinity"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

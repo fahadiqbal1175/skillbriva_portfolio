@@ -855,7 +855,7 @@ function addQuestionToQuiz(qData = null) {
             <label>Options (Select correct answer)</label>
             \${[0,1,2,3].map(i => \`
                 <div class="quiz-option-row">
-                    <input type="radio" name="correct_\${qId}" value="\${i}" \${qData && qData.correctOption === i ? 'checked' : (i===0?'checked':'')}>
+                    <input type="radio" name="correct_\${qId}" value="\${i}" \${qData && (qData.correctOption === i || (qData.correctAnswer && qData.options && qData.correctAnswer === qData.options[i])) ? 'checked' : (i===0?'checked':'')}>
                     <input type="text" class="lms-input q-option-val" placeholder="Option \${i+1}" value="\${qData && qData.options ? escapeHtml(qData.options[i]||'') : ''}">
                 </div>
             \`).join('')}
@@ -863,13 +863,13 @@ function addQuestionToQuiz(qData = null) {
         <div class="q-tf-container" id="tf_\${qId}" style="\${qData && qData.type === 'tf' ? '' : 'display:none;'}">
             <label>Correct Answer</label>
             <select class="lms-select q-tf-val">
-                <option value="true" \${qData && qData.correctOption === 'true' ? 'selected' : ''}>True</option>
-                <option value="false" \${qData && qData.correctOption === 'false' ? 'selected' : ''}>False</option>
+                <option value="true" \${qData && (qData.correctOption === 'true' || qData.correctAnswer === 'true') ? 'selected' : ''}>True</option>
+                <option value="false" \${qData && (qData.correctOption === 'false' || qData.correctAnswer === 'false') ? 'selected' : ''}>False</option>
             </select>
         </div>
         <div class="q-short-container" id="short_\${qId}" style="\${qData && qData.type === 'short' ? '' : 'display:none;'}">
             <label>Correct Answer (Exact match)</label>
-            <input type="text" class="lms-input q-short-val" value="\${qData && qData.type === 'short' ? escapeHtml(qData.correctOption || '') : ''}">
+            <input type="text" class="lms-input q-short-val" value="\${qData && qData.type === 'short' ? escapeHtml(qData.correctOption || qData.correctAnswer || '') : ''}">
         </div>
     \`;
     container.appendChild(card);
@@ -902,15 +902,16 @@ async function saveQuiz(e) {
 
         if (type === 'mcq') {
             const opts = Array.from(card.querySelectorAll('.q-option-val')).map(inp => inp.value);
-            const correctRadio = card.querySelector(\`input[type="radio"]:checked\`);
+            const correctRadio = card.querySelector(`input[type="radio"]:checked`);
             if(!correctRadio || opts.some(o => !o)) hasError = true;
             qObj.options = opts;
-            qObj.correctOption = parseInt(correctRadio.value);
+            const selectedIndex = parseInt(correctRadio.value);
+            qObj.correctAnswer = opts[selectedIndex];
         } else if (type === 'tf') {
-            qObj.correctOption = card.querySelector('.q-tf-val').value;
+            qObj.correctAnswer = card.querySelector('.q-tf-val').value;
         } else if (type === 'short') {
-            qObj.correctOption = card.querySelector('.q-short-val').value;
-            if(!qObj.correctOption) hasError = true;
+            qObj.correctAnswer = card.querySelector('.q-short-val').value;
+            if(!qObj.correctAnswer) hasError = true;
         }
 
         questions.push(qObj);

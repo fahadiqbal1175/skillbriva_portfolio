@@ -8,55 +8,25 @@ import {
 import { 
     showToast, showLoading, showEmpty, initSidebar, initTabs, 
     formatDate, formatDateTime, getInitials, getSubjectIcon, 
-    getSubjectColor, getScoreBadge, renderAvatar, escapeHtml 
+    getSubjectColor, getScoreBadge, renderAvatar, escapeHtml, timeAgo
 } from './lms-common.js';
 
 let currentUser = null;
 let userProfile = null;
 let quizChartInstance = null;
 let dashboardData = {};
-
-function generateMockData(profile) {
-    const subjects = [
-        { name: 'Quran with Tajweed', icon: 'fa-quran', color: 'emerald' },
-        { name: 'Basic Islamic Studies', icon: 'fa-mosque', color: 'cyan' },
-        { name: 'Computer Science', icon: 'fa-laptop-code', color: 'indigo' },
-        { name: 'Mathematics', icon: 'fa-calculator', color: 'amber' }
-    ];
-
-    const courses = subjects.map((sub, i) => ({
-        id: `course-${i}`,
-        title: `${sub.name} - Beginner`,
-        subject: sub.name,
-        description: `Learn the fundamentals of ${sub.name} in this interactive course.`,
-        progress: Math.floor(Math.random() * 100)
-    }));
-
-    const assignments = [
-        { id: 'a1', title: 'Chapter 1 Exercises', courseId: 'course-0', courseName: 'Quran with Tajweed - Beginner', dueDate: Date.now() + 86400000 * 2, status: 'pending', score: null },
-        { id: 'a2', title: 'Midterm Project', courseId: 'course-2', courseName: 'Computer Science - Beginner', dueDate: Date.now() - 86400000 * 5, status: 'graded', score: 85 },
-        { id: 'a3', title: 'Algebra Worksheet', courseId: 'course-3', courseName: 'Mathematics - Beginner', dueDate: Date.now() + 86400000 * 5, status: 'submitted', score: null }
-    ];
-
-    const quizzes = [
-        { id: 'q1', title: 'Basic Syntax Quiz', courseName: 'Computer Science - Beginner', duration: 15, questions: 10, status: 'completed', score: 90 },
-        { id: 'q2', title: 'Tajweed Rules Test', courseName: 'Quran with Tajweed - Beginner', duration: 20, questions: 15, status: 'not_started', score: null }
-    ];
-
-    const lectures = [
-        { id: 'l1', title: 'Introduction to Algorithms', courseName: 'Computer Science - Beginner', duration: '45 mins', thumbnail: 'fa-laptop-code' },
-        { id: 'l2', title: 'Makharij Letters', courseName: 'Quran with Tajweed - Beginner', duration: '30 mins', thumbnail: 'fa-quran' }
-    ];
-
-    const liveClasses = [
-        { id: 'lc1', title: 'Live Session: Q&A', subject: 'Basic Islamic Studies', time: Date.now() + 3600000, link: '#' },
-        { id: 'lc2', title: 'Math Problem Solving', subject: 'Mathematics', time: Date.now() + 86400000 * 2, link: '#' }
-    ];
-
-    return { courses, assignments, quizzes, lectures, liveClasses };
-}
+let isDemo = false;
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    isDemo = urlParams.get('demo') === 'true';
+
+    if (isDemo) {
+        const { default: DEMO_DATA } = await import('./demo-data.js');
+        initDemoMode(DEMO_DATA);
+        return;
+    }
+
     const authResult = await requireAuth();
     if (!authResult) return;
     currentUser = authResult.user;
@@ -124,6 +94,37 @@ function initUI() {
     }
 }
 
+function initDemoMode(data) {
+    userProfile = data.user;
+    currentUser = { uid: 'demo-user', email: data.user.email };
+    dashboardData = data;
+    
+    initUI();
+    
+    document.getElementById('sidebarRole').textContent = 'Demo Student';
+    const demoBanner = document.getElementById('demoBanner');
+    if (demoBanner) demoBanner.style.display = 'flex';
+    
+    window.openSubmitModal = () => window.location.href = 'register.html';
+    window.playLecture = () => window.location.href = 'register.html';
+    
+    renderOverview();
+    renderCourses();
+    renderAssignments();
+    renderQuizzes();
+    renderLectures();
+    renderProgress();
+    renderLiveClasses();
+    
+    setTimeout(() => {
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('Start Quiz') || btn.textContent.includes('Submit') || btn.textContent.includes('Join Now')) {
+                btn.onclick = (e) => { e.preventDefault(); window.location.href = 'register.html'; };
+            }
+        });
+    }, 100);
+}
+
 async function loadDashboardData() {
     try {
         const [courses, assignments, quizzes, lectures, liveClasses] = await Promise.all([
@@ -135,9 +136,17 @@ async function loadDashboardData() {
         ]);
 
         if (courses.length === 0) {
-            dashboardData = generateMockData(userProfile);
+            dashboardData = { courses: [], assignments: [], quizzes: [], lectures: [], liveClasses: [] };
         } else {
-            dashboardData.courses = courses.map(c => ({...c, progress: Math.floor(Math.random() * 100)}));
+            const coursesWithProgress = await Promise.all(courses.map(async c => {
+                const prog = await getOne(`progress/${currentUser.uid}/${c.id}`);
+                let progressValue = 0;
+                if (prog && prog.totalLectures > 0) {
+                    progressValue = Math.round((prog.lecturesWatched / prog.totalLectures) * 100);
+                }
+                return { ...c, progress: progressValue };
+            }));
+            dashboardData.courses = coursesWithProgress;
             dashboardData.assignments = assignments.map(a => {
                 const c = courses.find(c => c.id === a.courseId);
                 return { ...a, courseName: c ? c.title : 'Unknown Course', status: a.status || 'pending', score: a.score || null };
@@ -155,29 +164,29 @@ async function loadDashboardData() {
             }));
         }
 
-        renderOverview();
+        await renderOverview();
         renderCourses();
         renderAssignments();
         renderQuizzes();
         renderLectures();
-        renderProgress();
+        await renderProgress();
         renderLiveClasses();
         
     } catch (error) {
         console.error("Error loading dashboard data:", error);
-        showToast("Error loading dashboard data, showing demo data", "error");
-        dashboardData = generateMockData(userProfile);
-        renderOverview();
+        showToast("Error loading dashboard data", "error");
+        dashboardData = { courses: [], assignments: [], quizzes: [], lectures: [], liveClasses: [] };
+        await renderOverview();
         renderCourses();
         renderAssignments();
         renderQuizzes();
         renderLectures();
-        renderProgress();
+        await renderProgress();
         renderLiveClasses();
     }
 }
 
-function renderOverview() {
+async function renderOverview() {
     document.getElementById('statCourses').textContent = dashboardData.courses.length;
     const pendingCount = dashboardData.assignments.filter(a => a.status === 'pending').length;
     document.getElementById('statAssignments').textContent = pendingCount;
@@ -188,35 +197,36 @@ function renderOverview() {
     document.getElementById('statClasses').textContent = dashboardData.liveClasses.length;
 
     const activityList = document.getElementById('recentActivityList');
-    activityList.innerHTML = `
-        <div class="recent-activity-item">
-            <div class="activity-icon"><i class="fas fa-check"></i></div>
+    const recentActivities = isDemo ? (dashboardData.activityLog || []) : (await getWhere('activityLog', 'userId', currentUser.uid) || []);
+    
+    activityList.innerHTML = recentActivities.length > 0 
+        ? recentActivities.map(a => `<div class="recent-activity-item">
+            <div class="activity-icon"><i class="fas ${a.icon || 'fa-check'}"></i></div>
             <div class="activity-content">
-                <h4>Completed Quiz: Basic Syntax</h4>
-                <p>Score: 90% • 2 hours ago</p>
+                <h4>${escapeHtml(a.title || 'Activity')}</h4>
+                <p>${escapeHtml(a.description || '')} • ${timeAgo(a.timestamp || Date.now())}</p>
             </div>
-        </div>
-        <div class="recent-activity-item">
-            <div class="activity-icon"><i class="fas fa-file-upload"></i></div>
-            <div class="activity-content">
-                <h4>Submitted Assignment</h4>
-                <p>Algebra Worksheet • 1 day ago</p>
-            </div>
-        </div>
-    `;
+        </div>`).join('')
+        : '<div class="lms-empty-small"><i class="fas fa-clock"></i><p>No recent activity yet. Start a course to see your activity here!</p></div>';
 
     const upcomingList = document.getElementById('upcomingList');
-    upcomingList.innerHTML = dashboardData.assignments.filter(a => a.status === 'pending').slice(0, 3).map(a => `
-        <div class="live-card">
-            <div class="live-card-icon bg-warning-light text-warning">
-                <i class="fas fa-clock"></i>
+    const upcomingAssignments = dashboardData.assignments.filter(a => a.status === 'pending').slice(0, 3);
+    
+    if (upcomingAssignments.length > 0) {
+        upcomingList.innerHTML = upcomingAssignments.map(a => `
+            <div class="live-card">
+                <div class="live-card-icon bg-warning-light text-warning">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="live-card-details">
+                    <div class="live-card-title">${escapeHtml(a.title)}</div>
+                    <div class="live-card-time">Due: ${formatDate(new Date(a.dueDate || Date.now()))}</div>
+                </div>
             </div>
-            <div class="live-card-details">
-                <div class="live-card-title">${escapeHtml(a.title)}</div>
-                <div class="live-card-time">Due: ${formatDate(new Date(a.dueDate || Date.now()))}</div>
-            </div>
-        </div>
-    `).join('');
+        `).join('');
+    } else {
+        upcomingList.innerHTML = '<div class="lms-empty-small"><i class="fas fa-calendar-check"></i><p>No upcoming assignments!</p></div>';
+    }
 }
 
 function renderCourses() {
@@ -417,31 +427,46 @@ window.playLecture = (id) => {
     document.getElementById('videoModal').classList.add('active');
 };
 
-function renderProgress() {
-    const ctx = document.getElementById('quizChart').getContext('2d');
+async function renderProgress() {
+    const chartContainer = document.getElementById('quizChart').parentElement;
     
-    if (quizChartInstance) quizChartInstance.destroy();
+    if (quizChartInstance) {
+        quizChartInstance.destroy();
+        quizChartInstance = null;
+    }
 
-    quizChartInstance = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Quiz 1', 'Quiz 2', 'Quiz 3', 'Quiz 4'],
-            datasets: [{
-                label: 'Score %',
-                data: [85, 90, 78, 95],
-                backgroundColor: 'rgba(16, 185, 129, 0.2)',
-                borderColor: 'rgba(16, 185, 129, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: { beginAtZero: true, max: 100 }
-            }
+    const quizAttempts = isDemo ? (dashboardData.quizAttempts || []) : (await getWhere('quizAttempts', 'studentId', currentUser.uid) || []);
+    quizAttempts.sort((a, b) => a.completedAt - b.completedAt);
+    const lastAttempts = quizAttempts.slice(-10);
+
+    if (lastAttempts.length === 0) {
+        chartContainer.innerHTML = '<div class="lms-empty-small" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;"><i class="fas fa-chart-line" style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-light);"></i><p>No quiz attempts yet to show progress.</p></div>';
+    } else {
+        if (!document.getElementById('quizChart')) {
+            chartContainer.innerHTML = '<canvas id="quizChart"></canvas>';
         }
-    });
+        const ctx = document.getElementById('quizChart').getContext('2d');
+        quizChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: lastAttempts.map(a => a.quizTitle || 'Quiz'),
+                datasets: [{
+                    label: 'Score %',
+                    data: lastAttempts.map(a => a.score || 0),
+                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, max: 100 }
+                }
+            }
+        });
+    }
 
     const progressContainer = document.getElementById('courseProgressContainer');
     if (dashboardData.courses.length === 0) {

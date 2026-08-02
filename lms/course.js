@@ -19,54 +19,19 @@ let userProfile = null;
 let currentCourseId = null;
 let courseData = null;
 
-// Demo data for fallback
-const demoCourse = {
-    id: 'demo-cs101',
-    title: 'Introduction to Computer Science',
-    subject: 'Computer Science',
-    description: 'Learn the fundamentals of computer science, programming logic, and computational thinking. This course is designed for absolute beginners.',
-    longDescription: 'This comprehensive course covers everything you need to know to get started in Computer Science. From binary numbers and basic algorithms to writing your first programs in Python. You will learn how computers process information, how the internet works, and how to solve problems using computational thinking.',
-    objectives: [
-        'Understand basic computer architecture and how computers work',
-        'Write basic programs using Python',
-        'Understand and apply fundamental algorithms',
-        'Solve problems using computational thinking'
-    ],
-    modules: [
-        { id: 'm1', title: 'Module 1: Introduction to Computing', description: 'What is a computer? History and basic architecture.' },
-        { id: 'm2', title: 'Module 2: Programming Fundamentals', description: 'Variables, loops, and conditions.' },
-        { id: 'm3', title: 'Module 3: Algorithms and Data Structures', description: 'Basic searching and sorting.' }
-    ],
-    totalLectures: 12,
-    totalAssignments: 4,
-    totalQuizzes: 2,
-    progress: 35
-};
-
-const demoLectures = [
-    { id: 'l1', moduleId: 'm1', title: '1.1 What is Computer Science?', duration: '15:20', videoId: 'dQw4w9WgXcQ', watched: true },
-    { id: 'l2', moduleId: 'm1', title: '1.2 How Computers Work', duration: '22:10', videoId: 'dQw4w9WgXcQ', watched: false },
-    { id: 'l3', moduleId: 'm2', title: '2.1 Introduction to Python', duration: '18:45', videoId: 'dQw4w9WgXcQ', watched: false }
-];
-
-const demoMaterials = [
-    { id: 'mat1', title: 'Course Syllabus', type: 'pdf', size: 1024 * 500, url: '#' },
-    { id: 'mat2', title: 'Python Cheat Sheet', type: 'pdf', size: 1024 * 1200, url: '#' },
-    { id: 'mat3', title: 'Lecture 1 Slides', type: 'ppt', size: 1024 * 1024 * 5, url: '#' }
-];
-
-const demoAssignments = [
-    { id: 'a1', title: 'Setup Your Development Environment', dueDate: Date.now() + 86400000 * 3, status: 'pending', points: 10 },
-    { id: 'a2', title: 'Write Your First Program', dueDate: Date.now() + 86400000 * 7, status: 'submitted', points: 20, score: null }
-];
-
-const demoQuizzes = [
-    { id: 'q1', title: 'Module 1 Quiz: Computing Basics', duration: 15, questionsCount: 10, status: 'completed', score: 85 },
-    { id: 'q2', title: 'Module 2 Quiz: Programming Logic', duration: 20, questionsCount: 15, status: 'pending', score: null }
-];
-
 document.addEventListener('DOMContentLoaded', async () => {
     initSidebar();
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    currentCourseId = urlParams.get('id');
+    const isDemoMode = urlParams.get('demo') === 'true';
+
+    if (isDemoMode) {
+        const { default: DEMO_DATA } = await import('./demo-data.js');
+        initDemoCourseMode(DEMO_DATA);
+        return;
+    }
+
     
     try {
         const authResult = await requireAuth();
@@ -87,9 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Get Course ID
-        const urlParams = new URLSearchParams(window.location.search);
-        currentCourseId = urlParams.get('id');
+        // Get Course ID done earlier
         
         await loadCourseData();
 
@@ -120,7 +83,6 @@ async function loadCourseData() {
     const container = document.getElementById('courseContent');
     showLoading(container, 'Loading course details...');
     
-    let isDemo = false;
     let lectures = [], materials = [], assignments = [], quizzes = [];
     
     if (currentCourseId) {
@@ -148,24 +110,23 @@ async function loadCourseData() {
                 } else {
                     courseData.progress = 0;
                 }
-            } else {
-                isDemo = true;
             }
         } catch (error) {
             console.error("Error fetching course:", error);
-            showToast("Failed to load course from database, showing demo.", "error");
-            isDemo = true;
+            showToast("Failed to load course from database.", "error");
         }
-    } else {
-        isDemo = true;
     }
     
-    if (isDemo) {
-        courseData = demoCourse;
-        lectures = demoLectures;
-        materials = demoMaterials;
-        assignments = demoAssignments;
-        quizzes = demoQuizzes;
+    if (!currentCourseId || !courseData) {
+        document.getElementById('courseContent').innerHTML = `
+            <div class="lms-error-state" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; padding: 2rem;">
+              <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--lms-warning); margin-bottom: 1.5rem;"></i>
+              <h2 style="color: var(--lms-text-primary); margin-bottom: 0.5rem;">Course Not Found</h2>
+              <p style="color: var(--lms-text-secondary); margin-bottom: 1.5rem;">The course you're looking for doesn't exist or may have been removed.</p>
+              <a href="dashboard.html" class="lms-btn lms-btn--primary"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+            </div>
+        `;
+        return;
     }
 
     renderCoursePage(container, lectures, materials, assignments, quizzes);
@@ -210,7 +171,15 @@ function renderCoursePage(container, lectures, materials, assignments, quizzes) 
                 </div>
                 <div class="lecture-body">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/${l.videoId || 'dQw4w9WgXcQ'}" allowfullscreen></iframe>
+                        ${l.videoId ? 
+                            `<iframe src="https://www.youtube.com/embed/${l.videoId}" allowfullscreen></iframe>` : 
+                            `<div class="lms-video-placeholder" style="display: flex; align-items: center; justify-content: center; background: var(--lms-bg-secondary); border-radius: 12px; aspect-ratio: 16/9; color: var(--lms-text-secondary); height: 100%;">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-video-slash" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
+                                    <p>Video coming soon</p>
+                                </div>
+                            </div>`
+                        }
                     </div>
                     <p>${escapeHtml(l.description || 'No description available.')}</p>
                 </div>
@@ -504,3 +473,49 @@ function setupModals() {
         }
     });
 }
+
+function initDemoCourseMode(data) {
+    courseData = data.demoCourseDetail;
+    const container = document.getElementById('courseContent');
+    
+    // Populate sidebar with demo user
+    currentUser = { uid: 'demo-user', displayName: data.demoUser.fullName };
+    userProfile = data.demoUser;
+    populateSidebarUser();
+    
+    renderCoursePage(container, data.demoCourseDetail.lectures || [], data.demoCourseDetail.materials || [], data.demoCourseDetail.assignments || [], data.demoCourseDetail.quizzes || []);
+    
+    const demoBanner = document.getElementById('demoBanner');
+    if (demoBanner) demoBanner.style.display = 'flex';
+    
+    // Override action buttons
+    document.querySelectorAll('.submit-assignment-btn').forEach(btn => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        newBtn.onclick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            showToast("Register for free to access this feature!", "info");
+        };
+    });
+    
+    document.querySelectorAll('a[href^="quiz.html"]').forEach(btn => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        newBtn.onclick = (e) => {
+            e.preventDefault();
+            showToast("Register for free to access this feature!", "info");
+        };
+    });
+    
+    document.querySelectorAll('.toggle-watched-btn').forEach(btn => {
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        newBtn.onclick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            showToast("Register for free to access this feature!", "info");
+        };
+    });
+}
+
