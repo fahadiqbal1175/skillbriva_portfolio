@@ -1,0 +1,62 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".indexOn": ["role", "email", "status"]
+    },
+    "courses": {
+      ".read": true,
+      ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'",
+      ".indexOn": ["subject", "published", "level"]
+    },
+    "lectures": {
+      ".read": "auth != null",
+      ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'",
+      ".indexOn": ["courseId", "moduleId"]
+    },
+    "assignments": {
+      ".read": "auth != null",
+      ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'",
+      ".indexOn": ["courseId", "moduleId"]
+    },
+    "quizzes": {
+      ".read": "auth != null",
+      ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'",
+      ".indexOn": ["courseId", "moduleId"]
+    },
+    "materials": {
+      ".read": "auth != null",
+      ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'",
+      ".indexOn": ["courseId"]
+    },
+    "liveClasses": {
+      ".read": "auth != null",
+      ".write": "auth != null && root.child('users').child(auth.uid).child('role').val() === 'admin'",
+      ".indexOn": ["courseId", "date"]
+    },
+    "submissions": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".indexOn": ["assignmentId", "studentId"]
+    },
+    "quizAttempts": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".indexOn": ["studentId", "quizId"]
+    },
+    "activityLog": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      ".indexOn": ["userId"]
+    },
+    "progress": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "enrollments": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+}

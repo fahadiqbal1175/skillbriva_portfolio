@@ -128,18 +128,18 @@ function initDemoMode(data) {
 async function loadDashboardData() {
     try {
         const [courses, assignments, quizzes, lectures, liveClasses] = await Promise.all([
-            getAll('courses'),
-            getAll('assignments'),
-            getAll('quizzes'),
-            getAll('lectures'),
-            getAll('liveClasses')
+            getAll('courses').catch(() => []),
+            getAll('assignments').catch(() => []),
+            getAll('quizzes').catch(() => []),
+            getAll('lectures').catch(() => []),
+            getAll('liveClasses').catch(() => [])
         ]);
 
         if (courses.length === 0) {
             dashboardData = { courses: [], assignments: [], quizzes: [], lectures: [], liveClasses: [] };
         } else {
             const coursesWithProgress = await Promise.all(courses.map(async c => {
-                const prog = await getOne(`progress/${currentUser.uid}/${c.id}`);
+                const prog = await getOne(`progress/${currentUser.uid}/${c.id}`).catch(() => null);
                 let progressValue = 0;
                 if (prog && prog.totalLectures > 0) {
                     progressValue = Math.round((prog.lecturesWatched / prog.totalLectures) * 100);
@@ -197,7 +197,8 @@ async function renderOverview() {
     document.getElementById('statClasses').textContent = dashboardData.liveClasses.length;
 
     const activityList = document.getElementById('recentActivityList');
-    const recentActivities = isDemo ? (dashboardData.activityLog || []) : (await getWhere('activityLog', 'userId', currentUser.uid) || []);
+    const allActivities = isDemo ? (dashboardData.activityLog || []) : (await getAll('activityLog').catch(() => []) || []);
+    const recentActivities = isDemo ? allActivities : allActivities.filter(a => a.userId === currentUser.uid);
     
     activityList.innerHTML = recentActivities.length > 0 
         ? recentActivities.map(a => `<div class="recent-activity-item">
@@ -435,7 +436,8 @@ async function renderProgress() {
         quizChartInstance = null;
     }
 
-    const quizAttempts = isDemo ? (dashboardData.quizAttempts || []) : (await getWhere('quizAttempts', 'studentId', currentUser.uid) || []);
+    const allAttempts = isDemo ? (dashboardData.quizAttempts || []) : (await getAll('quizAttempts').catch(() => []) || []);
+    const quizAttempts = isDemo ? allAttempts : allAttempts.filter(a => a.studentId === currentUser.uid);
     quizAttempts.sort((a, b) => a.completedAt - b.completedAt);
     const lastAttempts = quizAttempts.slice(-10);
 

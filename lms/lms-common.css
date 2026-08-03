@@ -221,6 +221,15 @@
 .lms-sidebar__nav {
   padding: 1rem 0;
   flex: 1;
+  overflow-y: auto;
+}
+
+.lms-sidebar__nav.lms-tabs {
+  flex-direction: column;
+  border-bottom: none;
+  margin-bottom: 0;
+  overflow-x: visible;
+  gap: 0;
 }
 
 .lms-sidebar__section-label {

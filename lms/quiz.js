@@ -77,7 +77,8 @@ async function loadQuizData() {
         questions = quizData.questions || [];
 
         // Check if already attempted
-        const attempts = await getWhere('quizAttempts', 'studentId', currentUser.uid);
+        const allAttempts = await getAll('quizAttempts').catch(() => []);
+        const attempts = allAttempts.filter(a => a.studentId === currentUser.uid);
         const attempt = attempts.find(a => a.quizId === quizId);
 
         if (attempt) {

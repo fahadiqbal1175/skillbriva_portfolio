@@ -91,12 +91,16 @@ async function loadCourseData() {
             courseData = await getOne(`courses/${currentCourseId}`);
             if (courseData) {
                 // Fetch related data
-                const [lecSnap, matSnap, assSnap, quizSnap] = await Promise.all([
-                    getWhere('lectures', 'courseId', currentCourseId),
-                    getWhere('materials', 'courseId', currentCourseId),
-                    getWhere('assignments', 'courseId', currentCourseId),
-                    getWhere('quizzes', 'courseId', currentCourseId)
+                const [allLectures, allMaterials, allAssignments, allQuizzes] = await Promise.all([
+                    getAll('lectures').catch(() => []),
+                    getAll('materials').catch(() => []),
+                    getAll('assignments').catch(() => []),
+                    getAll('quizzes').catch(() => [])
                 ]);
+                const lecSnap = allLectures.filter(l => l.courseId === currentCourseId);
+                const matSnap = allMaterials.filter(m => m.courseId === currentCourseId);
+                const assSnap = allAssignments.filter(a => a.courseId === currentCourseId);
+                const quizSnap = allQuizzes.filter(q => q.courseId === currentCourseId);
                 
                 lectures = lecSnap || [];
                 materials = matSnap || [];

@@ -115,7 +115,8 @@ function populateCourseDropdowns() {
 // ----------------------------------------------------------------------
 async function loadDashboard() {
     // Stat counters
-    const students = await getWhere('users', 'role', 'student');
+    const allUsers = await getAll('users').catch(() => []);
+    const students = allUsers.filter(u => (u.role || '').toLowerCase() === 'student');
     document.getElementById('stat-students').textContent = students.length;
 
     document.getElementById('stat-courses').textContent = coursesList.length;
@@ -177,7 +178,8 @@ async function loadStudents() {
     const filter = document.getElementById('students-filter').value;
     const search = document.getElementById('students-search').value.toLowerCase();
     
-    let students = await getWhere('users', 'role', 'student');
+    const allUsers = await getAll('users').catch(() => []);
+    let students = allUsers.filter(u => (u.role || '').toLowerCase() === 'student');
     
     if (filter !== 'all') {
         students = students.filter(s => s.status === filter);
@@ -976,9 +978,7 @@ window.viewSubmissions = async (assignmentId, maxPoints) => {
     const tbody = document.querySelector('#submissions-table tbody');
     tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Loading...</td></tr>';
     
-    let submissions = await getWhere('submissions', 'assignmentId', 'assignmentId');
-    // NOTE: above query might need to filter manually since we might not have index
-    submissions = await getAll('submissions');
+    let submissions = await getAll('submissions').catch(() => []);
     submissions = submissions.filter(s => s.assignmentId === assignmentId);
     
     tbody.innerHTML = '';
