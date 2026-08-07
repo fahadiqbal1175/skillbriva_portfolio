@@ -114,20 +114,42 @@ function showEmpty(container, message = "No data found", icon = "fa-inbox") {
 
 // ─── Sidebar Navigation ───────────────────────────────────
 function initSidebar() {
-  const toggle = document.getElementById("sidebarToggle");
+  const toggle = document.getElementById("sidebarToggle") || document.getElementById("toggleSidebarBtn");
   const sidebar = document.getElementById("sidebar");
   const overlay = document.getElementById("sidebarOverlay");
+  const closeBtn = document.getElementById("closeSidebarBtn");
+
+  function openSidebar() {
+    if (sidebar) sidebar.classList.add("lms-sidebar--open");
+    if (overlay) overlay.classList.add("lms-sidebar-overlay--visible");
+  }
+  function closeSidebar() {
+    if (sidebar) sidebar.classList.remove("lms-sidebar--open");
+    if (overlay) overlay.classList.remove("lms-sidebar-overlay--visible");
+  }
 
   if (toggle && sidebar) {
     toggle.addEventListener("click", () => {
-      sidebar.classList.toggle("lms-sidebar--open");
-      if (overlay) overlay.classList.toggle("lms-sidebar-overlay--visible");
+      if (sidebar.classList.contains("lms-sidebar--open")) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
     });
   }
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeSidebar);
+  }
   if (overlay) {
-    overlay.addEventListener("click", () => {
-      sidebar.classList.remove("lms-sidebar--open");
-      overlay.classList.remove("lms-sidebar-overlay--visible");
+    overlay.addEventListener("click", closeSidebar);
+  }
+
+  // Close sidebar on nav link click (mobile)
+  if (sidebar) {
+    sidebar.querySelectorAll(".lms-sidebar__link[data-tab]").forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 1024) closeSidebar();
+      });
     });
   }
 }
